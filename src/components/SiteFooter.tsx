@@ -31,7 +31,7 @@ const columns = [
   },
 ];
 
-export default function SiteFooter() {
+export function SiteFooter() {
   const wordRef = useRef<HTMLDivElement>(null);
   const [light, setLight] = useState({ x: 50, y: 50, on: false });
 
@@ -150,3 +150,5 @@ export default function SiteFooter() {
     </footer>
   );
 }
+
+export default SiteFooter;
