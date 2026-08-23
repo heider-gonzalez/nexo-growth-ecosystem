@@ -82,9 +82,13 @@ function Index() {
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/60 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <a href="#" className="text-base font-semibold tracking-tight">
+          <a
+            href="#"
+            className="font-sans text-[1.35rem] font-extrabold leading-none tracking-[-0.06em] text-foreground"
+          >
             Nexo
           </a>
+
           <nav className="hidden items-center gap-7 md:flex">
             {nav.map((n) => (
               <a
