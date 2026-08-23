@@ -110,7 +110,7 @@ function Index() {
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="surface-card rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+              className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
             >
               Comience
             </a>
@@ -127,19 +127,19 @@ function Index() {
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               ¡Llegó Nexo! Tu negocio, listo para despegar
               <ArrowRight className="h-3 w-3" />
             </a>
-            <h1 className="text-shine mt-8 font-display text-[3.4rem] leading-[0.94] tracking-tight sm:text-7xl">
+            <h1 className="text-shine mt-8 font-sans font-bold text-[3.4rem] leading-[0.94] tracking-tight sm:text-7xl">
               Tecnología que
               <br />
               impulsa tu
               <br />
               negocio
             </h1>
-            <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed text-muted-foreground">
+            <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed text-neutral-300">
               En Nexo transformamos la tecnología en resultados reales. No solo creamos
               herramientas: diseñamos el ecosistema digital que tu marca necesita para
               crecer sin límites.
@@ -149,7 +149,7 @@ function Index() {
                 href={IG}
                 target="_blank"
                 rel="noreferrer"
-                className="surface-card rounded-lg px-5 py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+                className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
               >
                 Comience
               </a>
@@ -179,10 +179,10 @@ function Index() {
           <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
             Servicios
           </p>
-          <h2 className="mt-5 font-display text-4xl tracking-tight sm:text-5xl">
+          <h2 className="mt-5 font-sans font-bold text-4xl tracking-tight sm:text-5xl">
             Un ecosistema, cuatro frentes
           </h2>
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-neutral-300">
             Cada pieza se conecta con la siguiente: lo que capta tu web alimenta tu CRM,
             y lo que aprende tu CRM alimenta tus automatizaciones.
           </p>
@@ -198,7 +198,7 @@ function Index() {
                   strokeWidth={1.5}
                 />
                 <h3 className="mt-5 text-base font-medium">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-neutral-300">
                   {s.text}
                 </p>
               </article>
@@ -211,17 +211,17 @@ function Index() {
       <section id="proceso" className="relative">
         <div className="glow-line absolute inset-x-0 top-0 h-px" />
         <div className="mx-auto max-w-6xl px-6 py-24">
-          <h2 className="font-display text-4xl tracking-tight sm:text-5xl">
+          <h2 className="font-sans font-bold text-4xl tracking-tight sm:text-5xl">
             Cómo trabajamos
           </h2>
           <div className="mt-12 grid gap-10 sm:grid-cols-3">
             {steps.map((s) => (
               <div key={s.n}>
-                <span className="font-display text-3xl text-muted-foreground/70">
+                <span className="font-sans font-bold text-3xl text-muted-foreground/70">
                   {s.n}
                 </span>
                 <h3 className="mt-4 text-base font-medium">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-neutral-300">
                   {s.text}
                 </p>
               </div>
@@ -237,7 +237,7 @@ function Index() {
           <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
             Enfoque
           </p>
-          <h2 className="text-shine mt-6 font-display text-4xl leading-tight sm:text-5xl">
+          <h2 className="text-shine mt-6 font-sans font-bold text-4xl leading-tight sm:text-5xl">
             Tu negocio no necesita más herramientas, necesita la estrategia correcta.
           </h2>
         </div>
@@ -248,10 +248,10 @@ function Index() {
       <section id="contacto" className="relative overflow-hidden">
         <div className="light-beam light-beam--soft" />
         <div className="relative mx-auto max-w-6xl px-6 py-28 text-center">
-          <h2 className="font-display text-5xl tracking-tight">
+          <h2 className="font-sans font-bold text-5xl tracking-tight">
             ¿Hablamos de tu proyecto?
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-neutral-300">
             Escríbenos por Instagram y te respondemos con una propuesta a la medida de tu
             operación.
           </p>
