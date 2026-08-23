@@ -123,9 +123,9 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section className="hero-radial relative overflow-hidden pt-32">
+      <section className="hero-radial relative min-h-screen overflow-hidden flex items-center justify-center pt-16">
         <div className="light-beam" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-6 px-6 pb-28 lg:grid-cols-[1.05fr_1fr]">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-6 px-6 lg:grid-cols-[1.05fr_1fr]">
           <div>
             <a
               href={IG}
