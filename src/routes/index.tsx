@@ -110,7 +110,7 @@ function Index() {
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="surface-card rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+              className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
             >
               Comience
             </a>
@@ -127,7 +127,7 @@ function Index() {
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               ¡Llegó Nexo! Tu negocio, listo para despegar
               <ArrowRight className="h-3 w-3" />
@@ -139,7 +139,7 @@ function Index() {
               <br />
               negocio
             </h1>
-            <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed text-muted-foreground">
+            <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed text-neutral-300">
               En Nexo transformamos la tecnología en resultados reales. No solo creamos
               herramientas: diseñamos el ecosistema digital que tu marca necesita para
               crecer sin límites.
@@ -149,7 +149,7 @@ function Index() {
                 href={IG}
                 target="_blank"
                 rel="noreferrer"
-                className="surface-card rounded-lg px-5 py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+                className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
               >
                 Comience
               </a>
@@ -182,7 +182,7 @@ function Index() {
           <h2 className="mt-5 font-sans font-bold text-4xl tracking-tight sm:text-5xl">
             Un ecosistema, cuatro frentes
           </h2>
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-neutral-300">
             Cada pieza se conecta con la siguiente: lo que capta tu web alimenta tu CRM,
             y lo que aprende tu CRM alimenta tus automatizaciones.
           </p>
@@ -198,7 +198,7 @@ function Index() {
                   strokeWidth={1.5}
                 />
                 <h3 className="mt-5 text-base font-medium">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-neutral-300">
                   {s.text}
                 </p>
               </article>
@@ -221,7 +221,7 @@ function Index() {
                   {s.n}
                 </span>
                 <h3 className="mt-4 text-base font-medium">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-neutral-300">
                   {s.text}
                 </p>
               </div>
@@ -251,7 +251,7 @@ function Index() {
           <h2 className="font-sans font-bold text-5xl tracking-tight">
             ¿Hablamos de tu proyecto?
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-neutral-300">
             Escríbenos por Instagram y te respondemos con una propuesta a la medida de tu
             operación.
           </p>
