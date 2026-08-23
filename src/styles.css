@@ -177,11 +177,38 @@
 }
 
 @utility pill-glow {
+  position: relative;
   background: linear-gradient(180deg, oklch(0.18 0 0), oklch(0.1 0 0));
   border: 1px solid transparent;
   background-clip: padding-box;
-  position: relative;
+  box-shadow:
+    0 0 18px -6px rgba(120, 80, 255, 0.55),
+    0 0 26px -10px rgba(40, 200, 160, 0.45);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      #7c5cff 28%,
+      #3b82f6 48%,
+      #22d3ee 66%,
+      #34d399 82%,
+      rgba(255, 255, 255, 0.12) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }
+
 
 @utility light-beam {
   position: absolute;
