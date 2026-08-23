@@ -125,17 +125,14 @@ function Cube({ interactive }: { interactive: boolean }) {
             position={c.pos}
             castShadow
             receiveShadow
-            onPointerDown={
-              interactive
-                ? (e) => {
-                    e.stopPropagation();
-                    const mesh = e.object as THREE.Mesh;
-                    const axis = AXES[Math.floor(Math.random() * 3)]!;
-                    const layer = Math.round(mesh.position[axis] / GAP) as -1 | 0 | 1;
-                    startMove({ axis, layer, dir: Math.random() > 0.5 ? 1 : -1 });
-                  }
-                : undefined
-            }
+            onPointerDown={(e) => {
+              if (!interactive) return;
+              e.stopPropagation();
+              const mesh = e.object as THREE.Mesh;
+              const axis = AXES[Math.floor(Math.random() * 3)]!;
+              const layer = Math.round(mesh.position[axis] / GAP) as -1 | 0 | 1;
+              startMove({ axis, layer, dir: Math.random() > 0.5 ? 1 : -1 });
+            }}
             ref={(el: THREE.Mesh | null) => {
               cubies.current[i] = el;
             }}
