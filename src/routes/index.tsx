@@ -2,6 +2,8 @@ import { createFileRoute, ClientOnly } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
 import { Monitor, RefreshCw, Zap, Bot, ChevronDown, ArrowRight } from "lucide-react";
 
+import SiteFooter from "@/components/SiteFooter";
+
 const RubikCube = lazy(() => import("@/components/RubikCube"));
 
 export const Route = createFileRoute("/")({
