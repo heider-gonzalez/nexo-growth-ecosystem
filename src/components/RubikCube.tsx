@@ -165,8 +165,8 @@ function Cube() {
               color="#111111"
               metalness={c.metalness}
               roughness={c.roughness}
-              roughnessMap={maps[c.finish] ?? undefined}
-              bumpMap={maps[c.finish] ?? undefined}
+              roughnessMap={maps[c.finish] ?? null}
+              bumpMap={maps[c.finish] ?? null}
               bumpScale={c.finish === 1 ? 0.05 : 0.015}
               clearcoat={c.finish === 0 ? 0.6 : 0.15}
               clearcoatRoughness={0.2}
