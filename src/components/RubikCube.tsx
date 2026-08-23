@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { RoundedBox, Environment } from "@react-three/drei";
+import { RoundedBox, OrbitControls, Environment } from "@react-three/drei";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
@@ -211,6 +211,7 @@ export default function RubikCube() {
         <directionalLight position={[7, -2, -4]} intensity={0.25} color="#8fa0c8" />
         <Environment preset="warehouse" environmentIntensity={0.18} />
         <Cube />
+        <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
     </div>
   );
