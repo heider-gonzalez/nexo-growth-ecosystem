@@ -265,6 +265,16 @@ function Index() {
         </div>
       </section>
 
+      {/* Marca gigante */}
+      <section className="relative overflow-hidden border-t border-border">
+        <h2
+          aria-label="NEXO"
+          className="nexo-giant select-none text-center font-display text-[15vw] leading-[0.85] tracking-tight"
+        >
+          NEXO
+        </h2>
+      </section>
+
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-muted-foreground sm:flex-row">
           <span>© {new Date().getFullYear()} Nexo</span>

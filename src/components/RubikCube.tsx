@@ -10,12 +10,12 @@ type Axis = (typeof AXES)[number];
 type Move = { axis: Axis; layer: -1 | 0 | 1; dir: 1 | -1 };
 
 const SHADES = [
-  { color: "#0b0b0c", metalness: 0.95, roughness: 0.28 },
-  { color: "#121214", metalness: 0.85, roughness: 0.45 },
-  { color: "#171718", metalness: 0.7, roughness: 0.6 },
-  { color: "#1f1f22", metalness: 0.98, roughness: 0.2 },
-  { color: "#2a2a2d", metalness: 0.8, roughness: 0.4 },
-  { color: "#0e0e10", metalness: 0.9, roughness: 0.55 },
+  { color: "#111111", metalness: 0.9, roughness: 0.1 },
+  { color: "#0d0d0d", metalness: 0.9, roughness: 0.14 },
+  { color: "#161616", metalness: 0.9, roughness: 0.08 },
+  { color: "#101012", metalness: 0.95, roughness: 0.12 },
+  { color: "#1a1a1c", metalness: 0.85, roughness: 0.1 },
+  { color: "#0a0a0a", metalness: 0.92, roughness: 0.16 },
 ];
 
 function randomMove(): Move {
@@ -125,17 +125,14 @@ function Cube({ interactive }: { interactive: boolean }) {
             position={c.pos}
             castShadow
             receiveShadow
-            onPointerDown={
-              interactive
-                ? (e) => {
-                    e.stopPropagation();
-                    const mesh = e.object as THREE.Mesh;
-                    const axis = AXES[Math.floor(Math.random() * 3)]!;
-                    const layer = Math.round(mesh.position[axis] / GAP) as -1 | 0 | 1;
-                    startMove({ axis, layer, dir: Math.random() > 0.5 ? 1 : -1 });
-                  }
-                : undefined
-            }
+            onPointerDown={(e) => {
+              if (!interactive) return;
+              e.stopPropagation();
+              const mesh = e.object as THREE.Mesh;
+              const axis = AXES[Math.floor(Math.random() * 3)]!;
+              const layer = Math.round(mesh.position[axis] / GAP) as -1 | 0 | 1;
+              startMove({ axis, layer, dir: Math.random() > 0.5 ? 1 : -1 });
+            }}
             ref={(el: THREE.Mesh | null) => {
               cubies.current[i] = el;
             }}
@@ -144,10 +141,10 @@ function Cube({ interactive }: { interactive: boolean }) {
               color={c.s.color}
               metalness={c.s.metalness}
               roughness={c.s.roughness}
-              clearcoat={0.6}
-              clearcoatRoughness={0.35}
-              reflectivity={0.4}
-              envMapIntensity={0.9}
+              clearcoat={1}
+              clearcoatRoughness={0.08}
+              reflectivity={0.7}
+              envMapIntensity={1.1}
             />
           </RoundedBox>
         ))}
