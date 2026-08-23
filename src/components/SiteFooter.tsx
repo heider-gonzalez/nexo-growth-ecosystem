@@ -53,19 +53,23 @@ export function SiteFooter() {
       >
         <h2
           aria-label="NEXO"
-          className="bg-gradient-to-b from-neutral-300 via-neutral-700 to-neutral-950 bg-clip-text text-center font-sans text-[18vw] font-black leading-[0.8] tracking-tighter text-transparent"
+          className="nexo-giant text-center font-sans text-[18vw] font-black leading-[0.8] tracking-tighter"
         >
           NEXO
         </h2>
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+          className="pointer-events-none absolute inset-0 flex items-start justify-center overflow-hidden text-center font-sans text-[18vw] font-black leading-[0.8] tracking-tighter text-white transition-opacity duration-300"
           style={{
             opacity: light.on ? 1 : 0,
-            background: `radial-gradient(240px circle at ${light.x}% ${light.y}%, rgba(255,255,255,0.14), transparent 70%)`,
-            mixBlendMode: "screen",
+            WebkitMaskImage: `radial-gradient(260px circle at ${light.x}% ${light.y}%, rgba(0,0,0,0.95), transparent 70%)`,
+            maskImage: `radial-gradient(260px circle at ${light.x}% ${light.y}%, rgba(0,0,0,0.95), transparent 70%)`,
+            paddingTop: "4rem",
           }}
-        />
+        >
+          <span className="w-full">NEXO</span>
+        </div>
+
       </div>
 
       {/* Línea divisoria + contenido que sumerge la mitad inferior */}
