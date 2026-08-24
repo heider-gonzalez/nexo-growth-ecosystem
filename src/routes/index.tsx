@@ -4,6 +4,7 @@ import { Monitor, RefreshCw, Zap, Bot, ChevronDown, ArrowRight } from "lucide-re
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
+import { MobileMenu } from "@/components/MobileMenu";
 
 const RubikCube = lazy(() => import("@/components/RubikCube"));
 
@@ -102,6 +103,7 @@ function Index() {
               </a>
             ))}
           </nav>
+
           <div className="flex items-center gap-4">
             <a
               href={IG}
@@ -115,10 +117,11 @@ function Index() {
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
+              className="hidden md:block rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
             >
               Comience
             </a>
+            <MobileMenu nav={nav} />
           </div>
         </div>
       </header>
@@ -126,58 +129,63 @@ function Index() {
       {/* Hero */}
       <section className="hero-radial relative min-h-screen overflow-hidden flex items-center justify-center pt-16">
         <div className="light-beam" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-6 px-6 lg:grid-cols-[1.05fr_1fr]">
-          <ScrollAnimation direction="left">
-            <div>
-              <a
-                href={IG}
-                target="_blank"
-                rel="noreferrer"
-                className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 text-xs text-muted-foreground transition-colors hover:text-foreground"
-              >
-                ¡Llegó Nexo! Tu negocio, listo para despegar
-                <ArrowRight className="h-3 w-3" />
-              </a>
-              <h1 className="text-shine mt-8 font-sans font-bold text-[3.4rem] leading-[0.94] tracking-tight sm:text-7xl">
-                Tecnología que
-                <br />
-                impulsa tu
-                <br />
-                negocio
-              </h1>
-              <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed text-neutral-300">
-                En Nexo transformamos la tecnología en resultados reales. No solo creamos
-                herramientas: diseñamos el ecosistema digital que tu marca necesita para
-                crecer sin límites.
-              </p>
-              <div className="mt-9 flex items-center gap-5">
+        <div className="relative mx-auto max-w-6xl px-6 lg:px-6 w-full">
+          {/* Mobile-first layout */}
+          <div className="flex flex-col items-center gap-8 lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-6">
+            {/* Mobile: 3D Cube first */}
+            <ScrollAnimation direction="up" delay={0.1}>
+              <div className="relative h-[280px] w-full sm:h-[400px] lg:h-[520px] lg:order-2 order-1">
+                <ClientOnly fallback={null}>
+                  <Suspense fallback={null}>
+                    <RubikCube />
+                  </Suspense>
+                </ClientOnly>
+              </div>
+            </ScrollAnimation>
+
+            {/* Mobile: Content after cube */}
+            <ScrollAnimation direction="up" delay={0.2}>
+              <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:order-1 order-2 px-4 sm:px-0">
                 <a
                   href={IG}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200 hover:scale-105 transform transition-all duration-300"
+                  className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 sm:mb-6 text-xs text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Comience
+                  ¡Llegó Nexo! Tu negocio, listo para despegar
+                  <ArrowRight className="h-3 w-3" />
                 </a>
-                <a
-                  href="#servicios"
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground hover:scale-105 transform transition-all duration-300"
-                >
-                  Servicios
-                </a>
+                <h1 className="text-shine font-sans font-bold text-[2rem] leading-[1.1] tracking-tight sm:text-[2.5rem] lg:text-[3.4rem]">
+                  Tecnología que
+                  <br />
+                  impulsa tu
+                  <br />
+                  negocio
+                </h1>
+                <p className="mt-4 max-w-md text-[0.85rem] leading-relaxed text-neutral-300 sm:text-[0.9rem] sm:mt-6">
+                  En Nexo transformamos la tecnología en resultados reales. No solo creamos
+                  herramientas: diseñamos el ecosistema digital que tu marca necesita para
+                  crecer sin límites.
+                </p>
+                <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:gap-5 sm:mt-8 lg:items-start w-full sm:w-auto">
+                  <a
+                    href={IG}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full sm:w-auto rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200 hover:scale-105 transform transition-all duration-300"
+                  >
+                    Comience
+                  </a>
+                  <a
+                    href="#servicios"
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground hover:scale-105 transform transition-all duration-300"
+                  >
+                    Servicios
+                  </a>
+                </div>
               </div>
-            </div>
-          </ScrollAnimation>
-
-          <ScrollAnimation direction="right" delay={0.2}>
-            <div className="relative h-[340px] sm:h-[520px]">
-              <ClientOnly fallback={null}>
-                <Suspense fallback={null}>
-                  <RubikCube />
-                </Suspense>
-              </ClientOnly>
-            </div>
-          </ScrollAnimation>
+            </ScrollAnimation>
+          </div>
         </div>
       </section>
 
