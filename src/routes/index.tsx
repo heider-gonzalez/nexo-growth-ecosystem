@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { Monitor, RefreshCw, Zap, Bot, ChevronDown, ArrowRight } from "lucide-react";
 
 import { SiteFooter } from "@/components/SiteFooter";
+import { ScrollAnimation } from "@/components/ScrollAnimation";
 
 const RubikCube = lazy(() => import("@/components/RubikCube"));
 
@@ -94,10 +95,10 @@ function Index() {
               <a
                 key={n.label}
                 href={n.href}
-                className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="group flex items-center gap-1 text-sm text-muted-foreground transition-all duration-300 hover:text-foreground hover:scale-105"
               >
                 {n.label}
-                {n.caret && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
+                {n.caret && <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform group-hover:rotate-180" />}
               </a>
             ))}
           </nav>
@@ -126,53 +127,57 @@ function Index() {
       <section className="hero-radial relative min-h-screen overflow-hidden flex items-center justify-center pt-16">
         <div className="light-beam" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-6 px-6 lg:grid-cols-[1.05fr_1fr]">
-          <div>
-            <a
-              href={IG}
-              target="_blank"
-              rel="noreferrer"
-              className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 text-xs text-muted-foreground transition-colors hover:text-foreground"
-            >
-              ¡Llegó Nexo! Tu negocio, listo para despegar
-              <ArrowRight className="h-3 w-3" />
-            </a>
-            <h1 className="text-shine mt-8 font-sans font-bold text-[3.4rem] leading-[0.94] tracking-tight sm:text-7xl">
-              Tecnología que
-              <br />
-              impulsa tu
-              <br />
-              negocio
-            </h1>
-            <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed text-neutral-300">
-              En Nexo transformamos la tecnología en resultados reales. No solo creamos
-              herramientas: diseñamos el ecosistema digital que tu marca necesita para
-              crecer sin límites.
-            </p>
-            <div className="mt-9 flex items-center gap-5">
+          <ScrollAnimation direction="left">
+            <div>
               <a
                 href={IG}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
+                className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 text-xs text-muted-foreground transition-colors hover:text-foreground"
               >
-                Comience
+                ¡Llegó Nexo! Tu negocio, listo para despegar
+                <ArrowRight className="h-3 w-3" />
               </a>
-              <a
-                href="#servicios"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Servicios
-              </a>
+              <h1 className="text-shine mt-8 font-sans font-bold text-[3.4rem] leading-[0.94] tracking-tight sm:text-7xl">
+                Tecnología que
+                <br />
+                impulsa tu
+                <br />
+                negocio
+              </h1>
+              <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed text-neutral-300">
+                En Nexo transformamos la tecnología en resultados reales. No solo creamos
+                herramientas: diseñamos el ecosistema digital que tu marca necesita para
+                crecer sin límites.
+              </p>
+              <div className="mt-9 flex items-center gap-5">
+                <a
+                  href={IG}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200 hover:scale-105 transform transition-all duration-300"
+                >
+                  Comience
+                </a>
+                <a
+                  href="#servicios"
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground hover:scale-105 transform transition-all duration-300"
+                >
+                  Servicios
+                </a>
+              </div>
             </div>
-          </div>
+          </ScrollAnimation>
 
-          <div className="relative h-[340px] sm:h-[520px]">
-            <ClientOnly fallback={null}>
-              <Suspense fallback={null}>
-                <RubikCube />
-              </Suspense>
-            </ClientOnly>
-          </div>
+          <ScrollAnimation direction="right" delay={0.2}>
+            <div className="relative h-[340px] sm:h-[520px]">
+              <ClientOnly fallback={null}>
+                <Suspense fallback={null}>
+                  <RubikCube />
+                </Suspense>
+              </ClientOnly>
+            </div>
+          </ScrollAnimation>
         </div>
       </section>
 
@@ -180,32 +185,35 @@ function Index() {
       <section id="servicios" className="relative">
         <div className="glow-line absolute inset-x-0 top-0 h-px" />
         <div className="mx-auto max-w-6xl px-6 py-24">
-          <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
-            Servicios
-          </p>
-          <h2 className="mt-5 font-sans font-bold text-4xl tracking-tight sm:text-5xl">
-            Un ecosistema, cuatro frentes
-          </h2>
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-neutral-300">
-            Cada pieza se conecta con la siguiente: lo que capta tu web alimenta tu CRM,
-            y lo que aprende tu CRM alimenta tus automatizaciones.
-          </p>
+          <ScrollAnimation direction="up">
+            <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
+              Servicios
+            </p>
+            <h2 className="mt-5 font-sans font-bold text-4xl tracking-tight sm:text-5xl">
+              Un ecosistema, cuatro frentes
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-neutral-300">
+              Cada pieza se conecta con la siguiente: lo que capta tu web alimenta tu CRM,
+              y lo que aprende tu CRM alimenta tus automatizaciones.
+            </p>
+          </ScrollAnimation>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2">
-            {services.map((s) => (
-              <article
-                key={s.title}
-                className="surface-card group relative overflow-hidden rounded-2xl p-7 transition-colors hover:bg-accent/40"
-              >
-                <s.icon
-                  className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-foreground"
-                  strokeWidth={1.5}
-                />
-                <h3 className="mt-5 text-base font-medium">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-300">
-                  {s.text}
-                </p>
-              </article>
+            {services.map((s, index) => (
+              <ScrollAnimation key={s.title} direction="up" delay={index * 0.1}>
+                <article
+                  className="surface-card group relative overflow-hidden rounded-2xl p-7 transition-all duration-300 hover:bg-accent/40 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/10"
+                >
+                  <s.icon
+                    className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-foreground group-hover:scale-110 transform"
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="mt-5 text-base font-medium">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-300">
+                    {s.text}
+                  </p>
+                </article>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -215,20 +223,24 @@ function Index() {
       <section id="proceso" className="relative">
         <div className="glow-line absolute inset-x-0 top-0 h-px" />
         <div className="mx-auto max-w-6xl px-6 py-24">
-          <h2 className="font-sans font-bold text-4xl tracking-tight sm:text-5xl">
-            Cómo trabajamos
-          </h2>
+          <ScrollAnimation direction="up">
+            <h2 className="font-sans font-bold text-4xl tracking-tight sm:text-5xl">
+              Cómo trabajamos
+            </h2>
+          </ScrollAnimation>
           <div className="mt-12 grid gap-10 sm:grid-cols-3">
-            {steps.map((s) => (
-              <div key={s.n}>
-                <span className="font-sans font-bold text-3xl text-muted-foreground/70">
-                  {s.n}
-                </span>
-                <h3 className="mt-4 text-base font-medium">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-300">
-                  {s.text}
-                </p>
-              </div>
+            {steps.map((s, index) => (
+              <ScrollAnimation key={s.n} direction="up" delay={index * 0.15}>
+                <div className="group transition-all duration-300 hover:scale-105">
+                  <span className="font-sans font-bold text-3xl text-muted-foreground/70 group-hover:text-foreground transition-colors">
+                    {s.n}
+                  </span>
+                  <h3 className="mt-4 text-base font-medium">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-300">
+                    {s.text}
+                  </p>
+                </div>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -238,12 +250,14 @@ function Index() {
       <section id="enfoque" className="relative hero-radial">
         <div className="glow-line absolute inset-x-0 top-0 h-px" />
         <div className="mx-auto max-w-3xl px-6 py-28 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Enfoque
-          </p>
-          <h2 className="text-shine mt-6 font-sans font-bold text-4xl leading-tight sm:text-5xl">
-            Tu negocio no necesita más herramientas, necesita la estrategia correcta.
-          </h2>
+          <ScrollAnimation direction="fade">
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              Enfoque
+            </p>
+            <h2 className="text-shine mt-6 font-sans font-bold text-4xl leading-tight sm:text-5xl">
+              Tu negocio no necesita más herramientas, necesita la estrategia correcta.
+            </h2>
+          </ScrollAnimation>
         </div>
         <div className="glow-line absolute inset-x-0 bottom-0 h-px" />
       </section>
@@ -252,22 +266,24 @@ function Index() {
       <section id="contacto" className="relative overflow-hidden">
         <div className="light-beam light-beam--soft" />
         <div className="relative mx-auto max-w-6xl px-6 py-28 text-center">
-          <h2 className="font-sans font-bold text-5xl tracking-tight">
-            ¿Hablamos de tu proyecto?
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-neutral-300">
-            Escríbenos por Instagram y te respondemos con una propuesta a la medida de tu
-            operación.
-          </p>
-          <a
-            href={IG}
-            target="_blank"
-            rel="noreferrer"
-            className="surface-card mt-9 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-colors hover:bg-accent"
-          >
-            Escríbenos al DM
-            <ArrowRight className="h-4 w-4" />
-          </a>
+          <ScrollAnimation direction="up">
+            <h2 className="font-sans font-bold text-5xl tracking-tight">
+              ¿Hablamos de tu proyecto?
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-neutral-300">
+              Escríbenos por Instagram y te respondemos con una propuesta a la medida de tu
+              operación.
+            </p>
+            <a
+              href={IG}
+              target="_blank"
+              rel="noreferrer"
+              className="surface-card mt-9 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/20"
+            >
+              Escríbenos al DM
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </ScrollAnimation>
         </div>
       </section>
 
