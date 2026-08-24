@@ -131,21 +131,11 @@ function Index() {
         <div className="light-beam" />
         <div className="relative mx-auto max-w-6xl px-6 lg:px-6 w-full">
           {/* Mobile-first layout */}
-          <div className="flex flex-col items-center gap-8 lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-6">
-            {/* Mobile: 3D Cube first */}
-            <ScrollAnimation direction="up" delay={0.1}>
-              <div className="relative h-[280px] w-full sm:h-[400px] lg:h-[520px] lg:order-2 order-1">
-                <ClientOnly fallback={null}>
-                  <Suspense fallback={null}>
-                    <RubikCube />
-                  </Suspense>
-                </ClientOnly>
-              </div>
-            </ScrollAnimation>
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1.05fr_1fr] items-center gap-8">
 
-            {/* Mobile: Content after cube */}
-            <ScrollAnimation direction="up" delay={0.2}>
-              <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:order-1 order-2 px-4 sm:px-0">
+            {/* 1. Texto (PRIMERO en el HTML) */}
+            <ScrollAnimation direction="left" delay={0.1}>
+              <div className="flex flex-col items-center text-center lg:items-start lg:text-left px-4 sm:px-0">
                 <a
                   href={IG}
                   target="_blank"
@@ -182,6 +172,19 @@ function Index() {
                   >
                     Servicios
                   </a>
+                </div>
+              </div>
+            </ScrollAnimation>
+
+            {/* 2. Cubo (SEGUNDO en el HTML) */}
+            <ScrollAnimation direction="right" delay={0.2}>
+              <div className="w-full flex justify-center">
+                <div className="relative h-[280px] w-full sm:h-[400px] lg:h-[520px]">
+                  <ClientOnly fallback={null}>
+                    <Suspense fallback={null}>
+                      <RubikCube />
+                    </Suspense>
+                  </ClientOnly>
                 </div>
               </div>
             </ScrollAnimation>

@@ -168,9 +168,10 @@ function Cube() {
               roughnessMap={maps[c.finish] ?? null}
               bumpMap={maps[c.finish] ?? null}
               bumpScale={c.finish === 1 ? 0.05 : 0.015}
-              clearcoat={c.finish === 0 ? 0.6 : 0.15}
-              clearcoatRoughness={0.2}
-              envMapIntensity={0.6}
+              clearcoat={c.finish === 0 ? 0.8 : 0.25}
+              clearcoatRoughness={0.15}
+              envMapIntensity={1.2}
+              metalness={c.finish === 1 ? 0.85 : 0.9}
             />
           </RoundedBox>
         ))}
@@ -199,17 +200,17 @@ export default function RubikCube() {
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.08} />
-        <directionalLight position={[-5, 8, 5]} intensity={3.2} color="#ffffff" />
+        <ambientLight intensity={0.12} />
+        <directionalLight position={[-5, 8, 5]} intensity={4.5} color="#ffffff" />
         <spotLight
           position={[-5, 8, 5]}
           angle={0.5}
           penumbra={0.8}
-          intensity={90}
+          intensity={120}
           color="#ffffff"
         />
-        <directionalLight position={[7, -2, -4]} intensity={0.25} color="#8fa0c8" />
-        <Environment preset="warehouse" environmentIntensity={0.18} />
+        <directionalLight position={[7, -2, -4]} intensity={0.4} color="#a0b0d0" />
+        <Environment preset="warehouse" environmentIntensity={0.3} />
         <Cube />
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
