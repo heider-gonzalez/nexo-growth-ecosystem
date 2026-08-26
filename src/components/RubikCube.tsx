@@ -24,29 +24,66 @@ function randomMove(): Move {
   return { axis, layer, dir };
 }
 
-/** Procedural finishes: 0 = smooth, 1 = micro-perforated, 2 = brushed */
-function makeFinishTexture(kind: 1 | 2) {
+/** Procedural finishes: 0 = smooth, 1 = micro-perforated, 2 = brushed, 3 = granite, 4 = marble glow */
+function makeFinishTexture(kind: 1 | 2 | 3 | 4) {
   const size = 256;
   const c = document.createElement("canvas");
   c.width = c.height = size;
   const ctx = c.getContext("2d")!;
-  ctx.fillStyle = "#3a3a3a";
+
+  ctx.fillStyle = "#1a1a1a";
   ctx.fillRect(0, 0, size, size);
 
   if (kind === 1) {
-    ctx.fillStyle = "#c8c8c8";
-    const step = 12;
+    // Micro-perforated / mesh pattern
+    ctx.fillStyle = "#2a2a2a";
+    const step = 8;
     for (let y = step / 2; y < size; y += step)
       for (let x = step / 2; x < size; x += step) {
         ctx.beginPath();
-        ctx.arc(x, y, 2.4, 0, Math.PI * 2);
+        ctx.arc(x, y, 1.5, 0, Math.PI * 2);
         ctx.fill();
       }
-  } else {
+  } else if (kind === 2) {
+    // Brushed metal
     for (let y = 0; y < size; y++) {
-      const v = 40 + Math.random() * 70;
+      const v = 30 + Math.random() * 50;
       ctx.fillStyle = `rgb(${v},${v},${v})`;
       ctx.fillRect(0, y, size, 1);
+    }
+  } else if (kind === 3) {
+    // Granite / stone texture
+    for (let i = 0; i < 500; i++) {
+      const x = Math.random() * size;
+      const y = Math.random() * size;
+      const radius = Math.random() * 3 + 1;
+      const v = 20 + Math.random() * 40;
+      ctx.fillStyle = `rgb(${v},${v},${v})`;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else if (kind === 4) {
+    // Marble with emissive glow pattern
+    const gradient = ctx.createLinearGradient(0, 0, size, size);
+    gradient.addColorStop(0, "#4a4a4a");
+    gradient.addColorStop(0.5, "#6a6a6a");
+    gradient.addColorStop(1, "#4a4a4a");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+
+    // Marble veins
+    ctx.strokeStyle = "#7a7a7a";
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 15; i++) {
+      ctx.beginPath();
+      ctx.moveTo(Math.random() * size, Math.random() * size);
+      ctx.bezierCurveTo(
+        Math.random() * size, Math.random() * size,
+        Math.random() * size, Math.random() * size,
+        Math.random() * size, Math.random() * size
+      );
+      ctx.stroke();
     }
   }
 
@@ -66,7 +103,13 @@ function Cube() {
   const spin = useRef(0);
   const { invalidate } = useThree();
 
-  const maps = useMemo(() => [null, makeFinishTexture(1), makeFinishTexture(2)], []);
+  const maps = useMemo(() => [
+    null,
+    makeFinishTexture(1),
+    makeFinishTexture(2),
+    makeFinishTexture(3),
+    makeFinishTexture(4)
+  ], []);
   useEffect(
     () => () => maps.forEach((m) => m?.dispose()),
     [maps],
@@ -75,20 +118,55 @@ function Cube() {
   const cells = useMemo(() => {
     const arr: {
       pos: [number, number, number];
-      finish: 0 | 1 | 2;
+      finish: 0 | 1 | 2 | 3 | 4;
       roughness: number;
       metalness: number;
+      emissive?: string;
+      emissiveIntensity?: number;
     }[] = [];
     let i = 0;
     for (let x = -1; x <= 1; x++)
       for (let y = -1; y <= 1; y++)
         for (let z = -1; z <= 1; z++) {
-          const finish = ((i * 7 + x + y * 3 + z * 5 + 30) % 3) as 0 | 1 | 2;
+          // Varied finish distribution for texture variety
+          const finish = ((i * 7 + x + y * 3 + z * 5 + 30) % 5) as 0 | 1 | 2 | 3 | 4;
+
+          let roughness = 0.3;
+          let metalness = 0.85;
+          let emissive: string | undefined;
+          let emissiveIntensity = 0;
+
+          if (finish === 0) {
+            // Super dark matte
+            roughness = 0.9;
+            metalness = 0.1;
+          } else if (finish === 1) {
+            // Micro-perforated
+            roughness = 0.7;
+            metalness = 0.4;
+          } else if (finish === 2) {
+            // Brushed metal
+            roughness = 0.4;
+            metalness = 0.8;
+          } else if (finish === 3) {
+            // Granite/stone
+            roughness = 0.85;
+            metalness = 0.15;
+          } else if (finish === 4) {
+            // Marble with emissive glow
+            roughness = 0.25;
+            metalness = 0.3;
+            emissive = "#3a3a3a";
+            emissiveIntensity = 0.15;
+          }
+
           arr.push({
             pos: [x * GAP, y * GAP, z * GAP],
             finish,
-            roughness: finish === 0 ? 0.18 : finish === 1 ? 0.4 : 0.3,
-            metalness: finish === 1 ? 0.75 : 0.85,
+            roughness,
+            metalness,
+            emissive,
+            emissiveIntensity,
           });
           i++;
         }
@@ -167,11 +245,12 @@ function Cube() {
               roughness={c.roughness}
               roughnessMap={maps[c.finish] ?? null}
               bumpMap={maps[c.finish] ?? null}
-              bumpScale={c.finish === 1 ? 0.05 : 0.015}
-              clearcoat={c.finish === 0 ? 0.8 : 0.25}
-              clearcoatRoughness={0.15}
-              envMapIntensity={1.2}
-              metalness={c.finish === 1 ? 0.85 : 0.9}
+              bumpScale={c.finish === 1 ? 0.08 : c.finish === 3 ? 0.03 : 0.015}
+              clearcoat={c.finish === 0 ? 0.3 : c.finish === 4 ? 0.6 : 0.25}
+              clearcoatRoughness={c.finish === 0 ? 0.8 : 0.15}
+              envMapIntensity={1.5}
+              emissive={c.emissive}
+              emissiveIntensity={c.emissiveIntensity || 0}
             />
           </RoundedBox>
         ))}
@@ -200,17 +279,19 @@ export default function RubikCube() {
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.12} />
-        <directionalLight position={[-5, 8, 5]} intensity={4.5} color="#ffffff" />
+        <ambientLight intensity={0.15} />
+        <directionalLight position={[-8, 12, 6]} intensity={3.5} color="#ffffff" castShadow />
         <spotLight
-          position={[-5, 8, 5]}
-          angle={0.5}
-          penumbra={0.8}
-          intensity={120}
+          position={[-6, 10, 4]}
+          angle={0.4}
+          penumbra={0.6}
+          intensity={100}
           color="#ffffff"
+          castShadow
         />
-        <directionalLight position={[7, -2, -4]} intensity={0.4} color="#a0b0d0" />
-        <Environment preset="warehouse" environmentIntensity={0.3} />
+        <directionalLight position={[8, -4, -6]} intensity={0.5} color="#a0b0d0" />
+        <pointLight position={[4, 4, 4]} intensity={0.8} color="#4a6fa5" />
+        <Environment preset="warehouse" environmentIntensity={0.4} />
         <Cube />
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>

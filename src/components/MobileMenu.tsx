@@ -36,13 +36,16 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
               >
                 Nexo
               </a>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 text-foreground transition-colors hover:text-muted-foreground"
-                aria-label="Close menu"
-              >
-                <X className="h-6 w-6" />
-              </button>
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 text-foreground transition-colors hover:text-muted-foreground"
+                  aria-label="Close menu"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
             </div>
 
             <nav className="flex flex-col gap-6">

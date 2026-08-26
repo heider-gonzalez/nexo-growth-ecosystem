@@ -1,8 +1,7 @@
-@import "tailwindcss" source(none);
-@source "../src";
+@import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+
 
 /*
  * Design system definition.
@@ -97,40 +96,7 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
-}
+
 
 @layer base {
   * {
@@ -157,6 +123,15 @@
   );
 }
 
+@utility glow-line-cube {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, rgba(255, 255, 255, 0.5) 50%, transparent),
+    transparent
+  );
+}
+
 @utility hero-radial {
   background:
     radial-gradient(60% 50% at 70% 40%, oklch(0.22 0 0 / 0.9), transparent 70%),
@@ -176,14 +151,12 @@
   backdrop-filter: blur(6px);
 }
 
-@utility pill-glow {
+@utility pill-glow-hover {
   position: relative;
   background: linear-gradient(180deg, oklch(0.18 0 0), oklch(0.1 0 0));
   border: 1px solid transparent;
   background-clip: padding-box;
-  box-shadow:
-    0 0 18px -6px rgba(120, 80, 255, 0.55),
-    0 0 26px -10px rgba(40, 200, 160, 0.45);
+  transition: all 0.5s ease;
 
   &::before {
     content: "";
@@ -192,13 +165,11 @@
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(
-      100deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      #7c5cff 28%,
-      #3b82f6 48%,
-      #22d3ee 66%,
-      #34d399 82%,
-      rgba(255, 255, 255, 0.12) 100%
+      90deg,
+      #22d3ee 0%,
+      #34d399 30%,
+      #7c5cff 70%,
+      #3b82f6 100%
     );
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
@@ -206,11 +177,29 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
+    transition: all 0.5s ease;
+  }
+
+  &:hover::before {
+    background: linear-gradient(
+      270deg,
+      #22d3ee 0%,
+      #34d399 30%,
+      #7c5cff 70%,
+      #3b82f6 100%
+    );
+  }
+
+  &:hover {
+    box-shadow:
+      0 0 20px -4px rgba(34, 211, 238, 0.6),
+      0 0 30px -8px rgba(124, 92, 255, 0.5),
+      0 0 40px -12px rgba(59, 130, 246, 0.4);
   }
 
   @media (max-width: 640px) {
-    font-size: 0.7rem;
-    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
   }
 }
 
@@ -232,6 +221,34 @@
 
 @utility light-beam--soft {
   opacity: 0.5;
+}
+
+@utility light-beam-horizontal {
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150%;
+  height: 60%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    oklch(1 0 0 / 0.15) 0%,
+    oklch(1 0 0 / 0.08) 30%,
+    oklch(1 0 0 / 0.03) 60%,
+    transparent 100%
+  );
+  filter: blur(140px);
+}
+
+.light-beam-horizontal {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    oklch(1 0 0 / 0.18) 0%,
+    oklch(1 0 0 / 0.10) 30%,
+    oklch(1 0 0 / 0.04) 60%,
+    transparent 100%
+  );
 }
 
 @keyframes nexo-sweep {

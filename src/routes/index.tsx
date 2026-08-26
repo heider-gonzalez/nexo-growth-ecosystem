@@ -127,9 +127,12 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section className="hero-radial relative min-h-screen overflow-hidden flex items-center justify-center pt-16">
-        <div className="light-beam" />
-        <div className="relative mx-auto max-w-6xl px-6 lg:px-6 w-full">
+      <section className="hero-radial relative min-h-screen flex items-center justify-center py-20 lg:py-32">
+        <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[300px] z-0" style={{
+          background: 'radial-gradient(ellipse 70% 40% at 50% 100%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 40%, transparent 80%)',
+          filter: 'blur(60px)'
+        }} />
+        <div className="relative mx-auto max-w-6xl px-6 lg:px-6 w-full z-10">
           {/* Mobile-first layout */}
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1.05fr_1fr] items-center gap-8">
 
@@ -140,35 +143,35 @@ function Index() {
                   href={IG}
                   target="_blank"
                   rel="noreferrer"
-                  className="pill-glow inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 sm:mb-6 text-xs text-muted-foreground transition-colors hover:text-foreground"
+                  className="pill-glow-hover inline-flex items-center gap-2 text-xs sm:text-sm font-medium px-4 py-1.5 rounded-full mb-8 sm:mb-10 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   ¡Llegó Nexo! Tu negocio, listo para despegar
-                  <ArrowRight className="h-3 w-3" />
+                  <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
                 </a>
-                <h1 className="text-shine font-sans font-bold text-[2rem] leading-[1.1] tracking-tight sm:text-[2.5rem] lg:text-[3.4rem]">
+                <h1 className="text-shine font-sans font-semibold text-3xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
                   Tecnología que
                   <br />
                   impulsa tu
                   <br />
                   negocio
                 </h1>
-                <p className="mt-4 max-w-md text-[0.85rem] leading-relaxed text-neutral-300 sm:text-[0.9rem] sm:mt-6">
+                <p className="mt-6 max-w-xl text-sm sm:text-base lg:text-lg text-neutral-400 leading-relaxed mb-10">
                   En Nexo transformamos la tecnología en resultados reales. No solo creamos
                   herramientas: diseñamos el ecosistema digital que tu marca necesita para
                   crecer sin límites.
                 </p>
-                <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:gap-5 sm:mt-8 lg:items-start w-full sm:w-auto">
+                <div className="flex flex-row items-center gap-4 sm:gap-6">
                   <a
                     href={IG}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full sm:w-auto rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200 hover:scale-105 transform transition-all duration-300"
+                    className="text-sm sm:text-base px-6 py-2.5 rounded-full font-medium bg-neutral-800 text-white transition-colors duration-300 hover:bg-white hover:text-black hover:scale-105 transform"
                   >
                     Comience
                   </a>
                   <a
                     href="#servicios"
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground hover:scale-105 transform transition-all duration-300"
+                    className="text-sm sm:text-base text-muted-foreground transition-colors hover:text-foreground hover:scale-105 transform transition-all duration-300"
                   >
                     Servicios
                   </a>
@@ -178,8 +181,8 @@ function Index() {
 
             {/* 2. Cubo (SEGUNDO en el HTML) */}
             <ScrollAnimation direction="right" delay={0.2}>
-              <div className="w-full flex justify-center">
-                <div className="relative h-[280px] w-full sm:h-[400px] lg:h-[520px]">
+              <div className="w-full flex flex-col items-center lg:items-end">
+                <div className="relative h-[280px] w-full sm:h-[400px] lg:h-[520px] lg:translate-x-8">
                   <ClientOnly fallback={null}>
                     <Suspense fallback={null}>
                       <RubikCube />
