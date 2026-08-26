@@ -53,22 +53,10 @@ export function SiteFooter() {
       >
         <h2
           aria-label="NEXO"
-          className="nexo-giant text-center font-sans text-[18vw] font-black leading-[0.8] tracking-tighter"
+          className={`nexo-giant text-center font-sans text-[18vw] font-black leading-[0.8] tracking-tighter ${light.on ? 'nexo-giant-glow' : ''}`}
         >
           NEXO
         </h2>
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-start justify-center overflow-hidden text-center font-sans text-[18vw] font-black leading-[0.8] tracking-tighter text-white transition-opacity duration-300"
-          style={{
-            opacity: light.on ? 1 : 0,
-            WebkitMaskImage: `radial-gradient(260px circle at ${light.x}% ${light.y}%, rgba(0,0,0,0.95), transparent 70%)`,
-            maskImage: `radial-gradient(260px circle at ${light.x}% ${light.y}%, rgba(0,0,0,0.95), transparent 70%)`,
-            paddingTop: "4rem",
-          }}
-        >
-          <span className="w-full">NEXO</span>
-        </div>
 
       </div>
 

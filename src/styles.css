@@ -267,24 +267,14 @@
 
 
 @utility nexo-giant {
-  background-image:
-    linear-gradient(
-      100deg,
-      transparent 34%,
-      oklch(0.72 0 0) 45%,
-      oklch(1 0 0) 50%,
-      oklch(0.72 0 0) 55%,
-      transparent 66%
-    ),
-    linear-gradient(180deg, oklch(0.42 0 0), oklch(0.16 0 0));
-  background-size:
-    250% 100%,
-    100% 100%;
-  background-repeat: no-repeat, no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-text-stroke: 2px oklch(0.3 0 0);
   color: transparent;
-  animation: nexo-sweep 6s linear infinite;
+  transition: -webkit-text-stroke-color 0.3s ease, text-shadow 0.3s ease;
+}
+
+@utility nexo-giant-glow {
+  -webkit-text-stroke: 2px oklch(0.8 0 0);
+  text-shadow: 0 0 20px oklch(0.8 0 0), 0 0 40px oklch(0.6 0 0);
 }
 
 
