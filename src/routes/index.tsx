@@ -30,6 +30,7 @@ export const Route = createFileRoute("/")({
 });
 
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
+const WA = "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 
 const nav = [
   { label: "Servicios", href: "#servicios", caret: true },
@@ -288,15 +289,26 @@ function Index() {
               Escríbenos por Instagram y te respondemos con una propuesta a la medida de tu
               operación.
             </p>
-            <a
-              href={IG}
-              target="_blank"
-              rel="noreferrer"
-              className="surface-card mt-9 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/20"
-            >
-              Escríbenos al DM
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href={IG}
+                target="_blank"
+                rel="noreferrer"
+                className="surface-card inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/20"
+              >
+                Escríbenos al DM
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href={WA}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium bg-[#25D366] text-white transition-all duration-300 hover:bg-[#128C7E] hover:scale-110 hover:shadow-2xl hover:shadow-green-500/20"
+              >
+                WhatsApp
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </ScrollAnimation>
         </div>
       </section>

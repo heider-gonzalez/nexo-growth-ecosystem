@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
+const WA = "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 
 const columns = [
   {
@@ -107,7 +108,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/"
+                  href={WA}
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-neutral-100"
