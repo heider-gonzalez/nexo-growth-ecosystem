@@ -117,6 +117,26 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const saved = localStorage.getItem('nexo-theme');
+                  const preferred = saved === 'light' || saved === 'dark'
+                    ? saved
+                    : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                  document.documentElement.dataset.theme = preferred;
+                  document.documentElement.classList.toggle('dark', preferred === 'dark');
+                  document.documentElement.style.colorScheme = preferred;
+                } catch (error) {
+                  document.documentElement.dataset.theme = 'light';
+                  document.documentElement.style.colorScheme = 'light';
+                }
+              })();
+            `,
+          }}
+        />
         <HeadContent />
       </head>
       <body>

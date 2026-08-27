@@ -5,6 +5,7 @@ import { Monitor, RefreshCw, Zap, Bot, ChevronDown, ArrowRight } from "lucide-re
 import { SiteFooter } from "@/components/SiteFooter";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { MobileMenu } from "@/components/MobileMenu";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const RubikCube = lazy(() => import("@/components/RubikCube"));
 
@@ -105,7 +106,8 @@ function Index() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
             <a
               href={IG}
               target="_blank"
@@ -118,7 +120,7 @@ function Index() {
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="hidden md:block rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
+              className="hidden md:block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-[0_10px_30px_rgba(0,174,239,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0aa9e6]"
             >
               Comience
             </a>
@@ -156,7 +158,7 @@ function Index() {
                   <br />
                   negocio
                 </h1>
-                <p className="mt-6 max-w-xl text-sm sm:text-base lg:text-lg text-neutral-400 leading-relaxed mb-10">
+                <p className="mt-6 max-w-xl text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed mb-10">
                   En Nexo transformamos la tecnología en resultados reales. No solo creamos
                   herramientas: diseñamos el ecosistema digital que tu marca necesita para
                   crecer sin límites.
@@ -166,7 +168,7 @@ function Index() {
                     href={IG}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-sm sm:text-base px-6 py-2.5 rounded-full font-medium bg-neutral-800 text-white transition-colors duration-300 hover:bg-white hover:text-black hover:scale-105 transform"
+                    className="text-sm sm:text-base px-6 py-2.5 rounded-full font-medium bg-primary text-primary-foreground shadow-[0_16px_40px_rgba(0,174,239,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0daee9]"
                   >
                     Comience
                   </a>

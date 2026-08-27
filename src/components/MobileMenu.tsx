@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { X, Menu } from "lucide-react";
 
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 interface MobileMenuProps {
   nav: Array<{ label: string; href: string; caret?: boolean }>;
   onNavigate?: () => void;
@@ -66,7 +68,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                 href="https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr"
                 target="_blank"
                 rel="noreferrer"
-                className="block w-full text-center rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
+                className="block w-full text-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-[0_12px_28px_rgba(0,174,239,0.28)] transition-colors hover:bg-[#0daee9]"
               >
                 Comience
               </a>
