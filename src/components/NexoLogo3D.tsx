@@ -1,5 +1,4 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Float, RoundedBox, Sphere, Cylinder } from "@react-three/drei";
 import { useEffect, useRef, useState, useMemo } from "react";
 import * as THREE from "three";
 
@@ -20,240 +19,321 @@ function AssemblyPiece({
   progress,
   children,
 }: AssemblyPieceProps) {
-  const meshRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
   useFrame(() => {
-    if (!meshRef.current) return;
+    if (!groupRef.current) return;
     const pieceProgress = Math.max(0, Math.min(1, (progress - delay) / (1 - delay || 1)));
     // Smooth easeOutCubic
     const ease = 1 - Math.pow(1 - pieceProgress, 3);
 
-    meshRef.current.position.x = finalPos[0] + initialOffset[0] * (1 - ease);
-    meshRef.current.position.y = finalPos[1] + initialOffset[1] * (1 - ease);
-    meshRef.current.position.z = finalPos[2] + initialOffset[2] * (1 - ease);
+    groupRef.current.position.x = finalPos[0] + initialOffset[0] * (1 - ease);
+    groupRef.current.position.y = finalPos[1] + initialOffset[1] * (1 - ease);
+    groupRef.current.position.z = finalPos[2] + initialOffset[2] * (1 - ease);
 
-    meshRef.current.rotation.x = finalRot[0] * ease;
-    meshRef.current.rotation.y = finalRot[1] * ease;
-    meshRef.current.rotation.z = finalRot[2] * ease;
+    groupRef.current.rotation.x = finalRot[0] * ease;
+    groupRef.current.rotation.y = finalRot[1] * ease;
+    groupRef.current.rotation.z = finalRot[2] * ease;
 
     const scale = Math.max(0.001, ease);
-    meshRef.current.scale.set(scale, scale, scale);
+    groupRef.current.scale.set(scale, scale, scale);
   });
 
   return (
-    <group ref={meshRef} position={finalPos}>
+    <group ref={groupRef} position={finalPos}>
       {children}
     </group>
   );
 }
 
-function NexoLogoModel() {
+// Circuit Trace with cylindrical line and terminal node circles
+function CircuitSegment({
+  start,
+  end,
+  startNode = true,
+  endNode = true,
+}: {
+  start: [number, number, number];
+  end: [number, number, number];
+  startNode?: boolean;
+  endNode?: boolean;
+}) {
+  const p1 = new THREE.Vector3(...start);
+  const p2 = new THREE.Vector3(...end);
+  const length = p1.distanceTo(p2);
+  const midpoint = p1.clone().add(p2).multiplyScalar(0.5);
+
+  // Calculate orientation for the cylinder
+  const dir = p2.clone().sub(p1).normalize();
+  const orientation = new THREE.Quaternion().setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    dir
+  );
+  const euler = new THREE.Euler().setFromQuaternion(orientation);
+
+  const cyanGlow = "#00D2FF";
+  const cyanDeep = "#0284C7";
+  const nodeDark = "#1E293B";
+
+  return (
+    <group>
+      {/* Circuit Line Track */}
+      <mesh position={midpoint.toArray()} rotation={euler}>
+        <cylinderGeometry args={[0.035, 0.035, length, 16]} />
+        <meshStandardMaterial
+          color={cyanDeep}
+          emissive={cyanGlow}
+          emissiveIntensity={1.2}
+          roughness={0.2}
+          metalness={0.8}
+        />
+      </mesh>
+
+      {/* Start Node */}
+      {startNode && (
+        <group position={start}>
+          {/* Outer Ring */}
+          <mesh rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[0.13, 0.13, 0.06, 24]} />
+            <meshStandardMaterial
+              color={nodeDark}
+              metalness={0.9}
+              roughness={0.2}
+            />
+          </mesh>
+          {/* Glowing Center Dot */}
+          <mesh position={[0, 0, 0.02]}>
+            <sphereGeometry args={[0.07, 16, 16]} />
+            <meshBasicMaterial color={cyanGlow} />
+          </mesh>
+        </group>
+      )}
+
+      {/* End Node */}
+      {endNode && (
+        <group position={end}>
+          {/* Outer Ring */}
+          <mesh rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[0.13, 0.13, 0.06, 24]} />
+            <meshStandardMaterial
+              color={nodeDark}
+              metalness={0.9}
+              roughness={0.2}
+            />
+          </mesh>
+          {/* Glowing Center Dot */}
+          <mesh position={[0, 0, 0.02]}>
+            <sphereGeometry args={[0.07, 16, 16]} />
+            <meshBasicMaterial color={cyanGlow} />
+          </mesh>
+        </group>
+      )}
+    </group>
+  );
+}
+
+function TransparentNexoX() {
   const groupRef = useRef<THREE.Group>(null);
   const { pointer } = useThree();
   const [assembledTime, setAssembledTime] = useState(0);
 
-  // Cyan brand palette
-  const cyanGlow = "#00D2FF";
-  const cyanCore = "#00A3FF";
-  const cyanDeep = "#0284C7";
-  const nodeColor = "#E0F7FE";
-
-  // Assembly animation progress (0 to 1 over ~1.8 seconds)
+  // Assembly animation progress (0 to 1 over ~1.6 seconds)
   useFrame((_state, delta) => {
-    setAssembledTime((prev) => Math.min(1, prev + delta * 0.7));
+    setAssembledTime((prev) => Math.min(1, prev + delta * 0.75));
 
     if (groupRef.current) {
       // 1. Continuous smooth rotation on Y axis
-      groupRef.current.rotation.y += delta * 0.55;
+      groupRef.current.rotation.y += delta * 0.45;
 
       // 2. Parallax mouse tracking (tilt on X and Z axis)
-      const targetTiltX = -pointer.y * 0.35 + 0.1;
-      const targetTiltZ = -pointer.x * 0.25;
+      const targetTiltX = -pointer.y * 0.3 + 0.08;
+      const targetTiltZ = -pointer.x * 0.22;
 
       groupRef.current.rotation.x = THREE.MathUtils.lerp(
         groupRef.current.rotation.x,
         targetTiltX,
-        delta * 3
+        delta * 3.5
       );
       groupRef.current.rotation.z = THREE.MathUtils.lerp(
         groupRef.current.rotation.z,
         targetTiltZ,
-        delta * 3
+        delta * 3.5
       );
     }
   });
 
-  // Circuit node connection coordinates for the Nexo X
-  const nodes = useMemo(
-    () => [
-      // Top Left arm
-      { pos: [-1.45, 1.45, 0.15] as [number, number, number], delay: 0.1 },
-      { pos: [-0.95, 0.95, 0.15] as [number, number, number], delay: 0.2 },
-      // Top Right arm
-      { pos: [1.45, 1.45, 0.15] as [number, number, number], delay: 0.15 },
-      { pos: [0.95, 0.95, 0.15] as [number, number, number], delay: 0.25 },
-      // Center junction nodes
-      { pos: [-0.35, 0.35, 0.2] as [number, number, number], delay: 0.35 },
-      { pos: [0.35, 0.35, 0.2] as [number, number, number], delay: 0.35 },
-      { pos: [-0.35, -0.35, 0.2] as [number, number, number], delay: 0.4 },
-      { pos: [0.35, -0.35, 0.2] as [number, number, number], delay: 0.4 },
-      // Bottom Left arm
-      { pos: [-1.45, -1.45, 0.15] as [number, number, number], delay: 0.2 },
-      { pos: [-0.95, -0.95, 0.15] as [number, number, number], delay: 0.3 },
-      // Bottom Right arm
-      { pos: [1.45, -1.45, 0.15] as [number, number, number], delay: 0.25 },
-      { pos: [0.95, -0.95, 0.15] as [number, number, number], delay: 0.35 },
-    ],
-    []
-  );
+  // Shapes for the 2 diagonal arms of the Nexo X with horizontal top/bottom caps
+  const { arm1Geometry, arm2Geometry, outlineArm1, outlineArm2 } = useMemo(() => {
+    const extrudeSettings: THREE.ExtrudeGeometryOptions = {
+      depth: 0.14,
+      bevelEnabled: true,
+      bevelSegments: 4,
+      steps: 1,
+      bevelSize: 0.025,
+      bevelThickness: 0.025,
+    };
+
+    // Arm 1 (\ diagonal: top-left to bottom-right)
+    const shape1 = new THREE.Shape();
+    shape1.moveTo(-1.6, 1.35);
+    shape1.lineTo(-0.55, 1.35);
+    shape1.lineTo(1.6, -1.35);
+    shape1.lineTo(0.55, -1.35);
+    shape1.closePath();
+
+    // Arm 2 (/ diagonal: top-right to bottom-left)
+    const shape2 = new THREE.Shape();
+    shape2.moveTo(1.6, 1.35);
+    shape2.lineTo(0.55, 1.35);
+    shape2.lineTo(-1.6, -1.35);
+    shape2.lineTo(-0.55, -1.35);
+    shape2.closePath();
+
+    const geo1 = new THREE.ExtrudeGeometry(shape1, extrudeSettings);
+    const geo2 = new THREE.ExtrudeGeometry(shape2, extrudeSettings);
+    geo1.center();
+    geo2.center();
+
+    // Outline contours
+    const edges1 = new THREE.EdgesGeometry(geo1, 24);
+    const edges2 = new THREE.EdgesGeometry(geo2, 24);
+
+    return {
+      arm1Geometry: geo1,
+      arm2Geometry: geo2,
+      outlineArm1: edges1,
+      outlineArm2: edges2,
+    };
+  }, []);
+
+  const cyanGlow = "#00D2FF";
+  const cyanCore = "#00A3FF";
 
   return (
     <group ref={groupRef}>
-      {/* --- DIAGONAL ARM 1 (Top-Left to Bottom-Right: \ ) --- */}
+      {/* --- ARM 1 (Top-Left to Bottom-Right: \ ) --- */}
       <AssemblyPiece
-        finalPos={[0, 0, 0]}
-        finalRot={[0, 0, -Math.PI / 4]}
-        initialOffset={[-3, 4, -2]}
+        finalPos={[0, 0, 0.04]}
+        initialOffset={[-3.5, 3.5, -1.5]}
         delay={0.05}
         progress={assembledTime}
       >
-        {/* Main Sleek Outer Diagonal Beam */}
-        <RoundedBox args={[3.6, 0.42, 0.24]} radius={0.08} smoothness={4}>
+        {/* Translucent Glass / Acrylic Body */}
+        <mesh geometry={arm1Geometry}>
           <meshPhysicalMaterial
+            transparent
+            opacity={0.62}
+            transmission={0.78}
+            roughness={0.08}
+            metalness={0.15}
+            ior={1.5}
+            thickness={0.35}
             color={cyanCore}
             emissive={cyanGlow}
-            emissiveIntensity={0.65}
-            roughness={0.2}
-            metalness={0.8}
-            clearcoat={0.8}
-            clearcoatRoughness={0.1}
+            emissiveIntensity={0.35}
+            clearcoat={1.0}
+            clearcoatRoughness={0.05}
           />
-        </RoundedBox>
+        </mesh>
 
-        {/* Inner Tech Circuit Channel (Emissive trace) */}
-        <RoundedBox args={[3.2, 0.08, 0.28]} radius={0.03} smoothness={2} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color={nodeColor}
-            emissive={cyanGlow}
-            emissiveIntensity={1.2}
-            roughness={0.1}
-          />
-        </RoundedBox>
+        {/* Luminous Contour Edges */}
+        <lineSegments geometry={outlineArm1}>
+          <lineBasicMaterial color={cyanGlow} linewidth={2} transparent opacity={0.9} />
+        </lineSegments>
       </AssemblyPiece>
 
-      {/* --- DIAGONAL ARM 2 (Top-Right to Bottom-Left: / ) --- */}
+      {/* --- ARM 2 (Top-Right to Bottom-Left: / ) --- */}
       <AssemblyPiece
-        finalPos={[0, 0, 0]}
-        finalRot={[0, 0, Math.PI / 4]}
-        initialOffset={[3, 4, -2]}
+        finalPos={[0, 0, -0.04]}
+        initialOffset={[3.5, 3.5, -1.5]}
         delay={0.12}
         progress={assembledTime}
       >
-        {/* Main Sleek Outer Diagonal Beam */}
-        <RoundedBox args={[3.6, 0.42, 0.24]} radius={0.08} smoothness={4}>
+        {/* Translucent Glass / Acrylic Body */}
+        <mesh geometry={arm2Geometry}>
           <meshPhysicalMaterial
+            transparent
+            opacity={0.62}
+            transmission={0.78}
+            roughness={0.08}
+            metalness={0.15}
+            ior={1.5}
+            thickness={0.35}
             color={cyanCore}
             emissive={cyanGlow}
-            emissiveIntensity={0.65}
-            roughness={0.2}
-            metalness={0.8}
-            clearcoat={0.8}
-            clearcoatRoughness={0.1}
+            emissiveIntensity={0.35}
+            clearcoat={1.0}
+            clearcoatRoughness={0.05}
           />
-        </RoundedBox>
+        </mesh>
 
-        {/* Inner Tech Circuit Channel (Emissive trace) */}
-        <RoundedBox args={[3.2, 0.08, 0.28]} radius={0.03} smoothness={2} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color={nodeColor}
-            emissive={cyanGlow}
-            emissiveIntensity={1.2}
-            roughness={0.1}
-          />
-        </RoundedBox>
+        {/* Luminous Contour Edges */}
+        <lineSegments geometry={outlineArm2}>
+          <lineBasicMaterial color={cyanGlow} linewidth={2} transparent opacity={0.9} />
+        </lineSegments>
       </AssemblyPiece>
 
-      {/* --- CIRCUIT INTERCONNECT BARS (Horizontal / Angle Bridges matching the logo) --- */}
+      {/* --- 4 EXACT INTERNAL CIRCUIT TRACKS & NODES (Matching Logo) --- */}
+
+      {/* Track 1: Upper-Left diagonal track with 2 circular nodes */}
       <AssemblyPiece
-        finalPos={[0, 0.65, 0.12]}
-        initialOffset={[0, 2, 2]}
+        finalPos={[0, 0, 0.12]}
+        initialOffset={[-2, 2, 2]}
         delay={0.25}
         progress={assembledTime}
       >
-        <Cylinder args={[0.035, 0.035, 1.2, 16]} rotation={[0, 0, Math.PI / 2]}>
-          <meshStandardMaterial
-            color={cyanDeep}
-            emissive={cyanGlow}
-            emissiveIntensity={0.85}
-            roughness={0.2}
-          />
-        </Cylinder>
+        <CircuitSegment
+          start={[-0.95, 0.82, 0]}
+          end={[-0.15, -0.05, 0]}
+          startNode={true}
+          endNode={true}
+        />
       </AssemblyPiece>
 
+      {/* Track 2: Upper-Right diagonal track with node */}
       <AssemblyPiece
-        finalPos={[0, -0.65, 0.12]}
-        initialOffset={[0, -2, 2]}
+        finalPos={[0, 0, 0.12]}
+        initialOffset={[2, 2, 2]}
         delay={0.28}
         progress={assembledTime}
       >
-        <Cylinder args={[0.035, 0.035, 1.2, 16]} rotation={[0, 0, Math.PI / 2]}>
-          <meshStandardMaterial
-            color={cyanDeep}
-            emissive={cyanGlow}
-            emissiveIntensity={0.85}
-            roughness={0.2}
-          />
-        </Cylinder>
+        <CircuitSegment
+          start={[0.95, 0.82, 0]}
+          end={[0.35, 0.18, 0]}
+          startNode={true}
+          endNode={false}
+        />
       </AssemblyPiece>
 
-      {/* --- GLOWING CIRCUIT NODES (Network spheres at endpoints and junctions) --- */}
-      {nodes.map((node, idx) => (
-        <AssemblyPiece
-          key={idx}
-          finalPos={node.pos}
-          initialOffset={[
-            (Math.random() - 0.5) * 5,
-            (Math.random() - 0.5) * 5,
-            Math.random() * 4 + 1,
-          ]}
-          delay={node.delay}
-          progress={assembledTime}
-        >
-          {/* Node Core Sphere */}
-          <Sphere args={[0.11, 24, 24]}>
-            <meshPhysicalMaterial
-              color="#FFFFFF"
-              emissive={cyanGlow}
-              emissiveIntensity={1.6}
-              roughness={0.1}
-              metalness={0.9}
-            />
-          </Sphere>
-          {/* Node Metallic Outer Ring */}
-          <Cylinder args={[0.16, 0.16, 0.04, 24]} rotation={[Math.PI / 2, 0, 0]}>
-            <meshStandardMaterial
-              color="#0F172A"
-              metalness={0.95}
-              roughness={0.2}
-            />
-          </Cylinder>
-        </AssemblyPiece>
-      ))}
+      {/* Track 3: Lower-Left diagonal track from center to bottom-left node */}
+      <AssemblyPiece
+        finalPos={[0, 0, 0.12]}
+        initialOffset={[-2, -2, 2]}
+        delay={0.32}
+        progress={assembledTime}
+      >
+        <CircuitSegment
+          start={[-0.35, -0.18, 0]}
+          end={[-0.95, -0.82, 0]}
+          startNode={false}
+          endNode={true}
+        />
+      </AssemblyPiece>
 
-      {/* Floating Micro-data Particles around the Logo */}
-      <Float speed={2} rotationIntensity={0.4} floatIntensity={0.6}>
-        <group>
-          {[-1.8, -0.8, 0.8, 1.8].map((x, i) => (
-            <Sphere
-              key={i}
-              args={[0.035, 12, 12]}
-              position={[x * 1.1, (i % 2 === 0 ? 1 : -1) * 1.3, (i % 2) * 0.4]}
-            >
-              <meshBasicMaterial color={cyanGlow} />
-            </Sphere>
-          ))}
-        </group>
-      </Float>
+      {/* Track 4: Lower-Right diagonal track with 2 circular nodes */}
+      <AssemblyPiece
+        finalPos={[0, 0, 0.12]}
+        initialOffset={[2, -2, 2]}
+        delay={0.35}
+        progress={assembledTime}
+      >
+        <CircuitSegment
+          start={[0.15, 0.05, 0]}
+          end={[0.95, -0.82, 0]}
+          startNode={true}
+          endNode={true}
+        />
+      </AssemblyPiece>
     </group>
   );
 }
@@ -270,20 +350,17 @@ export default function NexoLogo3D() {
   return (
     <div className="relative h-full w-full select-none cursor-grab active:cursor-grabbing">
       <Canvas
-        camera={{ position: [0, 0, 5.2], fov: 42 }}
+        camera={{ position: [0, 0, 4.8], fov: 40 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
       >
-        {/* Clean Studio Lighting */}
-        <ambientLight intensity={0.7} color="#FFFFFF" />
-        <directionalLight position={[5, 8, 6]} intensity={1.8} color="#FFFFFF" />
-        <directionalLight position={[-6, -4, -4]} intensity={0.8} color="#00D2FF" />
-        <pointLight position={[0, 0, 3]} intensity={1.2} color="#00D2FF" distance={8} />
+        {/* Studio Lighting to accentuate translucent acrylic and glowing contours */}
+        <ambientLight intensity={0.8} color="#FFFFFF" />
+        <directionalLight position={[4, 6, 5]} intensity={2.0} color="#FFFFFF" />
+        <directionalLight position={[-4, -5, -3]} intensity={1.0} color="#00D2FF" />
+        <pointLight position={[0, 0, 2.5]} intensity={1.5} color="#00D2FF" distance={7} />
 
-        {/* 3D Model with Floating Effect */}
-        <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.4}>
-          <NexoLogoModel />
-        </Float>
+        <TransparentNexoX />
       </Canvas>
     </div>
   );
