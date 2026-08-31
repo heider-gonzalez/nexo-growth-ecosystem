@@ -34,9 +34,11 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
             <div className="flex items-center justify-between mb-8">
               <a
                 href="#"
-                className="font-sans text-[1.35rem] font-extrabold leading-none tracking-[-0.06em] text-foreground"
+                className="flex items-center gap-1 font-sans text-[1.35rem] font-extrabold leading-none tracking-tight text-slate-900"
               >
-                Nexo
+                <span>NE</span>
+                <span className="text-[#00c2ff]">X</span>
+                <span>O</span>
               </a>
               <div className="flex items-center gap-2">
                 <ThemeToggle />
@@ -56,7 +58,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                   key={n.label}
                   href={n.href}
                   onClick={handleNavigate}
-                  className="text-lg text-foreground transition-colors hover:text-muted-foreground"
+                  className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
                 >
                   {n.label}
                 </a>
@@ -68,7 +70,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                 href="https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr"
                 target="_blank"
                 rel="noreferrer"
-                className="block w-full text-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-[0_12px_28px_rgba(0,174,239,0.28)] transition-colors hover:bg-[#0daee9]"
+                className="btn-cyan block w-full text-center rounded-full px-6 py-3 text-sm font-semibold"
               >
                 Comience
               </a>
