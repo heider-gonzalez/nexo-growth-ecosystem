@@ -10,6 +10,7 @@ import {
   Sparkles,
   MessageSquare,
   CheckCircle2,
+  Instagram,
 } from "lucide-react";
 
 import { SiteFooter } from "@/components/SiteFooter";
@@ -41,12 +42,11 @@ export const Route = createFileRoute("/")({
 });
 
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
-const WA = "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
+const WA =
+  "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 
 const nav = [
   { label: "Servicios", href: "#servicios", caret: true },
-  { label: "Compañía", href: "#enfoque", caret: true },
-  { label: "Proceso", href: "#proceso", caret: false },
   { label: "Contacto", href: "#contacto", caret: false },
 ];
 
@@ -97,17 +97,24 @@ const steps = [
 
 function Index() {
   return (
-    <div className="min-h-screen bg-white text-slate-900 antialiased selection:bg-[#00c2ff]/20 selection:text-[#0f172a]">
+    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-[#00c2ff]/30 selection:text-foreground">
       {/* Header */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <a
             href="#"
-            className="flex items-center gap-1.5 font-sans text-[1.4rem] font-black leading-none tracking-tight text-slate-900"
+            className="flex items-center"
           >
-            <span>NE</span>
-            <span className="text-[#00c2ff]">X</span>
-            <span>O</span>
+            <img
+              src="/Logo_ Paleta claro.png"
+              alt="NEXO Logo"
+              className="block dark:hidden h-20 w-auto object-contain"
+            />
+            <img
+              src="/Logo_ Paleta oscura.png"
+              alt="NEXO Logo"
+              className="hidden dark:block h-20 w-auto object-contain"
+            />
           </a>
 
           <nav className="hidden items-center gap-7 md:flex">
@@ -115,7 +122,7 @@ function Index() {
               <a
                 key={n.label}
                 href={n.href}
-                className="group flex items-center gap-1 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+                className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {n.label}
                 {n.caret && (
@@ -131,15 +138,16 @@ function Index() {
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="hidden text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 sm:block"
+              className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+              aria-label="Instagram"
             >
-              Instagram
+              <Instagram className="h-5 w-5" />
             </a>
             <a
               href={IG}
               target="_blank"
               rel="noreferrer"
-              className="btn-cyan hidden md:inline-flex items-center rounded-full px-5 py-2 text-sm font-semibold text-white"
+              className="btn-cyan hidden md:inline-flex items-center rounded-full px-5 py-2 text-sm font-semibold"
             >
               Comience
             </a>
@@ -149,7 +157,13 @@ function Index() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-gradient-to-b from-slate-50/50 via-white to-white">
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-background">
+        {/* Subtle Cyan Ambient Glow Reflection Behind 3D X in Dark Mode */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 h-[350px] w-[350px] sm:h-[550px] sm:w-[550px] rounded-full bg-[#00c2ff]/10 blur-[130px]"
+        />
+
         <div className="relative mx-auto max-w-6xl px-6 w-full z-10">
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1.1fr_1fr] items-center gap-12 lg:gap-8">
             {/* Hero Left Content */}
@@ -163,10 +177,10 @@ function Index() {
                 >
                   <Sparkles className="h-3.5 w-3.5 text-[#00c2ff]" />
                   <span>¡Llegó Nexo! Tu negocio, listo para despegar</span>
-                  <ArrowRight className="h-3 w-3 text-slate-400" />
+                  <ArrowRight className="h-3 w-3 opacity-60" />
                 </a>
 
-                <h1 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-slate-900">
+                <h1 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground">
                   Tecnología que
                   <br />
                   <span className="text-[#00c2ff]">impulsa</span> tu
@@ -174,10 +188,10 @@ function Index() {
                   negocio
                 </h1>
 
-                <p className="mt-6 max-w-xl text-base sm:text-lg text-slate-600 leading-relaxed mb-8">
+                <p className="mt-6 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
                   En Nexo transformamos la tecnología en resultados reales. No solo creamos
-                  herramientas: diseñamos el ecosistema digital que tu marca necesita para
-                  crecer sin límites.
+                  herramientas: diseñamos el ecosistema digital que tu marca necesita para crecer
+                  sin límites.
                 </p>
 
                 <div className="flex flex-row items-center gap-4 sm:gap-5">
@@ -192,7 +206,7 @@ function Index() {
                   </a>
                   <a
                     href="#servicios"
-                    className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm sm:text-base font-medium text-slate-700 hover:border-slate-400 hover:bg-slate-50 transition-all duration-200"
+                    className="inline-flex items-center justify-center rounded-full border border-border bg-card/80 px-6 py-3 text-sm sm:text-base font-medium text-foreground hover:border-[#00c2ff]/60 hover:bg-card transition-all duration-200 shadow-sm"
                   >
                     Servicios
                   </a>
@@ -217,19 +231,22 @@ function Index() {
       </section>
 
       {/* Servicios Section */}
-      <section id="servicios" className="relative bg-white py-24 sm:py-32 border-t border-slate-100">
+      <section
+        id="servicios"
+        className="relative bg-background py-24 sm:py-32 border-t border-border"
+      >
         <div className="mx-auto max-w-6xl px-6">
           <ScrollAnimation direction="up">
             <div className="max-w-2xl">
               <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
                 Servicios
               </span>
-              <h2 className="mt-3 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-slate-900">
+              <h2 className="mt-3 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-foreground">
                 Un ecosistema, cuatro frentes
               </h2>
-              <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
-                Cada pieza se conecta con la siguiente: lo que capta tu web alimenta tu CRM,
-                y lo que aprende tu CRM alimenta tus automatizaciones.
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-muted-foreground">
+                Cada pieza se conecta con la siguiente: lo que capta tu web alimenta tu CRM, y lo
+                que aprende tu CRM alimenta tus automatizaciones.
               </p>
             </div>
           </ScrollAnimation>
@@ -237,20 +254,20 @@ function Index() {
           <div className="mt-14 grid gap-6 sm:grid-cols-2">
             {services.map((s, index) => (
               <ScrollAnimation key={s.title} direction="up" delay={index * 0.1}>
-                <article className="saas-card group relative rounded-2xl p-8 bg-white border border-slate-200">
+                <article className="saas-card group relative rounded-2xl p-8 bg-card border border-border">
                   <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-700 transition-colors duration-300 group-hover:bg-[#E0F7FE] group-hover:text-[#00c2ff]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-[#00c2ff]">
                       <s.icon className="h-6 w-6" strokeWidth={2} />
                     </div>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 transition-colors group-hover:bg-[#E0F7FE] group-hover:text-[#0369a1]">
+                    <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground transition-colors group-hover:bg-primary/10 group-hover:text-[#00c2ff]">
                       {s.badge}
                     </span>
                   </div>
 
-                  <h3 className="mt-6 text-xl font-bold tracking-tight text-slate-900 group-hover:text-[#00c2ff] transition-colors">
+                  <h3 className="mt-6 text-xl font-bold tracking-tight text-foreground group-hover:text-[#00c2ff] transition-colors">
                     {s.title}
                   </h3>
-                  <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-slate-600">
+                  <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-muted-foreground">
                     {s.text}
                   </p>
                 </article>
@@ -261,18 +278,19 @@ function Index() {
       </section>
 
       {/* Proceso Section */}
-      <section id="proceso" className="relative bg-slate-50/70 py-24 sm:py-32 border-t border-slate-200/80">
+      <section id="proceso" className="relative bg-muted/40 py-24 sm:py-32 border-t border-border">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollAnimation direction="up">
             <div className="text-center max-w-2xl mx-auto">
               <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
                 Metodología
               </span>
-              <h2 className="mt-3 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-slate-900">
+              <h2 className="mt-3 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-foreground">
                 Cómo trabajamos
               </h2>
-              <p className="mt-4 text-base text-slate-600">
-                Un flujo de trabajo estructurado para garantizar resultados medibles desde el primer día.
+              <p className="mt-4 text-base text-muted-foreground">
+                Un flujo de trabajo estructurado para garantizar resultados medibles desde el primer
+                día.
               </p>
             </div>
           </ScrollAnimation>
@@ -280,19 +298,19 @@ function Index() {
           <div className="mt-16 grid gap-8 sm:grid-cols-3">
             {steps.map((s, index) => (
               <ScrollAnimation key={s.n} direction="up" delay={index * 0.15}>
-                <div className="saas-card relative rounded-2xl bg-white p-8 border border-slate-200 h-full flex flex-col justify-between">
+                <div className="saas-card relative rounded-2xl bg-card p-8 border border-border h-full flex flex-col justify-between">
                   <div>
-                    <span className="inline-flex items-center justify-center rounded-lg bg-[#E0F7FE] px-3.5 py-1 text-sm font-black text-[#00c2ff]">
+                    <span className="inline-flex items-center justify-center rounded-lg bg-primary/10 border border-primary/20 px-3.5 py-1 text-sm font-black text-[#00c2ff]">
                       Paso {s.n}
                     </span>
-                    <h3 className="mt-5 text-xl font-bold text-slate-900 tracking-tight">
+                    <h3 className="mt-5 text-xl font-bold text-foreground tracking-tight">
                       {s.title}
                     </h3>
-                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-slate-600">
+                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
                       {s.text}
                     </p>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-400">
+                  <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-xs font-semibold text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
                     <span>Fase verificada</span>
                   </div>
@@ -304,34 +322,39 @@ function Index() {
       </section>
 
       {/* Enfoque / Cita Section */}
-      <section id="enfoque" className="relative bg-white py-28 sm:py-36 border-t border-slate-200/80">
+      <section
+        id="enfoque"
+        className="relative bg-background py-28 sm:py-36 border-t border-border"
+      >
         <div className="mx-auto max-w-4xl px-6 text-center">
           <ScrollAnimation direction="fade">
             <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] text-[#00c2ff]">
               Enfoque Estratégico
             </span>
-            <h2 className="mt-6 font-sans font-black text-3xl sm:text-5xl lg:text-6xl leading-[1.15] tracking-tight text-slate-900">
+            <h2 className="mt-6 font-sans font-black text-3xl sm:text-5xl lg:text-6xl leading-[1.15] tracking-tight text-foreground">
               "Tu negocio no necesita más herramientas, necesita la estrategia correcta."
             </h2>
-            <p className="mt-6 text-base sm:text-lg text-slate-500 font-medium max-w-xl mx-auto">
-              Diseño de sistemas conectados que potencian tu equipo y multiplican el retorno de inversión.
+            <p className="mt-6 text-base sm:text-lg text-muted-foreground font-medium max-w-xl mx-auto">
+              Diseño de sistemas conectados que potencian tu equipo y multiplican el retorno de
+              inversión.
             </p>
           </ScrollAnimation>
         </div>
       </section>
 
       {/* CTA Final Section */}
-      <section id="contacto" className="relative bg-slate-50/90 py-24 sm:py-32 border-t border-slate-200">
+      <section id="contacto" className="relative bg-muted/30 py-24 sm:py-32 border-t border-border">
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <ScrollAnimation direction="up">
             <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
               Contacto
             </span>
-            <h2 className="mt-3 font-sans font-black text-4xl sm:text-6xl tracking-tight text-slate-900">
+            <h2 className="mt-3 font-sans font-black text-4xl sm:text-6xl tracking-tight text-foreground">
               ¿Hablamos de tu proyecto?
             </h2>
-            <p className="mx-auto mt-5 max-w-lg text-base sm:text-lg leading-relaxed text-slate-600">
-              Escríbenos y te respondemos con una propuesta técnica y estratégica a la medida de tu operación.
+            <p className="mx-auto mt-5 max-w-lg text-base sm:text-lg leading-relaxed text-muted-foreground">
+              Escríbenos y te respondemos con una propuesta técnica y estratégica a la medida de tu
+              operación.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a

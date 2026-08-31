@@ -10,9 +10,9 @@
 
 🤖 Inteligencia Artificial: Soluciones avanzadas e integración de IA para automatizar tareas y tomar decisiones basadas en datos.
 
-🎯 Tu negocio no necesita más herramientas, necesita la estrategia correcta. 
+🎯 Tu negocio no necesita más herramientas, necesita la estrategia correcta.
 
-💬 ¿Hablamos de tu proyecto? Escríbenos al DM https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr  ( quiero que crees mi sitio web tal cual como esta pagina la de la ultima imagen  pero con el contenido adjunto y ademas el cubo como que sea igual a la de la pagina https://resend.com es un modelo 3d que se mueve
+💬 ¿Hablamos de tu proyecto? Escríbenos al DM https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr ( quiero que crees mi sitio web tal cual como esta pagina la de la ultima imagen pero con el contenido adjunto y ademas el cubo como que sea igual a la de la pagina https://resend.com es un modelo 3d que se mueve
 
 This project was built with [Lovable](https://lovable.dev).
 

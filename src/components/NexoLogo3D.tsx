@@ -65,10 +65,7 @@ function CircuitSegment({
 
   // Calculate orientation for the cylinder
   const dir = p2.clone().sub(p1).normalize();
-  const orientation = new THREE.Quaternion().setFromUnitVectors(
-    new THREE.Vector3(0, 1, 0),
-    dir
-  );
+  const orientation = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
   const euler = new THREE.Euler().setFromQuaternion(orientation);
 
   const cyanGlow = "#00D2FF";
@@ -83,9 +80,9 @@ function CircuitSegment({
         <meshStandardMaterial
           color={cyanDeep}
           emissive={cyanGlow}
-          emissiveIntensity={1.2}
-          roughness={0.2}
-          metalness={0.8}
+          emissiveIntensity={1.6}
+          roughness={0.15}
+          metalness={0.9}
         />
       </mesh>
 
@@ -95,11 +92,7 @@ function CircuitSegment({
           {/* Outer Ring */}
           <mesh rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.13, 0.13, 0.06, 24]} />
-            <meshStandardMaterial
-              color={nodeDark}
-              metalness={0.9}
-              roughness={0.2}
-            />
+            <meshStandardMaterial color={nodeDark} metalness={0.9} roughness={0.2} />
           </mesh>
           {/* Glowing Center Dot */}
           <mesh position={[0, 0, 0.02]}>
@@ -115,11 +108,7 @@ function CircuitSegment({
           {/* Outer Ring */}
           <mesh rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.13, 0.13, 0.06, 24]} />
-            <meshStandardMaterial
-              color={nodeDark}
-              metalness={0.9}
-              roughness={0.2}
-            />
+            <meshStandardMaterial color={nodeDark} metalness={0.9} roughness={0.2} />
           </mesh>
           {/* Glowing Center Dot */}
           <mesh position={[0, 0, 0.02]}>
@@ -152,12 +141,12 @@ function TransparentNexoX() {
       groupRef.current.rotation.x = THREE.MathUtils.lerp(
         groupRef.current.rotation.x,
         targetTiltX,
-        delta * 3.5
+        delta * 3.5,
       );
       groupRef.current.rotation.z = THREE.MathUtils.lerp(
         groupRef.current.rotation.z,
         targetTiltZ,
-        delta * 3.5
+        delta * 3.5,
       );
     }
   });
@@ -222,23 +211,23 @@ function TransparentNexoX() {
         <mesh geometry={arm1Geometry}>
           <meshPhysicalMaterial
             transparent
-            opacity={0.62}
-            transmission={0.78}
-            roughness={0.08}
-            metalness={0.15}
-            ior={1.5}
-            thickness={0.35}
+            opacity={0.68}
+            transmission={0.75}
+            roughness={0.06}
+            metalness={0.2}
+            ior={1.52}
+            thickness={0.38}
             color={cyanCore}
             emissive={cyanGlow}
-            emissiveIntensity={0.35}
+            emissiveIntensity={0.55}
             clearcoat={1.0}
-            clearcoatRoughness={0.05}
+            clearcoatRoughness={0.03}
           />
         </mesh>
 
         {/* Luminous Contour Edges */}
         <lineSegments geometry={outlineArm1}>
-          <lineBasicMaterial color={cyanGlow} linewidth={2} transparent opacity={0.9} />
+          <lineBasicMaterial color={cyanGlow} linewidth={2} transparent opacity={0.95} />
         </lineSegments>
       </AssemblyPiece>
 
@@ -253,23 +242,23 @@ function TransparentNexoX() {
         <mesh geometry={arm2Geometry}>
           <meshPhysicalMaterial
             transparent
-            opacity={0.62}
-            transmission={0.78}
-            roughness={0.08}
-            metalness={0.15}
-            ior={1.5}
-            thickness={0.35}
+            opacity={0.68}
+            transmission={0.75}
+            roughness={0.06}
+            metalness={0.2}
+            ior={1.52}
+            thickness={0.38}
             color={cyanCore}
             emissive={cyanGlow}
-            emissiveIntensity={0.35}
+            emissiveIntensity={0.55}
             clearcoat={1.0}
-            clearcoatRoughness={0.05}
+            clearcoatRoughness={0.03}
           />
         </mesh>
 
         {/* Luminous Contour Edges */}
         <lineSegments geometry={outlineArm2}>
-          <lineBasicMaterial color={cyanGlow} linewidth={2} transparent opacity={0.9} />
+          <lineBasicMaterial color={cyanGlow} linewidth={2} transparent opacity={0.95} />
         </lineSegments>
       </AssemblyPiece>
 
@@ -355,10 +344,10 @@ export default function NexoLogo3D() {
         gl={{ antialias: true, alpha: true }}
       >
         {/* Studio Lighting to accentuate translucent acrylic and glowing contours */}
-        <ambientLight intensity={0.8} color="#FFFFFF" />
-        <directionalLight position={[4, 6, 5]} intensity={2.0} color="#FFFFFF" />
-        <directionalLight position={[-4, -5, -3]} intensity={1.0} color="#00D2FF" />
-        <pointLight position={[0, 0, 2.5]} intensity={1.5} color="#00D2FF" distance={7} />
+        <ambientLight intensity={0.9} color="#E0F2FE" />
+        <directionalLight position={[4, 6, 5]} intensity={2.2} color="#FFFFFF" />
+        <directionalLight position={[-4, -5, -3]} intensity={1.4} color="#00D2FF" />
+        <pointLight position={[0, 0, 2.5]} intensity={2.2} color="#00D2FF" distance={8} />
 
         <TransparentNexoX />
       </Canvas>
