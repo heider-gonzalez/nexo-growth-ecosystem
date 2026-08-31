@@ -1,21 +1,15 @@
 /* Tailwind CSS v4 - @theme and @utility are valid directives */
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @import "tw-animate-css";
 
-
-
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * NEXO Growth Ecosystem - SaaS Design System
+ * 
+ * Palette:
+ * - Clean pure white & ultra-light slate backgrounds
+ * - Matte dark slate gray typography & structural borders
+ * - Vibrant electric cyan strictly for CTAs, active states & highlights
  */
 
 @theme inline {
@@ -63,83 +57,84 @@
 
 :root {
   --radius: 0.75rem;
-  --background: #f4f9ff;
-  --foreground: #2a3340;
+  --background: #ffffff;
+  --foreground: #0f172a; /* Slate 900 */
   --card: #ffffff;
-  --card-foreground: #2a3340;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #2a3340;
-  --primary: #00aeef;
+  --popover-foreground: #0f172a;
+  --primary: #00c2ff; /* Vibrant electric cyan */
   --primary-foreground: #ffffff;
-  --secondary: #eaf6ff;
-  --secondary-foreground: #2a3340;
-  --muted: #edf5fb;
-  --muted-foreground: #4a5868;
-  --accent: #dff7ff;
-  --accent-foreground: #2a3340;
+  --secondary: #f8fafc; /* Slate 50 */
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9; /* Slate 100 */
+  --muted-foreground: #475569; /* Slate 600 */
+  --accent: #e0f7fe; /* Soft cyan tint */
+  --accent-foreground: #0369a1; /* Deep cyan */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: #d6e3f0;
-  --input: #e5eef7;
-  --ring: rgba(0, 174, 239, 0.45);
-  --chart-1: #00aeef;
-  --chart-2: #2a3340;
-  --chart-3: #6dd7ff;
-  --chart-4: #8bd9ff;
-  --chart-5: #0ea5e9;
-  --sidebar: #f8fbff;
-  --sidebar-foreground: #2a3340;
-  --sidebar-primary: #00aeef;
+  --border: #e2e8f0; /* Slate 200 */
+  --input: #e2e8f0;
+  --ring: rgba(0, 194, 255, 0.45);
+  --chart-1: #00c2ff;
+  --chart-2: #0f172a;
+  --chart-3: #38bdf8;
+  --chart-4: #64748b;
+  --chart-5: #0284c7;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #00c2ff;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eaf6ff;
-  --sidebar-accent-foreground: #2a3340;
-  --sidebar-border: #d6e3f0;
-  --sidebar-ring: rgba(0, 174, 239, 0.45);
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: rgba(0, 194, 255, 0.45);
 }
 
-:root[data-theme="dark"] {
-  --background: #07131e;
-  --foreground: #edf7ff;
-  --card: #0d1e2d;
-  --card-foreground: #edf7ff;
-  --popover: #0d1e2d;
-  --popover-foreground: #edf7ff;
-  --primary: #00aeef;
-  --primary-foreground: #03131d;
-  --secondary: #102338;
-  --secondary-foreground: #edf7ff;
-  --muted: #102338;
-  --muted-foreground: #a0bdd6;
-  --accent: #0f2940;
-  --accent-foreground: #edf7ff;
+:root[data-theme="dark"],
+.dark {
+  --background: #080d1a; /* Deep rich midnight navy */
+  --foreground: #f8fafc; /* Crisp off-white */
+  --card: #0f172a; /* Matte dark slate surface */
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+  --primary: #00c2ff; /* Vibrant electric cyan */
+  --primary-foreground: #080d1a;
+  --secondary: #131c31;
+  --secondary-foreground: #f8fafc;
+  --muted: #131c31;
+  --muted-foreground: #94a3b8; /* Crisp silver slate */
+  --accent: rgba(0, 194, 255, 0.12);
+  --accent-foreground: #38bdf8;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: rgba(135, 176, 214, 0.2);
-  --input: rgba(135, 176, 214, 0.12);
-  --ring: rgba(0, 174, 239, 0.5);
-  --chart-1: #00aeef;
-  --chart-2: #8dd8ff;
-  --chart-3: #2a3340;
-  --chart-4: #28c2ff;
-  --chart-5: #6dd7ff;
-  --sidebar: #0b1827;
-  --sidebar-foreground: #edf7ff;
-  --sidebar-primary: #00aeef;
-  --sidebar-primary-foreground: #021620;
-  --sidebar-accent: #102338;
-  --sidebar-accent-foreground: #edf7ff;
-  --sidebar-border: rgba(135, 176, 214, 0.2);
-  --sidebar-ring: rgba(0, 174, 239, 0.5);
+  --border: rgba(148, 163, 184, 0.14);
+  --input: rgba(148, 163, 184, 0.14);
+  --ring: rgba(0, 194, 255, 0.5);
+  --chart-1: #00c2ff;
+  --chart-2: #38bdf8;
+  --chart-3: #94a3b8;
+  --chart-4: #0284c7;
+  --chart-5: #67e8f9;
+  --sidebar: #060a14;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #00c2ff;
+  --sidebar-primary-foreground: #080d1a;
+  --sidebar-accent: #131c31;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: rgba(148, 163, 184, 0.14);
+  --sidebar-ring: rgba(0, 194, 255, 0.5);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
     transition:
-      background-color 0.25s ease,
-      border-color 0.25s ease,
-      color 0.25s ease,
-      box-shadow 0.25s ease;
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   html {
@@ -150,6 +145,7 @@
     min-height: 100vh;
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   a,
@@ -158,11 +154,11 @@
   textarea,
   select {
     transition:
-      background-color 0.25s ease,
-      border-color 0.25s ease,
-      color 0.25s ease,
-      box-shadow 0.25s ease,
-      transform 0.25s ease;
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
   }
 }
 
@@ -171,130 +167,114 @@
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
-@utility glow-line {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in oklab, white 45%, transparent),
-    transparent
-  );
+/* Subtle clean structural dividers */
+@utility clean-divider {
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
-@utility glow-line-cube {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in oklab, rgba(255, 255, 255, 0.5) 50%, transparent),
-    transparent
-  );
-}
-
-@utility hero-radial {
-  background:
-    radial-gradient(60% 50% at 70% 40%, oklch(0.22 0 0 / 0.9), transparent 70%),
-    radial-gradient(50% 40% at 20% 10%, oklch(0.16 0 0 / 0.8), transparent 70%);
-}
-
-@utility text-shine {
-  background: linear-gradient(100deg, var(--foreground) 10%, var(--primary) 42%, var(--foreground) 75%, var(--primary) 100%);
+/* Clean text highlight */
+@utility text-gradient-cyan {
+  background: linear-gradient(135deg, #0f172a 30%, #00c2ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-@utility surface-card {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, transparent), color-mix(in srgb, var(--muted) 90%, transparent));
-  border: 1px solid var(--border);
-  backdrop-filter: blur(6px);
+:root[data-theme="dark"] .text-gradient-cyan,
+.dark .text-gradient-cyan {
+  background: linear-gradient(135deg, #ffffff 40%, #00c2ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-@utility pill-glow-hover {
-  position: relative;
-  background: linear-gradient(180deg, var(--card), var(--muted));
-  border: 1px solid transparent;
-  background-clip: padding-box;
-  transition: all 0.5s ease;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(90deg, #00aeef 0%, #6dd7ff 40%, #2a3340 100%);
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    transition: all 0.5s ease;
-  }
-
-  &:hover::before {
-    background: linear-gradient(270deg, #00aeef 0%, #6dd7ff 40%, #2a3340 100%);
-  }
+/* Modern SaaS Card */
+@utility saas-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 3px 0 rgba(15, 23, 42, 0.04),
+    0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
   &:hover {
+    border-color: rgba(0, 194, 255, 0.6);
     box-shadow:
-      0 0 20px -4px rgba(0, 174, 239, 0.35),
-      0 0 30px -8px rgba(45, 89, 148, 0.35);
-  }
-
-  @media (max-width: 640px) {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
+      0 0 25px -4px rgba(0, 194, 255, 0.22),
+      0 12px 30px -10px rgba(0, 194, 255, 0.18);
+    transform: translateY(-2px);
   }
 }
 
+/* Clean Brand Pill */
+@utility brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  font-weight: 500;
+  transition: all 0.25s ease;
 
-@utility light-beam {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    100deg,
-    transparent 20%,
-    oklch(1 0 0 / 0.07) 48%,
-    oklch(1 0 0 / 0.14) 50%,
-    oklch(1 0 0 / 0.05) 53%,
-    transparent 78%
-  );
-  mask-image: linear-gradient(180deg, transparent 35%, black 78%, transparent 100%);
+  &:hover {
+    border-color: #00c2ff;
+    color: var(--foreground);
+    box-shadow: 0 0 20px -4px rgba(0, 194, 255, 0.3);
+  }
 }
 
-@utility light-beam--soft {
-  opacity: 0.5;
+/* Primary Action Cyan Button */
+@utility btn-cyan {
+  background: #00c2ff;
+  color: #080d1a;
+  font-weight: 600;
+  box-shadow: 0 8px 24px -4px rgba(0, 194, 255, 0.45);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #00b0e8;
+    color: #080d1a;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -4px rgba(0, 194, 255, 0.6);
+  }
 }
 
-@utility light-beam-horizontal {
-  position: absolute;
-  bottom: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150%;
-  height: 60%;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 80% 50% at 50% 100%,
-    oklch(1 0 0 / 0.15) 0%,
-    oklch(1 0 0 / 0.08) 30%,
-    oklch(1 0 0 / 0.03) 60%,
-    transparent 100%
-  );
-  filter: blur(140px);
+/* Dark Slate Outlined / Solid Button (WhatsApp & secondary CTAs) */
+@utility btn-slate-dark {
+  background: #0f172a;
+  color: #f8fafc;
+  font-weight: 600;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #1e293b;
+    border-color: #00c2ff;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 0 20px -3px rgba(0, 194, 255, 0.35);
+  }
 }
 
-.light-beam-horizontal {
-  background: radial-gradient(
-    ellipse 80% 50% at 50% 100%,
-    oklch(1 0 0 / 0.18) 0%,
-    oklch(1 0 0 / 0.10) 30%,
-    oklch(1 0 0 / 0.04) 60%,
-    transparent 100%
-  );
+/* Outlined Cyan Button */
+@utility btn-outline-cyan {
+  background: transparent;
+  color: var(--foreground);
+  border: 1.5px solid #00c2ff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(0, 194, 255, 0.1);
+    border-color: #00d2ff;
+    transform: translateY(-1px);
+    box-shadow: 0 0 20px -4px rgba(0, 194, 255, 0.35);
+  }
 }
 
+/* Giant background typography for footer */
 @keyframes nexo-sweep {
   0% {
     background-position:
@@ -308,18 +288,17 @@
   }
 }
 
-
 @utility nexo-giant {
   background-image:
     linear-gradient(
       100deg,
       transparent 34%,
-      oklch(0.72 0 0) 45%,
-      oklch(1 0 0) 50%,
-      oklch(0.72 0 0) 55%,
+      rgba(255, 255, 255, 0.3) 45%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.3) 55%,
       transparent 66%
     ),
-    linear-gradient(180deg, oklch(0.42 0 0), oklch(0.16 0 0));
+    linear-gradient(180deg, #334155, #0f172a);
   background-size:
     250% 100%,
     100% 100%;
@@ -329,8 +308,6 @@
   color: transparent;
   animation: nexo-sweep 6s linear infinite;
 }
-
-
 
 @media (prefers-reduced-motion: reduce) {
   .nexo-giant {
