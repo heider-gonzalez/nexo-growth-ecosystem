@@ -11,6 +11,9 @@ import {
   MessageSquare,
   CheckCircle2,
   Instagram,
+  Linkedin,
+  Github,
+  Twitter,
 } from "lucide-react";
 
 import { SiteFooter } from "@/components/SiteFooter";
