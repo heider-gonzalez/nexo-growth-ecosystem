@@ -19,6 +19,13 @@ const columns = [
       { label: "Los humanos detrás de Nexo", href: "/equipo" },
     ],
   },
+  {
+    title: "LEGAL",
+    links: [
+      { label: "Términos y Condiciones", href: "/terminos" },
+      { label: "Política de Privacidad", href: "/privacidad" },
+    ],
+  },
 ];
 
 export function SiteFooter() {

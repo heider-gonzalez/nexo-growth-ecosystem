@@ -33,7 +33,7 @@ const team = [
     firstName: "Heider",
     initials: "HG",
     location: "Barranquilla, Colombia",
-    role: "Founder & CEO",
+    role: "Software Developer Full Stack",
     avatarUrl: "/Heider.jpg",
     socials: {
       linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
@@ -41,7 +41,7 @@ const team = [
       github: "https://github.com/heider-gonzalez",
       website: "https://github.com/heider-gonzalez"
     },
-    badges: ["Founder", "Engineering"],
+    badges: ["Engineering", "Full Stack"],
     projects: [
       {
         title: "hsocial",
@@ -67,21 +67,149 @@ const team = [
         category: "Communication",
         image: "/h chat.png"
       }
-    ]
+    ],
+    experience: [
+      {
+        role: "Desarrollo de software y automatizaciones independientes",
+        period: "2026 - Presente",
+        description: "Desarrollo de aplicaciones web Full Stack (Next.js, Supabase, PostgreSQL) y automatización de flujos de trabajo con n8n e integración de Meta WhatsApp Business API."
+      },
+      {
+        role: "Soporte técnico, mantenimiento y gestión de base de datos",
+        period: "2024 - 2026",
+        description: "Mantenimiento preventivo y correctivo de hardware, configuración de sistemas operativos, optimización de redes y administración de bases de datos para clientes y empresas localmente."
+      }
+    ],
+    education: [
+      {
+        title: "Ingeniería Informática",
+        institution: "Corporación Universitaria Reformada",
+        level: "Título Profesional"
+      },
+      {
+        title: "Tecnología en Informática",
+        institution: "Corporación Universitaria Reformada",
+        level: "Título Tecnológico"
+      },
+      {
+        title: "Técnico Auxiliar de Sistemas Informáticos",
+        institution: "ITSA",
+        level: "Título Técnico",
+        year: "2016"
+      },
+      {
+        title: "Programa B2 de Inglés",
+        institution: "Instituto de Idiomas - Corporación Universitaria Reformada",
+        level: "Acreditación B2 según normativa institucional",
+        year: "2026"
+      }
+    ],
+    focus: [
+      "Desarrollo Web & APIs: Creación de aplicaciones escalables con Next.js, Supabase, PostgreSQL y APIs REST.",
+      "Automatización de Procesos: Flujos de trabajo eficientes con n8n, CRM personalizados y mensajería automatizada.",
+      "Soporte & Optimización IT: Diagnóstico de hardware, sistemas operativos y gestión de infraestructura tecnológica."
+    ],
+    recognition: "1.ᵉʳ Lugar en la sede C.U. Reformada – Categoría Impacto Social (Rally Latinoamericano de Innovación 2023)",
+    languages: "Inglés B2 (Instituto de Idiomas Unireformada)"
   },
   { name: "Cristian Acuña", firstName: "Cristian", initials: "CA", location: "Barranquilla, Colombia", role: "Lead Developer", avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80", badges: ["Engineering"] },
   { name: "Sergio Perez", firstName: "Sergio", initials: "SP", location: "Barranquilla, Colombia", role: "Backend Engineer", avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80", badges: ["Engineering"] },
-  { name: "Sergio Guerrero", firstName: "Sergio", initials: "SG", location: "Barranquilla, Colombia", role: "Software Developer", avatarUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80", badges: ["Engineering"] },
+  {
+    name: "Sergio Alejandro Severiche Guerrero",
+    firstName: "Sergio",
+    initials: "SSG",
+    location: "Barranquilla, Colombia",
+    role: "Ingeniero de Sistemas",
+    avatarUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80",
+    badges: ["Engineering", "Full Stack", "AI"],
+    age: 25,
+    technical: ["Full stack & IA Generativa", "Integración de IA en aplicaciones", "Ingeniería de software & Back-end (Deep Dive)"],
+    experience: [
+      {
+        role: "Desarrollo y Consultoría de software independiente",
+        period: "2021-Presente"
+      },
+      {
+        role: "Soporte técnico y operaciones de sistemas",
+        company: "Prosegur Procesos S.A.S",
+        period: "Enero 2026 - Junio 2026"
+      },
+      {
+        role: "Analista de datos e investigador de campo",
+        company: "Universidad de Cartagena & Alcaldía",
+        period: "Marzo 2025 - Enero 2026"
+      }
+    ],
+    focus: [
+      "Seguridad y cumplimiento",
+      "Ingeniería de datos",
+      "Despliegue y CI/CD",
+      "Desarrollo Fullstack",
+      "Optimización de sistemas",
+      "UX/UI & Responsive Design"
+    ],
+    education: [
+      "Universidad de Cartagena (UdeC)",
+      "Centro Colombo Americano"
+    ],
+    languages: "Inglés B1/B2 - Capacidad para lectura de documentación técnica compleja"
+  },
   { name: "Karol Esparza", firstName: "Karol", initials: "KE", location: "Barranquilla, Colombia", role: "UI/UX Designer", avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=80", badges: ["Design"] },
 ];
 
+interface TeamMember {
+  name: string;
+  firstName: string;
+  initials: string;
+  location: string;
+  role: string;
+  avatarUrl: string;
+  badges?: string[];
+  socials?: {
+    linkedin?: string;
+    x?: string;
+    github?: string;
+    website?: string;
+  };
+  projects?: Array<{
+    title: string;
+    description: string;
+    category: string;
+    image: string;
+  }>;
+  personal?: {
+    education: string;
+    focus: string;
+    languages: string;
+    technical: string;
+    description: string;
+  };
+  age?: number;
+  technical?: string[];
+  experience?: Array<{
+    role: string;
+    company?: string;
+    period: string;
+    description?: string;
+  }>;
+  focus?: string[];
+  education?: Array<{
+    title: string;
+    institution: string;
+    level: string;
+    year?: string;
+  }>;
+  languages?: string;
+  recognition?: string;
+}
+
 function TeamPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedMember, setSelectedMember] = useState<typeof team[0] | null>(null);
-  const [activeTab, setActiveTab] = useState("all");
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [activeTab, setActiveTab] = useState("proyectos");
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
 
-  const filteredTeam = team.filter(member =>
+  const filteredTeam = team.filter((member: TeamMember) =>
     member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     member.location.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -202,10 +330,13 @@ function TeamPage() {
       <section className="relative bg-background py-20 sm:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-y-16 gap-x-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
-            {filteredTeam.map((member, index) => (
+            {filteredTeam.map((member: TeamMember, index) => (
               <ScrollAnimation key={member.name} direction="up" delay={index * 0.05}>
                 <button
-                  onClick={() => setSelectedMember(member)}
+                  onClick={() => {
+                    setSelectedMember(member);
+                    setActiveTab(member.projects && member.experience ? "proyectos" : member.experience ? "experiencia" : "all");
+                  }}
                   className="group flex flex-col items-center text-center cursor-pointer hover:scale-105 transition-transform"
                 >
                   <div className="w-28 h-28 rounded-full bg-muted/80 border border-border/50 flex items-center justify-center overflow-hidden shrink-0 mb-4">
@@ -270,23 +401,29 @@ function TeamPage() {
                       </span>
                     )}
                   </div>
-                  
+
                   <h3 className="text-2xl font-bold text-foreground">
                     {selectedMember.name}
                   </h3>
                   <p className="mt-2 text-base text-muted-foreground">
                     {selectedMember.role}
                   </p>
-                  
+
                   <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
                     <MapPin className="h-4 w-4" />
                     <span>{selectedMember.location}</span>
                   </div>
-                  
+
                   <div className="mt-2 text-sm text-muted-foreground">
                     {getLocalTime()} (local time)
                   </div>
-                  
+
+                  {selectedMember.age && (
+                    <div className="mt-2 text-sm text-muted-foreground">
+                      {selectedMember.age} años
+                    </div>
+                  )}
+
                   {selectedMember.badges && (
                     <div className="mt-6 flex flex-wrap gap-2 justify-center">
                       {selectedMember.badges.map((badge) => (
@@ -296,7 +433,7 @@ function TeamPage() {
                       ))}
                     </div>
                   )}
-                  
+
                   {selectedMember.socials && (
                     <div className="mt-8 flex flex-col gap-3 w-full">
                       {selectedMember.socials.website && (
@@ -352,26 +489,56 @@ function TeamPage() {
               <div className="w-2/3 p-8 flex flex-col">
                 {/* Tabs */}
                 <div className="flex gap-2 mb-6 border-b border-border pb-4">
-                  {["All", "Blog", "Changelog", "Handbook", "Personal"].map((tab) => (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveTab(tab.toLowerCase())}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        activeTab === tab.toLowerCase()
-                          ? "bg-muted text-foreground"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                      }`}
-                    >
-                      {tab}
-                    </button>
-                  ))}
+                  {selectedMember.projects && selectedMember.experience ? (
+                    ["Proyectos", "Experiencia", "Educación", "Enfoque"].map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab.toLowerCase())}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activeTab === tab.toLowerCase()
+                            ? "bg-muted text-foreground"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        }`}
+                      >
+                        {tab}
+                      </button>
+                    ))
+                  ) : selectedMember.experience ? (
+                    ["Experiencia", "Educación", "Enfoque"].map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab.toLowerCase())}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activeTab === tab.toLowerCase()
+                            ? "bg-muted text-foreground"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        }`}
+                      >
+                        {tab}
+                      </button>
+                    ))
+                  ) : (
+                    ["All", "Blog", "Changelog", "Handbook", "Personal"].map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab.toLowerCase())}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activeTab === tab.toLowerCase()
+                            ? "bg-muted text-foreground"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        }`}
+                      >
+                        {tab}
+                      </button>
+                    ))
+                  )}
                 </div>
-                
-                {/* Content Grid */}
+
+                {/* Content */}
                 <div className="flex-1 overflow-y-auto">
-                  <div className="grid grid-cols-2 gap-4">
-                    {selectedMember.projects ? (
-                      selectedMember.projects.map((project, index) => (
+                  {selectedMember.projects && activeTab === "proyectos" && (
+                    <div className="grid grid-cols-2 gap-4">
+                      {selectedMember.projects.map((project, index) => (
                         <div key={index} className="border border-border rounded-lg overflow-hidden">
                           <div className="h-32 bg-muted overflow-hidden">
                             <img
@@ -392,9 +559,108 @@ function TeamPage() {
                             </span>
                           </div>
                         </div>
-                      ))
-                    ) : null}
-                  </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {selectedMember.experience && activeTab === "experiencia" && (
+                    <div className="space-y-4">
+                      {selectedMember.experience.map((exp: any, index: number) => (
+                        <div key={index} className="bg-muted/50 rounded-lg p-6">
+                          <h4 className="text-base font-semibold text-foreground mb-2">{exp.role}</h4>
+                          {exp.company && (
+                            <p className="text-sm text-muted-foreground mb-2">{exp.company}</p>
+                          )}
+                          {exp.description && (
+                            <p className="text-sm text-muted-foreground mb-2">{exp.description}</p>
+                          )}
+                          <p className="text-xs text-[#00c2ff] font-medium">{exp.period}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {selectedMember.education && activeTab === "educación" && (
+                    <div className="space-y-4">
+                      <div className="bg-muted/50 rounded-lg p-6">
+                        <h4 className="text-lg font-semibold text-foreground mb-4">Educación</h4>
+                        <div className="space-y-4">
+                          {selectedMember.education.map((edu: any, index: number) => (
+                            <div key={index} className="border-l-2 border-[#00c2ff] pl-4">
+                              <h5 className="text-sm font-semibold text-foreground">{edu.title}</h5>
+                              <p className="text-xs text-muted-foreground">{edu.institution}</p>
+                              <p className="text-xs text-muted-foreground">{edu.level}</p>
+                              {edu.year && <p className="text-xs text-[#00c2ff]">{edu.year}</p>}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      {selectedMember.languages && (
+                        <div className="bg-muted/50 rounded-lg p-6">
+                          <h4 className="text-lg font-semibold text-foreground mb-4">Idiomas</h4>
+                          <p className="text-sm text-muted-foreground">{selectedMember.languages}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {selectedMember.focus && activeTab === "enfoque" && (
+                    <div className="space-y-4">
+                      {selectedMember.technical && (
+                        <div className="bg-muted/50 rounded-lg p-6">
+                          <h4 className="text-lg font-semibold text-foreground mb-4">Habilidades Técnicas</h4>
+                          <ul className="space-y-2">
+                            {selectedMember.technical.map((tech: string, index: number) => (
+                              <li key={index} className="text-sm text-foreground">• {tech}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      <div className="bg-muted/50 rounded-lg p-6">
+                        <h4 className="text-lg font-semibold text-foreground mb-4">Áreas de Enfoque</h4>
+                        <ul className="space-y-2">
+                          {selectedMember.focus.map((focusItem: string, index: number) => (
+                            <li key={index} className="text-sm text-foreground">• {focusItem}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      {selectedMember.recognition && (
+                        <div className="bg-muted/50 rounded-lg p-6">
+                          <h4 className="text-lg font-semibold text-foreground mb-4">Reconocimientos</h4>
+                          <p className="text-sm text-muted-foreground">{selectedMember.recognition}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {!selectedMember.experience && !selectedMember.projects && (
+                    <div className="grid grid-cols-2 gap-4">
+                      {selectedMember.projects ? (
+                        selectedMember.projects.map((project, index) => (
+                          <div key={index} className="border border-border rounded-lg overflow-hidden">
+                            <div className="h-32 bg-muted overflow-hidden">
+                              <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="p-4">
+                              <h4 className="text-sm font-semibold text-foreground mb-2">
+                                {project.title}
+                              </h4>
+                              <p className="text-xs text-muted-foreground">
+                                {project.description}
+                              </p>
+                              <span className="mt-2 inline-block px-2 py-1 rounded-full bg-muted text-xs text-muted-foreground">
+                                {project.category}
+                              </span>
+                            </div>
+                          </div>
+                        ))
+                      ) : null}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
