@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { X, Menu, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
+
+const MotionLink = motion(Link);
 
 interface MobileMenuProps {
   nav: Array<{ label: string; href: string; caret?: boolean }>;
@@ -41,7 +44,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
           >
             <div className="flex flex-col h-full px-6 py-6 overflow-y-auto">
               <div className="flex items-center justify-between mb-8">
-                <a href="#" onClick={() => setIsOpen(false)} className="flex items-center">
+                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
                   <img
                     src="/Logo_ Paleta claro.png"
                     alt="NEXO Logo"
@@ -52,7 +55,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                     alt="NEXO Logo"
                     className="hidden dark:block h-14 w-auto object-contain"
                   />
-                </a>
+                </Link>
                 <div className="flex items-center gap-2">
                   <a
                     href="https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr"
@@ -76,9 +79,9 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
 
               <nav className="flex flex-col gap-6">
                 {nav.map((n, idx) => (
-                  <motion.a
+                  <MotionLink
                     key={n.label}
-                    href={n.href}
+                    to={n.href}
                     onClick={handleNavigate}
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -86,7 +89,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                     className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
                   >
                     {n.label}
-                  </motion.a>
+                  </MotionLink>
                 ))}
               </nav>
 
