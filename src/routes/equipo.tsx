@@ -1,12 +1,40 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { z } from "zod";
+import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
-import { SiteFooter } from "@/components/SiteFooter";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { MobileMenu } from "@/components/MobileMenu";
-import { Linkedin, Github, Twitter, Instagram, ChevronDown, ArrowRight, Search, X as CloseIcon, MapPin, Globe } from "lucide-react";
-import { useState } from "react";
+import { Linkedin, Github, Twitter, ArrowLeft, ArrowRight, Search, X as CloseIcon, MapPin, Globe } from "lucide-react";
+import { useEffect, useState } from "react";
+
+/**
+ * Esquema ÚNICO de pestañas para el perfil de cualquier miembro del
+ * equipo. Antes, cada perfil generaba su propio set de pestañas según
+ * qué campos tuviera ("Proyectos/Experiencia/Educación/Enfoque" para
+ * unos, "All/Blog/Changelog/Handbook/Personal" para otros), lo cual
+ * rompía la consistencia de la UI. Ahora TODOS los perfiles muestran
+ * exactamente estas 4 pestañas, y cada una decide internamente si
+ * tiene datos para mostrar o si debe renderizar un empty state.
+ */
+const PROFILE_TABS = [
+  { id: "proyectos", label: "Proyectos" },
+  { id: "experiencia", label: "Experiencia" },
+  { id: "educacion", label: "Educación" },
+  { id: "enfoque", label: "Enfoque" },
+] as const;
+
+type ProfileTabId = (typeof PROFILE_TABS)[number]["id"];
+
+// El directorio de equipo ("/equipo") muestra los perfiles como overlay
+// en vez de una ruta separada, pero SE GUARDA en la URL con ?member=slug
+// (no solo en useState). Así, al abrir un perfil se crea una entrada
+// real en el historial del navegador (/equipo -> /equipo?member=slug),
+// y el botón "Atrás" del navegador regresa a la grilla del equipo,
+// nunca hasta Inicio.
+const searchSchema = z.object({
+  member: z.string().optional(),
+});
 
 export const Route = createFileRoute("/equipo")({
+  validateSearch: searchSchema,
   head: () => ({
     meta: [
       { title: "Equipo — Nexo" },
@@ -19,15 +47,18 @@ export const Route = createFileRoute("/equipo")({
   component: TeamPage,
 });
 
-const nav = [
-  { label: "Servicios", href: "/#servicios", caret: true },
-  { label: "Equipo", href: "/equipo", caret: false },
-  { label: "Contacto", href: "/#contacto", caret: false },
-];
+/** Identificador seguro para URL a partir del nombre (usado en ?member=). */
+function slugify(name: string) {
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
 
-const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
-
-const team = [
+const team: TeamMember[] = [
   {
     name: "Heider Gonzalez",
     firstName: "Heider",
@@ -193,21 +224,71 @@ interface TeamMember {
     description?: string;
   }>;
   focus?: string[];
-  education?: Array<{
-    title: string;
-    institution: string;
-    level: string;
-    year?: string;
-  }>;
+  // Algunos miembros solo registran el nombre de la institución (string),
+  // otros el detalle completo (título/institución/nivel/año).
+  education?: Array<
+    | string
+    | {
+        title: string;
+        institution: string;
+        level: string;
+        year?: string;
+      }
+  >;
   languages?: string;
   recognition?: string;
 }
 
+/** Estado vacío amigable y centrado para pestañas sin datos. No rompe el layout: ocupa el espacio disponible en vez de dejarlo en blanco. */
+function EmptyTabState({ message }: { message: string }) {
+  return (
+    <div className="flex flex-1 min-h-[240px] items-center justify-center text-center px-6">
+      <p className="text-sm text-muted-foreground">{message}</p>
+    </div>
+  );
+}
+
 function TeamPage() {
+  const { member: memberSlug } = Route.useSearch();
+  const navigate = Route.useNavigate();
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-  const [activeTab, setActiveTab] = useState("proyectos");
+  const [activeTab, setActiveTab] = useState<ProfileTabId>("proyectos");
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  // El perfil abierto se calcula a partir de la URL, no de estado local
+  // — esto es lo que corrige el bug de "Atrás va a Inicio" (ver nota arriba).
+  const selectedMember = memberSlug
+    ? (team.find((m) => slugify(m.name) === memberSlug) ?? null)
+    : null;
+
+  // Layout aislado tipo pantalla completa: mientras el perfil está
+  // abierto, se bloquea el scroll del <body>. Así el modal (fixed
+  // inset-0) se comporta como una pantalla contenida y nunca deja
+  // "asomar" el <Footer/> global por debajo, sin importar qué tan
+  // vacío esté el perfil.
+  useEffect(() => {
+    if (!selectedMember) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedMember]);
+
+  const openMember = (member: TeamMember) => {
+    // Todos los perfiles abren siempre en la misma pestaña por defecto,
+    // sin importar qué datos tenga el miembro (ver PROFILE_TABS arriba).
+    setActiveTab("proyectos");
+    navigate({ search: { member: slugify(member.name) } });
+  };
+
+  // Botón "Atrás" explícito dentro del modal: limpia el search param y
+  // vuelve a la grilla de /equipo, igual que ahora hace el botón Atrás
+  // del navegador, pero accesible con un clic.
+  const closeMember = () => {
+    navigate({ search: {} });
+  };
 
   const filteredTeam = team.filter((member: TeamMember) =>
     member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -223,64 +304,7 @@ function TeamPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-[#00c2ff]/30 selection:text-foreground">
-      {/* Header */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <a
-            href="/"
-            className="flex items-center"
-          >
-            <img
-              src="/Logo_ Paleta claro.png"
-              alt="NEXO Logo"
-              className="block dark:hidden h-20 w-auto object-contain"
-            />
-            <img
-              src="/Logo_ Paleta oscura.png"
-              alt="NEXO Logo"
-              className="hidden dark:block h-20 w-auto object-contain"
-            />
-          </a>
-
-          <nav className="hidden items-center gap-7 md:flex">
-            {nav.map((n) => (
-              <a
-                key={n.label}
-                href={n.href}
-                className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {n.label}
-                {n.caret && (
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-hover:rotate-180" />
-                )}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <a
-              href={IG}
-              target="_blank"
-              rel="noreferrer"
-              className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
-              aria-label="Instagram"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href={IG}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-cyan hidden md:inline-flex items-center rounded-full px-5 py-2 text-sm font-semibold"
-            >
-              Comience
-            </a>
-            <MobileMenu nav={nav} />
-          </div>
-        </div>
-      </header>
+    <Layout hideFooter={!!selectedMember}>
 
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-background">
@@ -333,10 +357,7 @@ function TeamPage() {
             {filteredTeam.map((member: TeamMember, index) => (
               <ScrollAnimation key={member.name} direction="up" delay={index * 0.05}>
                 <button
-                  onClick={() => {
-                    setSelectedMember(member);
-                    setActiveTab(member.projects && member.experience ? "proyectos" : member.experience ? "experiencia" : "all");
-                  }}
+                  onClick={() => openMember(member)}
                   className="group flex flex-col items-center text-center cursor-pointer hover:scale-105 transition-transform"
                 >
                   <div className="w-28 h-28 rounded-full bg-muted/80 border border-border/50 flex items-center justify-center overflow-hidden shrink-0 mb-4">
@@ -366,26 +387,41 @@ function TeamPage() {
         </div>
       </section>
 
-      {/* Member Modal */}
+      {/* Member Modal — controlado por el search param ?member= (ver
+          openMember / closeMember arriba), así el botón Atrás del
+          navegador vuelve correctamente a la grilla de /equipo en vez
+          de a Inicio. */}
       {selectedMember && (
         <div
           className="fixed inset-0 z-50 bg-background overflow-hidden"
-          onClick={() => setSelectedMember(null)}
+          onClick={closeMember}
         >
           <div
             className="relative w-full h-full overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Botón explícito "volver al equipo", además del botón
+                Atrás del navegador y de la X de cerrar. */}
+            <Link
+              to="/equipo"
+              onClick={closeMember}
+              className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors bg-muted/50 rounded-full"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Volver al equipo
+            </Link>
+
             <button
-              onClick={() => setSelectedMember(null)}
+              onClick={closeMember}
               className="absolute top-4 right-4 z-10 p-2 text-muted-foreground hover:text-foreground transition-colors bg-muted/50 rounded-full"
+              aria-label="Cerrar perfil"
             >
               <CloseIcon className="h-5 w-5" />
             </button>
             
             <div className="flex h-full">
               {/* Left Panel */}
-              <div className="w-1/3 border-r border-border p-8 flex flex-col">
+              <div className="w-1/3 border-r border-border p-8 pt-20 flex flex-col">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-32 h-32 rounded-full bg-muted/80 border border-border/50 flex items-center justify-center overflow-hidden shrink-0 mb-6">
                     {!imgErrors[selectedMember.name] && selectedMember.avatarUrl ? (
@@ -486,157 +522,33 @@ function TeamPage() {
               </div>
               
               {/* Right Panel */}
-              <div className="w-2/3 p-8 flex flex-col">
-                {/* Tabs */}
+              <div className="w-2/3 p-8 pt-20 flex flex-col">
+                {/* Tabs — esquema único (PROFILE_TABS) para todos los perfiles */}
                 <div className="flex gap-2 mb-6 border-b border-border pb-4">
-                  {selectedMember.projects && selectedMember.experience ? (
-                    ["Proyectos", "Experiencia", "Educación", "Enfoque"].map((tab) => (
-                      <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab.toLowerCase())}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                          activeTab === tab.toLowerCase()
-                            ? "bg-muted text-foreground"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        }`}
-                      >
-                        {tab}
-                      </button>
-                    ))
-                  ) : selectedMember.experience ? (
-                    ["Experiencia", "Educación", "Enfoque"].map((tab) => (
-                      <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab.toLowerCase())}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                          activeTab === tab.toLowerCase()
-                            ? "bg-muted text-foreground"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        }`}
-                      >
-                        {tab}
-                      </button>
-                    ))
-                  ) : (
-                    ["All", "Blog", "Changelog", "Handbook", "Personal"].map((tab) => (
-                      <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab.toLowerCase())}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                          activeTab === tab.toLowerCase()
-                            ? "bg-muted text-foreground"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        }`}
-                      >
-                        {tab}
-                      </button>
-                    ))
-                  )}
+                  {PROFILE_TABS.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        activeTab === tab.id
+                          ? "bg-muted text-foreground"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
                 </div>
 
-                {/* Content */}
-                <div className="flex-1 overflow-y-auto">
-                  {selectedMember.projects && activeTab === "proyectos" && (
-                    <div className="grid grid-cols-2 gap-4">
-                      {selectedMember.projects.map((project, index) => (
-                        <div key={index} className="border border-border rounded-lg overflow-hidden">
-                          <div className="h-32 bg-muted overflow-hidden">
-                            <img
-                              src={project.image}
-                              alt={project.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="p-4">
-                            <h4 className="text-sm font-semibold text-foreground mb-2">
-                              {project.title}
-                            </h4>
-                            <p className="text-xs text-muted-foreground">
-                              {project.description}
-                            </p>
-                            <span className="mt-2 inline-block px-2 py-1 rounded-full bg-muted text-xs text-muted-foreground">
-                              {project.category}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {selectedMember.experience && activeTab === "experiencia" && (
-                    <div className="space-y-4">
-                      {selectedMember.experience.map((exp: any, index: number) => (
-                        <div key={index} className="bg-muted/50 rounded-lg p-6">
-                          <h4 className="text-base font-semibold text-foreground mb-2">{exp.role}</h4>
-                          {exp.company && (
-                            <p className="text-sm text-muted-foreground mb-2">{exp.company}</p>
-                          )}
-                          {exp.description && (
-                            <p className="text-sm text-muted-foreground mb-2">{exp.description}</p>
-                          )}
-                          <p className="text-xs text-[#00c2ff] font-medium">{exp.period}</p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {selectedMember.education && activeTab === "educación" && (
-                    <div className="space-y-4">
-                      <div className="bg-muted/50 rounded-lg p-6">
-                        <h4 className="text-lg font-semibold text-foreground mb-4">Educación</h4>
-                        <div className="space-y-4">
-                          {selectedMember.education.map((edu: any, index: number) => (
-                            <div key={index} className="border-l-2 border-[#00c2ff] pl-4">
-                              <h5 className="text-sm font-semibold text-foreground">{edu.title}</h5>
-                              <p className="text-xs text-muted-foreground">{edu.institution}</p>
-                              <p className="text-xs text-muted-foreground">{edu.level}</p>
-                              {edu.year && <p className="text-xs text-[#00c2ff]">{edu.year}</p>}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      {selectedMember.languages && (
-                        <div className="bg-muted/50 rounded-lg p-6">
-                          <h4 className="text-lg font-semibold text-foreground mb-4">Idiomas</h4>
-                          <p className="text-sm text-muted-foreground">{selectedMember.languages}</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {selectedMember.focus && activeTab === "enfoque" && (
-                    <div className="space-y-4">
-                      {selectedMember.technical && (
-                        <div className="bg-muted/50 rounded-lg p-6">
-                          <h4 className="text-lg font-semibold text-foreground mb-4">Habilidades Técnicas</h4>
-                          <ul className="space-y-2">
-                            {selectedMember.technical.map((tech: string, index: number) => (
-                              <li key={index} className="text-sm text-foreground">• {tech}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      <div className="bg-muted/50 rounded-lg p-6">
-                        <h4 className="text-lg font-semibold text-foreground mb-4">Áreas de Enfoque</h4>
-                        <ul className="space-y-2">
-                          {selectedMember.focus.map((focusItem: string, index: number) => (
-                            <li key={index} className="text-sm text-foreground">• {focusItem}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      {selectedMember.recognition && (
-                        <div className="bg-muted/50 rounded-lg p-6">
-                          <h4 className="text-lg font-semibold text-foreground mb-4">Reconocimientos</h4>
-                          <p className="text-sm text-muted-foreground">{selectedMember.recognition}</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {!selectedMember.experience && !selectedMember.projects && (
-                    <div className="grid grid-cols-2 gap-4">
-                      {selectedMember.projects ? (
-                        selectedMember.projects.map((project, index) => (
+                {/* Content — cada pestaña es siempre visible en el header
+                    (PROFILE_TABS), pero renderiza sus datos solo si
+                    existen; si no, muestra un empty state amigable en
+                    vez de dejar espacio en blanco o romper el layout. */}
+                <div className="flex-1 overflow-y-auto flex flex-col">
+                  {activeTab === "proyectos" && (
+                    selectedMember.projects && selectedMember.projects.length > 0 ? (
+                      <div className="grid grid-cols-2 gap-4">
+                        {selectedMember.projects.map((project, index) => (
                           <div key={index} className="border border-border rounded-lg overflow-hidden">
                             <div className="h-32 bg-muted overflow-hidden">
                               <img
@@ -657,9 +569,103 @@ function TeamPage() {
                               </span>
                             </div>
                           </div>
-                        ))
-                      ) : null}
-                    </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <EmptyTabState message="No hay proyectos registrados para este miembro." />
+                    )
+                  )}
+
+                  {activeTab === "experiencia" && (
+                    selectedMember.experience && selectedMember.experience.length > 0 ? (
+                      <div className="space-y-4">
+                        {selectedMember.experience.map((exp, index) => (
+                          <div key={index} className="bg-muted/50 rounded-lg p-6">
+                            <h4 className="text-base font-semibold text-foreground mb-2">{exp.role}</h4>
+                            {exp.company && (
+                              <p className="text-sm text-muted-foreground mb-2">{exp.company}</p>
+                            )}
+                            {exp.description && (
+                              <p className="text-sm text-muted-foreground mb-2">{exp.description}</p>
+                            )}
+                            <p className="text-xs text-[#00c2ff] font-medium">{exp.period}</p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <EmptyTabState message="No hay experiencia registrada para este miembro." />
+                    )
+                  )}
+
+                  {activeTab === "educacion" && (
+                    (selectedMember.education && selectedMember.education.length > 0) || selectedMember.languages ? (
+                      <div className="space-y-4">
+                        {selectedMember.education && selectedMember.education.length > 0 && (
+                          <div className="bg-muted/50 rounded-lg p-6">
+                            <h4 className="text-lg font-semibold text-foreground mb-4">Educación</h4>
+                            <div className="space-y-4">
+                              {selectedMember.education.map((edu, index) => (
+                                <div key={index} className="border-l-2 border-[#00c2ff] pl-4">
+                                  {typeof edu === "string" ? (
+                                    <h5 className="text-sm font-semibold text-foreground">{edu}</h5>
+                                  ) : (
+                                    <>
+                                      <h5 className="text-sm font-semibold text-foreground">{edu.title}</h5>
+                                      <p className="text-xs text-muted-foreground">{edu.institution}</p>
+                                      <p className="text-xs text-muted-foreground">{edu.level}</p>
+                                      {edu.year && <p className="text-xs text-[#00c2ff]">{edu.year}</p>}
+                                    </>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {selectedMember.languages && (
+                          <div className="bg-muted/50 rounded-lg p-6">
+                            <h4 className="text-lg font-semibold text-foreground mb-4">Idiomas</h4>
+                            <p className="text-sm text-muted-foreground">{selectedMember.languages}</p>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <EmptyTabState message="No hay información de educación registrada para este miembro." />
+                    )
+                  )}
+
+                  {activeTab === "enfoque" && (
+                    (selectedMember.focus && selectedMember.focus.length > 0) || selectedMember.technical || selectedMember.recognition ? (
+                      <div className="space-y-4">
+                        {selectedMember.technical && selectedMember.technical.length > 0 && (
+                          <div className="bg-muted/50 rounded-lg p-6">
+                            <h4 className="text-lg font-semibold text-foreground mb-4">Habilidades Técnicas</h4>
+                            <ul className="space-y-2">
+                              {selectedMember.technical.map((tech, index) => (
+                                <li key={index} className="text-sm text-foreground">• {tech}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {selectedMember.focus && selectedMember.focus.length > 0 && (
+                          <div className="bg-muted/50 rounded-lg p-6">
+                            <h4 className="text-lg font-semibold text-foreground mb-4">Áreas de Enfoque</h4>
+                            <ul className="space-y-2">
+                              {selectedMember.focus.map((focusItem, index) => (
+                                <li key={index} className="text-sm text-foreground">• {focusItem}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {selectedMember.recognition && (
+                          <div className="bg-muted/50 rounded-lg p-6">
+                            <h4 className="text-lg font-semibold text-foreground mb-4">Reconocimientos</h4>
+                            <p className="text-sm text-muted-foreground">{selectedMember.recognition}</p>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <EmptyTabState message="No hay áreas de enfoque registradas para este miembro." />
+                    )
                   )}
                 </div>
               </div>
@@ -667,9 +673,6 @@ function TeamPage() {
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <SiteFooter />
-    </div>
+    </Layout>
   );
 }
