@@ -7,8 +7,10 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const MotionLink = motion(Link);
 
+import type { NavItem } from "@/components/Header";
+
 interface MobileMenuProps {
-  nav: Array<{ label: string; href: string; caret?: boolean }>;
+  nav: NavItem[];
   onNavigate?: () => void;
 }
 
@@ -78,19 +80,46 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
               </div>
 
               <nav className="flex flex-col gap-6">
-                {nav.map((n, idx) => (
-                  <MotionLink
-                    key={n.label}
-                    to={n.href}
-                    onClick={handleNavigate}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.08 + idx * 0.04, duration: 0.2 }}
-                    className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
-                  >
-                    {n.label}
-                  </MotionLink>
-                ))}
+                {nav.map((n, idx) => {
+                  if (n.children) {
+                    return (
+                      <motion.div
+                        key={n.label}
+                        initial={{ opacity: 0, x: -12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.08 + idx * 0.04, duration: 0.2 }}
+                        className="flex flex-col gap-3"
+                      >
+                        <span className="text-lg font-semibold text-muted-foreground">{n.label}</span>
+                        <div className="flex flex-col gap-2.5 pl-4 border-l border-border/60">
+                          {n.children.map((child) => (
+                            <Link
+                              key={child.label}
+                              to={child.href}
+                              onClick={handleNavigate}
+                              className="text-base font-medium text-foreground transition-colors hover:text-[#00c2ff]"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    );
+                  }
+                  return (
+                    <MotionLink
+                      key={n.label}
+                      to={n.href!}
+                      onClick={handleNavigate}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.08 + idx * 0.04, duration: 0.2 }}
+                      className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
+                    >
+                      {n.label}
+                    </MotionLink>
+                  );
+                })}
               </nav>
 
               <div className="mt-auto pt-8">

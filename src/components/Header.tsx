@@ -1,8 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Facebook } from "lucide-react";
+import { ChevronDown, Instagram, Facebook } from "lucide-react";
 
 import { MobileMenu } from "@/components/MobileMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
 const FB =
@@ -26,15 +32,23 @@ function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-/**
- * Nav único: antes index.tsx y equipo.tsx tenían cada uno su propio
- * array de `nav`, y el de index.tsx no incluía "Equipo". Ahora hay una
- * sola fuente de verdad, usada por <Header/> en todas las rutas.
- */
-export const primaryNav = [
+export type NavItem = {
+  label: string;
+  href?: string;
+  children?: Array<{ label: string; href: string }>;
+};
+
+export const primaryNav: NavItem[] = [
   { label: "Servicios", href: "/#servicios" },
   { label: "Contactanos", href: "/#contacto" },
-  { label: "Equipo", href: "/equipo" },
+  {
+    label: "Nosotros",
+    children: [
+      { label: "Equipo", href: "/equipo" },
+      { label: "Términos y Condiciones", href: "/terminos" },
+      { label: "Política de Privacidad", href: "/privacidad" },
+    ],
+  },
 ];
 
 export function Header() {
@@ -55,15 +69,36 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
-          {primaryNav.map((n) => (
-            <Link
-              key={n.label}
-              to={n.href}
-              className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {n.label}
-            </Link>
-          ))}
+          {primaryNav.map((n) => {
+            if (n.children) {
+              return (
+                <DropdownMenu key={n.label}>
+                  <DropdownMenuTrigger asChild>
+                    <button className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground outline-none cursor-pointer">
+                      {n.label}
+                      <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-52 bg-card/95 backdrop-blur-md border border-border shadow-lg rounded-xl p-1">
+                    {n.children.map((child) => (
+                      <DropdownMenuItem key={child.label} asChild className="cursor-pointer rounded-lg px-3 py-2 text-sm text-foreground hover:bg-accent focus:bg-accent">
+                        <Link to={child.href}>{child.label}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              );
+            }
+            return (
+              <Link
+                key={n.label}
+                to={n.href!}
+                className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {n.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
