@@ -134,19 +134,11 @@ function Index() {
 
                 <div className="flex flex-row items-center gap-4 sm:gap-5">
                   <a
-                    href={IG}
-                    target="_blank"
-                    rel="noreferrer"
+                    href="#contacto"
                     className="btn-cyan inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm sm:text-base font-semibold"
                   >
-                    Comience
+                    Contactanos
                     <ArrowRight className="h-4 w-4" />
-                  </a>
-                  <a
-                    href="#servicios"
-                    className="inline-flex items-center justify-center rounded-full border border-border bg-card/80 px-6 py-3 text-sm sm:text-base font-medium text-foreground hover:border-[#00c2ff]/60 hover:bg-card transition-all duration-200 shadow-sm"
-                  >
-                    Servicios
                   </a>
                 </div>
               </div>

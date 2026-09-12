@@ -95,12 +95,11 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
 
               <div className="mt-auto pt-8">
                 <a
-                  href="https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/#contacto"
+                  onClick={handleNavigate}
                   className="btn-cyan block w-full text-center rounded-full px-6 py-3 text-sm font-semibold"
                 >
-                  Comience
+                  Contactanos
                 </a>
               </div>
             </div>

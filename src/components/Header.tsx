@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 
 import { MobileMenu } from "@/components/MobileMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -32,9 +32,9 @@ function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
  * sola fuente de verdad, usada por <Header/> en todas las rutas.
  */
 export const primaryNav = [
-  { label: "Servicios", href: "/#servicios", caret: true },
-  { label: "Equipo", href: "/equipo", caret: false },
-  { label: "Contacto", href: "/#contacto", caret: false },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Contactanos", href: "/#contacto" },
+  { label: "Equipo", href: "/equipo" },
 ];
 
 export function Header() {
@@ -62,9 +62,6 @@ export function Header() {
               className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {n.label}
-              {n.caret && (
-                <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-hover:rotate-180" />
-              )}
             </Link>
           ))}
         </nav>
