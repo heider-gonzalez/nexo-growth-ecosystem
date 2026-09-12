@@ -107,16 +107,10 @@ function Index() {
             {/* Hero Left Content */}
             <ScrollAnimation direction="left" delay={0.1}>
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-                <a
-                  href={IG}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="brand-pill rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium mb-8"
-                >
+                <div className="brand-pill rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium mb-8 cursor-default select-none">
                   <Sparkles className="h-3.5 w-3.5 text-[#00c2ff]" />
                   <span>¡Llegó Nexo! Tu negocio, listo para despegar</span>
-                  <ArrowRight className="h-3 w-3 opacity-60" />
-                </a>
+                </div>
 
                 <h1 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground">
                   Tecnología que
