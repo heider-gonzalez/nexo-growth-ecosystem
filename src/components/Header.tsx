@@ -111,7 +111,7 @@ export function Header() {
             href={IG}
             target="_blank"
             rel="noreferrer"
-            className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
             aria-label="Instagram"
           >
             <Instagram className="h-5 w-5" />
@@ -120,7 +120,7 @@ export function Header() {
             href={FB}
             target="_blank"
             rel="noreferrer"
-            className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
             aria-label="Facebook"
           >
             <Facebook className="h-5 w-5" />
@@ -128,7 +128,7 @@ export function Header() {
           <a
             href="#"
             onClick={(e) => e.preventDefault()}
-            className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
             aria-label="TikTok"
           >
             <TikTokIcon className="h-5 w-5" />

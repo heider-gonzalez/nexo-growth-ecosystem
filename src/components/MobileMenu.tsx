@@ -1,13 +1,33 @@
-import { useState } from "react";
-import { X, Menu, Instagram } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, Menu, Instagram, Facebook } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 
-import { ThemeToggle } from "@/components/ThemeToggle";
+import type { NavItem } from "@/components/Header";
 
 const MotionLink = motion(Link);
 
-import type { NavItem } from "@/components/Header";
+const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
+const FB =
+  "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
+
+function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      stroke="currentColor"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+    </svg>
+  );
+}
 
 interface MobileMenuProps {
   nav: NavItem[];
@@ -16,6 +36,18 @@ interface MobileMenuProps {
 
 export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Tarea 3: Bloquear scroll del fondo cuando el menú esté abierto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const handleNavigate = () => {
     setIsOpen(false);
@@ -33,15 +65,15 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
-      {/* Mobile menu overlay with smooth animation */}
+      {/* Tarea 2: Animación suavizada de apertura y cierre */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[100] w-screen h-screen bg-[#ffffff] dark:bg-[#080d1a] md:hidden"
+            initial={{ opacity: 0, y: -20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[100] w-screen h-screen bg-card md:hidden flex flex-col"
             style={{ backgroundColor: "var(--card)" }}
           >
             <div className="flex flex-col h-full px-6 py-6 overflow-y-auto">
@@ -58,25 +90,13 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                     className="hidden dark:block h-14 w-auto object-contain"
                   />
                 </Link>
-                <div className="flex items-center gap-2">
-                  <a
-                    href="https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 text-foreground transition-colors hover:text-[#00c2ff]"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="h-5 w-5" />
-                  </a>
-                  <ThemeToggle />
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="p-2 text-foreground transition-colors hover:text-muted-foreground"
-                    aria-label="Close menu"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 text-foreground transition-colors hover:text-muted-foreground"
+                  aria-label="Close menu"
+                >
+                  <X className="h-6 w-6" />
+                </button>
               </div>
 
               <nav className="flex flex-col gap-6">
@@ -122,13 +142,33 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                 })}
               </nav>
 
-              <div className="mt-auto pt-8">
+              {/* Tarea 1: Redes sociales situadas en la parte inferior eliminando el botón "Contactanos" */}
+              <div className="mt-auto pt-8 border-t border-border/50 flex items-center justify-center gap-6">
                 <a
-                  href="/#contacto"
-                  onClick={handleNavigate}
-                  className="btn-cyan block w-full text-center rounded-full px-6 py-3 text-sm font-semibold"
+                  href={IG}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex p-3 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/60 bg-accent/30"
+                  aria-label="Instagram"
                 >
-                  Contactanos
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href={FB}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex p-3 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/60 bg-accent/30"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  className="flex p-3 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/60 bg-accent/30"
+                  aria-label="TikTok"
+                >
+                  <TikTokIcon className="h-5 w-5" />
                 </a>
               </div>
             </div>
