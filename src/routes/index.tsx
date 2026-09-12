@@ -5,19 +5,17 @@ import {
   RefreshCw,
   Zap,
   Bot,
-  ChevronDown,
   ArrowRight,
   Sparkles,
   MessageSquare,
   CheckCircle2,
-  Instagram,
-  Facebook,
+  Linkedin,
+  Github,
+  Twitter,
 } from "lucide-react";
 
-import { SiteFooter } from "@/components/SiteFooter";
+import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
-import { MobileMenu } from "@/components/MobileMenu";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NexoLogo3D = lazy(() => import("@/components/NexoLogo3D"));
 
@@ -47,29 +45,6 @@ const FB =
   "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
 const WA =
   "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
-
-function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      stroke="currentColor"
-      strokeWidth="2"
-      fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-    </svg>
-  );
-}
-
-const nav = [
-  { label: "Servicios", href: "#servicios", caret: true },
-  { label: "Contacto", href: "#contacto", caret: false },
-];
 
 const services = [
   {
@@ -118,74 +93,7 @@ const steps = [
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-[#00c2ff]/30 selection:text-foreground">
-      {/* Header */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <a
-            href="#"
-            className="flex items-center"
-          >
-            <img
-              src="/Logo_ Paleta claro.png"
-              alt="NEXO Logo"
-              className="block dark:hidden h-20 w-auto object-contain"
-            />
-            <img
-              src="/Logo_ Paleta oscura.png"
-              alt="NEXO Logo"
-              className="hidden dark:block h-20 w-auto object-contain"
-            />
-          </a>
-
-          <nav className="hidden items-center gap-7 md:flex">
-            {nav.map((n) => (
-              <a
-                key={n.label}
-                href={n.href}
-                className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {n.label}
-                {n.caret && (
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-hover:rotate-180" />
-                )}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <a
-              href={IG}
-              target="_blank"
-              rel="noreferrer"
-              className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
-              aria-label="Instagram"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href={FB}
-              target="_blank"
-              rel="noreferrer"
-              className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
-              aria-label="Facebook"
-            >
-              <Facebook className="h-5 w-5" />
-            </a>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
-              aria-label="TikTok"
-            >
-              <TikTokIcon className="h-5 w-5" />
-            </a>
-            <MobileMenu nav={nav} />
-          </div>
-        </div>
-      </header>
-
+    <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-background">
         {/* Subtle Cyan Ambient Glow Reflection Behind 3D X in Dark Mode */}
@@ -410,9 +318,6 @@ function Index() {
           </ScrollAnimation>
         </div>
       </section>
-
-      {/* Footer */}
-      <SiteFooter />
-    </div>
+    </Layout>
   );
 }

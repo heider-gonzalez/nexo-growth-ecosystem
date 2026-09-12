@@ -13,6 +13,19 @@ const columns = [
       { label: "nexosolutions5@gmail.com", href: "mailto:nexosolutions5@gmail.com" },
     ],
   },
+  {
+    title: "EQUIPO",
+    links: [
+      { label: "Los humanos detrás de Nexo", href: "/equipo" },
+    ],
+  },
+  {
+    title: "LEGAL",
+    links: [
+      { label: "Términos y Condiciones", href: "/terminos" },
+      { label: "Política de Privacidad", href: "/privacidad" },
+    ],
+  },
 ];
 
 export function SiteFooter() {
