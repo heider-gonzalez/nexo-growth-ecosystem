@@ -78,25 +78,29 @@ const team: TeamMember[] = [
         title: "hsocial",
         description: "Red social universitaria para generar ideas y equipos de trabajo",
         category: "Social",
-        image: "/Red social h social.png"
+        image: "/Red social h social.png",
+        link: "https://hideon-red-social.vercel.app/"
       },
       {
         title: "Nexo",
         description: "Co-founder de Nexo",
         category: "Startup",
-        image: "/nexo.png"
+        image: "/nexo.png",
+        link: "/"
       },
       {
         title: "BiblioUR",
         description: "Sistema de Biblioteca (Microservicios)",
         category: "Infrastructure",
-        image: "/biblioUR.png"
+        image: "/biblioUR.png",
+        isPrivate: true
       },
       {
         title: "h chat",
         description: "App de mensajería para universidad",
         category: "Communication",
-        image: "/h chat.png"
+        image: "/h chat.png",
+        isPrivate: true
       }
     ],
     experience: [
@@ -207,6 +211,8 @@ interface TeamMember {
     description: string;
     category: string;
     image: string;
+    link?: string;
+    isPrivate?: boolean;
   }>;
   personal?: {
     education: string;
@@ -255,6 +261,7 @@ function TeamPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<ProfileTabId>("proyectos");
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+  const [selectedProjectImage, setSelectedProjectImage] = useState<string | null>(null);
 
   // El perfil abierto se calcula a partir de la URL, no de estado local
   // — esto es lo que corrige el bug de "Atrás va a Inicio" (ver nota arriba).
@@ -428,7 +435,7 @@ function TeamPage() {
                       <img
                         src={selectedMember.avatarUrl}
                         alt={selectedMember.name}
-                        className="w-full h-full object-cover filter grayscale"
+                        className="w-full h-full object-cover"
                         onError={() => handleImgError(selectedMember.name)}
                       />
                     ) : (
@@ -550,7 +557,10 @@ function TeamPage() {
                       <div className="grid grid-cols-2 gap-4">
                         {selectedMember.projects.map((project, index) => (
                           <div key={index} className="border border-border rounded-lg overflow-hidden">
-                            <div className="h-32 bg-muted overflow-hidden">
+                            <div 
+                              className="h-32 bg-muted overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                              onClick={() => setSelectedProjectImage(project.image)}
+                            >
                               <img
                                 src={project.image}
                                 alt={project.title}
@@ -561,12 +571,28 @@ function TeamPage() {
                               <h4 className="text-sm font-semibold text-foreground mb-2">
                                 {project.title}
                               </h4>
-                              <p className="text-xs text-muted-foreground">
+                              <p className="text-xs text-muted-foreground mb-3">
                                 {project.description}
                               </p>
-                              <span className="mt-2 inline-block px-2 py-1 rounded-full bg-muted text-xs text-muted-foreground">
-                                {project.category}
-                              </span>
+                              <div className="flex items-center justify-between">
+                                <span className="inline-block px-2 py-1 rounded-full bg-muted text-xs text-muted-foreground">
+                                  {project.category}
+                                </span>
+                                {project.isPrivate ? (
+                                  <span className="text-xs text-muted-foreground italic">
+                                    Sitio privado
+                                  </span>
+                                ) : project.link ? (
+                                  <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="text-xs text-[#00c2ff] hover:underline"
+                                  >
+                                    Ver proyecto
+                                  </a>
+                                ) : null}
+                              </div>
                             </div>
                           </div>
                         ))}
@@ -670,6 +696,29 @@ function TeamPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal para ver imagen de proyecto en grande */}
+      {selectedProjectImage && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/80 flex items-center justify-center p-4"
+          onClick={() => setSelectedProjectImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-[90vh]">
+            <button
+              onClick={() => setSelectedProjectImage(null)}
+              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors"
+              aria-label="Cerrar imagen"
+            >
+              <CloseIcon className="h-6 w-6" />
+            </button>
+            <img
+              src={selectedProjectImage}
+              alt="Proyecto en grande"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
           </div>
         </div>
       )}
