@@ -72,21 +72,25 @@ export function Header() {
           {primaryNav.map((n) => {
             if (n.children) {
               return (
-                <DropdownMenu key={n.label}>
-                  <DropdownMenuTrigger asChild>
-                    <button className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground outline-none cursor-pointer">
-                      {n.label}
-                      <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-52 bg-card/95 backdrop-blur-md border border-border shadow-lg rounded-xl p-1">
-                    {n.children.map((child) => (
-                      <DropdownMenuItem key={child.label} asChild className="cursor-pointer rounded-lg px-3 py-2 text-sm text-foreground hover:bg-accent focus:bg-accent">
-                        <Link to={child.href}>{child.label}</Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <div key={n.label} className="relative group/nav">
+                  <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors group-hover/nav:text-foreground outline-none cursor-pointer py-2">
+                    {n.label}
+                    <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-hover/nav:rotate-180" />
+                  </button>
+                  <div className="absolute left-0 top-full pt-1.5 hidden group-hover/nav:block z-50">
+                    <div className="w-52 bg-card/95 backdrop-blur-md border border-border shadow-lg rounded-xl p-1.5 flex flex-col gap-0.5 animate-in fade-in-0 zoom-in-95 duration-150">
+                      {n.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          to={child.href}
+                          className="rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-accent focus:bg-accent"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               );
             }
             return (
