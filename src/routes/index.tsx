@@ -11,6 +11,7 @@ import {
   MessageSquare,
   CheckCircle2,
   Instagram,
+  Facebook,
 } from "lucide-react";
 
 import { SiteFooter } from "@/components/SiteFooter";
@@ -42,8 +43,28 @@ export const Route = createFileRoute("/")({
 });
 
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
+const FB =
+  "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
 const WA =
   "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
+
+function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      stroke="currentColor"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+    </svg>
+  );
+}
 
 const nav = [
   { label: "Servicios", href: "#servicios", caret: true },
@@ -144,12 +165,21 @@ function Index() {
               <Instagram className="h-5 w-5" />
             </a>
             <a
-              href={IG}
+              href={FB}
               target="_blank"
               rel="noreferrer"
-              className="btn-cyan hidden md:inline-flex items-center rounded-full px-5 py-2 text-sm font-semibold"
+              className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+              aria-label="Facebook"
             >
-              Comience
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+              aria-label="TikTok"
+            >
+              <TikTokIcon className="h-5 w-5" />
             </a>
             <MobileMenu nav={nav} />
           </div>
