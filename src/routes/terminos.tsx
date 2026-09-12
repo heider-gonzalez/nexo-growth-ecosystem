@@ -8,7 +8,8 @@ export const Route = createFileRoute("/terminos")({
       { title: "Términos y Condiciones — Nexo" },
       {
         name: "description",
-        content: "Términos y Condiciones de uso del sitio web de NEXO – Soluciones Digitales & Consultoría.",
+        content:
+          "Términos y Condiciones de uso del sitio web de NEXO – Soluciones Digitales & Consultoría.",
       },
     ],
   }),

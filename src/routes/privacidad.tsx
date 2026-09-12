@@ -8,7 +8,8 @@ export const Route = createFileRoute("/privacidad")({
       { title: "Política de Privacidad — Nexo" },
       {
         name: "description",
-        content: "Política de Privacidad y Tratamiento de Datos Personales de NEXO – Soluciones Digitales & Consultoría.",
+        content:
+          "Política de Privacidad y Tratamiento de Datos Personales de NEXO – Soluciones Digitales & Consultoría.",
       },
     ],
   }),
