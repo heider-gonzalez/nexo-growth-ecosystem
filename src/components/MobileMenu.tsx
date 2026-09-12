@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { X, Menu, Instagram, Facebook } from "lucide-react";
+import { X, Menu, ChevronDown, Instagram, Facebook } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 
 import type { NavItem } from "@/components/Header";
-
-const MotionLink = motion(Link);
 
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
 const FB =
@@ -36,8 +34,9 @@ interface MobileMenuProps {
 
 export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
-  // Tarea 3: Bloquear scroll del fondo cuando el menú esté abierto
+  // Bloquear scroll del fondo cuando el menú esté abierto
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -54,9 +53,13 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
     onNavigate?.();
   };
 
+  const toggleSection = (label: string) => {
+    setOpenSection((prev) => (prev === label ? null : label));
+  };
+
   return (
     <>
-      {/* Mobile menu button */}
+      {/* Mobile menu trigger button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="md:hidden p-2 text-foreground transition-colors hover:text-muted-foreground"
@@ -65,7 +68,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
-      {/* Tarea 2: Animación suavizada de apertura y cierre */}
+      {/* Animación suavizada de apertura y cierre */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -77,7 +80,8 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
             style={{ backgroundColor: "var(--card)" }}
           >
             <div className="flex flex-col h-full px-6 py-6 overflow-y-auto">
-              <div className="flex items-center justify-between mb-8">
+              {/* Parte superior del menú con separador sutil */}
+              <div className="flex items-center justify-between pb-5 border-b border-border/60 mb-4">
                 <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
                   <img
                     src="/Logo_ Paleta claro.png"
@@ -99,51 +103,82 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                 </button>
               </div>
 
-              <nav className="flex flex-col gap-6">
+              {/* Botones de navegación con separadores visuales por opción */}
+              <nav className="flex flex-col">
                 {nav.map((n, idx) => {
                   if (n.children) {
+                    const isExpanded = openSection === n.label;
                     return (
                       <motion.div
                         key={n.label}
                         initial={{ opacity: 0, x: -12 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.08 + idx * 0.04, duration: 0.2 }}
-                        className="flex flex-col gap-3"
+                        className="border-b border-border/50 py-3.5"
                       >
-                        <span className="text-lg font-semibold text-muted-foreground">{n.label}</span>
-                        <div className="flex flex-col gap-2.5 pl-4 border-l border-border/60">
-                          {n.children.map((child) => (
-                            <Link
-                              key={child.label}
-                              to={child.href}
-                              onClick={handleNavigate}
-                              className="text-base font-medium text-foreground transition-colors hover:text-[#00c2ff]"
+                        {/* Botón desplegable para "Nosotros" */}
+                        <button
+                          onClick={() => toggleSection(n.label)}
+                          className="flex w-full items-center justify-between text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
+                        >
+                          <span>{n.label}</span>
+                          <ChevronDown
+                            className={`h-5 w-5 text-muted-foreground transition-transform duration-250 ${
+                              isExpanded ? "rotate-180 text-[#00c2ff]" : ""
+                            }`}
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.25, ease: "easeInOut" }}
+                              className="overflow-hidden"
                             >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
+                              <div className="flex flex-col gap-3 pt-3 pl-4 border-l-2 border-[#00c2ff]/40 mt-2">
+                                {n.children.map((child) => (
+                                  <Link
+                                    key={child.label}
+                                    to={child.href}
+                                    onClick={handleNavigate}
+                                    className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-1"
+                                  >
+                                    {child.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </motion.div>
                     );
                   }
+
                   return (
-                    <MotionLink
+                    <motion.div
                       key={n.label}
-                      to={n.href!}
-                      onClick={handleNavigate}
                       initial={{ opacity: 0, x: -12 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.08 + idx * 0.04, duration: 0.2 }}
-                      className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
+                      className="border-b border-border/50 py-3.5"
                     >
-                      {n.label}
-                    </MotionLink>
+                      <Link
+                        to={n.href!}
+                        onClick={handleNavigate}
+                        className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff] block"
+                      >
+                        {n.label}
+                      </Link>
+                    </motion.div>
                   );
                 })}
               </nav>
 
-              {/* Tarea 1: Redes sociales situadas en la parte inferior eliminando el botón "Contactanos" */}
-              <div className="mt-auto pt-8 border-t border-border/50 flex items-center justify-center gap-6">
+              {/* Redes sociales en la parte inferior con separador superior */}
+              <div className="mt-auto pt-6 border-t border-border/60 flex items-center justify-center gap-6">
                 <a
                   href={IG}
                   target="_blank"
