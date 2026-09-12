@@ -41,6 +41,8 @@ export const Route = createFileRoute("/")({
 });
 
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
+const FB =
+  "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
 const WA =
   "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 
@@ -105,16 +107,10 @@ function Index() {
             {/* Hero Left Content */}
             <ScrollAnimation direction="left" delay={0.1}>
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-                <a
-                  href={IG}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="brand-pill rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium mb-8"
-                >
+                <div className="brand-pill rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium mb-8 cursor-default select-none">
                   <Sparkles className="h-3.5 w-3.5 text-[#00c2ff]" />
                   <span>¡Llegó Nexo! Tu negocio, listo para despegar</span>
-                  <ArrowRight className="h-3 w-3 opacity-60" />
-                </a>
+                </div>
 
                 <h1 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground">
                   Tecnología que
@@ -132,19 +128,11 @@ function Index() {
 
                 <div className="flex flex-row items-center gap-4 sm:gap-5">
                   <a
-                    href={IG}
-                    target="_blank"
-                    rel="noreferrer"
+                    href="#contacto"
                     className="btn-cyan inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm sm:text-base font-semibold"
                   >
-                    Comience
+                    Contactanos
                     <ArrowRight className="h-4 w-4" />
-                  </a>
-                  <a
-                    href="#servicios"
-                    className="inline-flex items-center justify-center rounded-full border border-border bg-card/80 px-6 py-3 text-sm sm:text-base font-medium text-foreground hover:border-[#00c2ff]/60 hover:bg-card transition-all duration-200 shadow-sm"
-                  >
-                    Servicios
                   </a>
                 </div>
               </div>
