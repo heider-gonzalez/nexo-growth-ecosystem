@@ -10,13 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as EquipoRouteImport } from './routes/equipo'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
 import { Route as TerminosRouteImport } from './routes/terminos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EquipoRoute = EquipoRouteImport.update({
@@ -29,6 +36,11 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
   path: '/privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuienesSomosRoute = QuienesSomosRouteImport.update({
+  id: '/quienes-somos',
+  path: '/quienes-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TerminosRoute = TerminosRouteImport.update({
   id: '/terminos',
   path: '/terminos',
@@ -37,35 +49,62 @@ const TerminosRoute = TerminosRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/equipo' | '/privacidad' | '/terminos'
+  fullPaths:
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/privacidad'
+    | '/quienes-somos'
+    | '/terminos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/equipo' | '/privacidad' | '/terminos'
-  id: '__root__' | '/' | '/equipo' | '/privacidad' | '/terminos'
+  to:
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/privacidad'
+    | '/quienes-somos'
+    | '/terminos'
+  id:
+    | '__root__'
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/privacidad'
+    | '/quienes-somos'
+    | '/terminos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactoRoute: typeof ContactoRoute
   EquipoRoute: typeof EquipoRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  QuienesSomosRoute: typeof QuienesSomosRoute
   TerminosRoute: typeof TerminosRoute
 }
 
@@ -76,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/equipo': {
@@ -92,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quienes-somos': {
+      id: '/quienes-somos'
+      path: '/quienes-somos'
+      fullPath: '/quienes-somos'
+      preLoaderRoute: typeof QuienesSomosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terminos': {
       id: '/terminos'
       path: '/terminos'
@@ -104,8 +157,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactoRoute: ContactoRoute,
   EquipoRoute: EquipoRoute,
   PrivacidadRoute: PrivacidadRoute,
+  QuienesSomosRoute: QuienesSomosRoute,
   TerminosRoute: TerminosRoute,
 }
 export const routeTree = rootRouteImport

@@ -7,11 +7,7 @@ import {
   Bot,
   ArrowRight,
   Sparkles,
-  MessageSquare,
   CheckCircle2,
-  Linkedin,
-  Github,
-  Twitter,
 } from "lucide-react";
 
 import { Layout } from "@/components/Layout";
@@ -40,11 +36,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
-const FB =
-  "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
-const WA =
-  "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
+
 
 const services = [
   {
@@ -128,10 +120,10 @@ function Index() {
 
                 <div className="flex flex-row items-center gap-4 sm:gap-5">
                   <a
-                    href="#contacto"
+                    href="/contacto"
                     className="btn-cyan inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm sm:text-base font-semibold"
                   >
-                    Contactanos
+                    Contacto
                     <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
@@ -266,44 +258,7 @@ function Index() {
         </div>
       </section>
 
-      {/* CTA Final Section */}
-      <section id="contacto" className="relative bg-muted/30 py-24 sm:py-32 border-t border-border">
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
-          <ScrollAnimation direction="up">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
-              Contacto
-            </span>
-            <h2 className="mt-3 font-sans font-black text-4xl sm:text-6xl tracking-tight text-foreground">
-              ¿Hablamos de tu proyecto?
-            </h2>
-            <p className="mx-auto mt-5 max-w-lg text-base sm:text-lg leading-relaxed text-muted-foreground">
-              Escríbenos y te respondemos con una propuesta técnica y estratégica a la medida de tu
-              operación.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={IG}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-cyan inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 text-base font-semibold"
-              >
-                <MessageSquare className="h-4 w-4" />
-                Escríbenos al DM
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href={WA}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-slate-dark inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 text-base font-semibold"
-              >
-                <span>WhatsApp</span>
-                <ArrowRight className="h-4 w-4 text-[#00c2ff]" />
-              </a>
-            </div>
-          </ScrollAnimation>
-        </div>
-      </section>
+
     </Layout>
   );
 }

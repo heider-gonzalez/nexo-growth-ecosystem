@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { Header } from "@/components/Header";
 import { SiteFooter } from "@/components/SiteFooter";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 /**
  * El proyecto usa @tanstack/react-router (rutas por archivo), no
@@ -27,6 +28,7 @@ export function Layout({ children, hideFooter = false }: LayoutProps) {
       <Header />
       {children}
       {!hideFooter && <SiteFooter />}
+      <WhatsAppButton />
     </div>
   );
 }
