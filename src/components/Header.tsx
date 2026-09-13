@@ -40,10 +40,11 @@ export type NavItem = {
 
 export const primaryNav: NavItem[] = [
   { label: "Servicios", href: "/#servicios" },
-  { label: "Contactanos", href: "/#contacto" },
+  { label: "Contacto", href: "/contacto" },
   {
     label: "Nosotros",
     children: [
+      { label: "Quiénes Somos", href: "/quienes-somos" },
       { label: "Equipo", href: "/equipo" },
       { label: "Términos y Condiciones", href: "/terminos" },
       { label: "Política de Privacidad", href: "/privacidad" },
