@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Header } from "@/components/Header";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { CookieConsent } from "@/components/CookieConsent";
 
 /**
  * El proyecto usa @tanstack/react-router (rutas por archivo), no
@@ -29,6 +30,7 @@ export function Layout({ children, hideFooter = false }: LayoutProps) {
       {children}
       {!hideFooter && <SiteFooter />}
       <WhatsAppButton />
+      <CookieConsent />
     </div>
   );
 }
