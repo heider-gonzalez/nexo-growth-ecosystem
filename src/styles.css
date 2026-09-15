@@ -324,3 +324,54 @@
     animation: none;
   }
 }
+
+/* Aviso de cookies: sube desde abajo-izquierda una sola vez, se apoya
+   por encima del botón flotante de WhatsApp en mobile para no taparlo. */
+@keyframes cookie-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cookie-wrapper {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 60;
+  animation: cookie-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cookie-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  width: 340px;
+  max-width: calc(100vw - 2rem);
+  padding: 1.375rem;
+  border-radius: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .cookie-wrapper {
+    left: 1rem;
+    right: 1rem;
+    bottom: 6.5rem;
+  }
+
+  .cookie-card {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-wrapper {
+    animation: none;
+  }
+}

@@ -1,16 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import {
-  Mail,
-  Clock,
-  Send,
-  Sparkles,
-  CheckCircle2,
-  ArrowRight,
-  Loader2,
-} from "lucide-react";
+import { Mail, Clock, Send, Sparkles, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
@@ -18,7 +10,7 @@ import { contactSchema, type ContactFormData } from "@/lib/contact.schema";
 import { submitContactLead } from "@/lib/contact.server";
 
 const WA_URL =
-  "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
+  "https://wa.me/573137853050?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 
 function WhatsAppIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -68,7 +60,7 @@ const contactCards = [
   {
     iconComponent: WhatsAppIcon,
     title: "WhatsApp",
-    primary: "+57 300 449 7290",
+    primary: "+57 313 785 3050",
     href: WA_URL,
     caption: "Atención directa de lunes a sábado",
     actionLabel: "Iniciar chat",
@@ -95,6 +87,7 @@ function ContactoPage() {
       email: "",
       celular: "",
       mensaje: "",
+      terminos: false,
     },
   });
 
@@ -316,6 +309,40 @@ function ContactoPage() {
                         />
                         {errors.mensaje && (
                           <p className="mt-1.5 text-xs text-red-400">{errors.mensaje.message}</p>
+                        )}
+                      </div>
+
+                      {/* Aceptación de Términos y Condiciones */}
+                      <div>
+                        <label htmlFor="terminos" className="flex items-start gap-3 cursor-pointer">
+                          <input
+                            id="terminos"
+                            type="checkbox"
+                            className="mt-0.5 h-4 w-4 shrink-0 rounded border-border text-[#00c2ff] focus:ring-2 focus:ring-[#00c2ff]/30 cursor-pointer"
+                            {...register("terminos")}
+                          />
+                          <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                            Acepto los{" "}
+                            <Link
+                              to="/terminos"
+                              target="_blank"
+                              className="font-semibold text-[#00c2ff] hover:underline"
+                            >
+                              Términos y Condiciones
+                            </Link>{" "}
+                            y la{" "}
+                            <Link
+                              to="/privacidad"
+                              target="_blank"
+                              className="font-semibold text-[#00c2ff] hover:underline"
+                            >
+                              Política de Privacidad
+                            </Link>
+                            .
+                          </span>
+                        </label>
+                        {errors.terminos && (
+                          <p className="mt-1.5 text-xs text-red-400">{errors.terminos.message}</p>
                         )}
                       </div>
 

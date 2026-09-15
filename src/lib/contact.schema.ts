@@ -9,15 +9,14 @@ export const contactSchema = z.object({
     .string()
     .email("Ingresa un correo electrónico válido")
     .max(254, "El correo es demasiado largo"),
-  celular: z
-    .string()
-    .max(20, "El número es demasiado largo")
-    .optional()
-    .or(z.literal("")),
+  celular: z.string().max(20, "El número es demasiado largo").optional().or(z.literal("")),
   mensaje: z
     .string()
     .min(10, "Cuéntanos brevemente sobre tu proyecto")
     .max(2000, "El mensaje es demasiado largo"),
+  terminos: z.boolean().refine((value) => value === true, {
+    message: "Debes aceptar los Términos y Condiciones para continuar",
+  }),
 });
 
 export type ContactFormData = z.infer<typeof contactSchema>;

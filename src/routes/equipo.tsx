@@ -163,11 +163,9 @@ const team: TeamMember[] = [
     location: "Barranquilla, Colombia",
     role: "Administradora de Negocios Internacionales",
     socials: {
-      linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
-      x: "https://x.com/HeiderGonz50147",
+      linkedin: "https://www.linkedin.com/in/karol-esparza-beltran-b921452b5/",
     },
-    avatarUrl:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=80",
+    avatarUrl: "https://unavatar.io/linkedin/user:karol-esparza-beltran-b921452b5",
     badges: ["CEO & Founder"],
     funcion: "Especialidad en Marketing y Ventas",
     perfilInfo: `  Perfil enfocado en ventas, cierre de negociaciones, gestión comercial e impulso de estrategias de marketing. 
