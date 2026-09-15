@@ -15,7 +15,7 @@ import {
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { contactSchema, type ContactFormData } from "@/lib/contact.schema";
-import { notifyDiscordLead } from "@/lib/contact.server";
+import { submitContactLead } from "@/lib/contact.server";
 
 const WA_URL =
   "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
@@ -100,7 +100,7 @@ function ContactoPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      await notifyDiscordLead({ data });
+      await submitContactLead({ data });
       toast.success("¡Mensaje enviado!", {
         description: "Nos pondremos en contacto contigo pronto.",
       });
