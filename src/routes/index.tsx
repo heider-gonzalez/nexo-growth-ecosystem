@@ -1,17 +1,12 @@
 import { createFileRoute, ClientOnly } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
-import {
-  Monitor,
-  RefreshCw,
-  Zap,
-  Bot,
-  ArrowRight,
-  Sparkles,
-  CheckCircle2,
-} from "lucide-react";
+import { Monitor, RefreshCw, Zap, Bot, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
+import { Loader } from "@/components/Loader";
+import { ProductShowcase } from "@/components/ProductShowcase";
+import { CompanyVideo } from "@/components/CompanyVideo";
 
 const NexoLogo3D = lazy(() => import("@/components/NexoLogo3D"));
 
@@ -35,8 +30,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-
 
 const services = [
   {
@@ -134,8 +127,20 @@ function Index() {
             <ScrollAnimation direction="right" delay={0.2}>
               <div className="w-full flex flex-col items-center lg:items-end">
                 <div className="relative h-[320px] w-full sm:h-[420px] lg:h-[500px]">
-                  <ClientOnly fallback={<div className="h-full w-full" />}>
-                    <Suspense fallback={<div className="h-full w-full" />}>
+                  <ClientOnly
+                    fallback={
+                      <div className="flex h-full w-full items-center justify-center">
+                        <Loader text="Cargando" />
+                      </div>
+                    }
+                  >
+                    <Suspense
+                      fallback={
+                        <div className="flex h-full w-full items-center justify-center">
+                          <Loader text="Cargando" />
+                        </div>
+                      }
+                    >
                       <NexoLogo3D />
                     </Suspense>
                   </ClientOnly>
@@ -192,6 +197,12 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* Producto: showcase de servicios en video */}
+      <ProductShowcase />
+
+      {/* Video de presentación (sólo aparece cuando esté configurado) */}
+      <CompanyVideo />
 
       {/* Proceso Section */}
       <section id="proceso" className="relative bg-muted/40 py-24 sm:py-32 border-t border-border">
@@ -257,8 +268,6 @@ function Index() {
           </ScrollAnimation>
         </div>
       </section>
-
-
     </Layout>
   );
 }
