@@ -10,7 +10,7 @@ import { contactSchema, type ContactFormData } from "@/lib/contact.schema";
 import { notifyDiscordLead } from "@/lib/contact.server";
 
 const WA_URL =
-  "https://wa.me/573004497290?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
+  "https://wa.me/573137853050?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 
 function WhatsAppIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -60,7 +60,7 @@ const contactCards = [
   {
     iconComponent: WhatsAppIcon,
     title: "WhatsApp",
-    primary: "+57 300 449 7290",
+    primary: "+57 313 785 3050",
     href: WA_URL,
     caption: "Atención directa de lunes a sábado",
     actionLabel: "Iniciar chat",
