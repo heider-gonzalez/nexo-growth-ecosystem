@@ -387,6 +387,8 @@ function TeamPage() {
                         src={member.avatarUrl}
                         alt={member.name}
                         className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-300"
+                        loading="lazy"
+                        decoding="async"
                         onError={() => handleImgError(member.name)}
                       />
                     ) : (
@@ -439,6 +441,8 @@ function TeamPage() {
                     src={selectedMember.avatarUrl}
                     alt={selectedMember.name}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                     onError={() => handleImgError(selectedMember.name)}
                   />
                 ) : (

@@ -96,11 +96,22 @@ function ContactoPage() {
       await submitContactLead({ data });
       toast.success("¡Mensaje enviado!", {
         description: "Nos pondremos en contacto contigo pronto.",
+        duration: 5000,
       });
       reset();
-    } catch {
+    } catch (error) {
+      console.error("Error al enviar formulario:", error);
+      
+      // Manejo más detallado de errores
+      const errorMessage = error instanceof Error ? error.message : "Error desconocido";
+      
       toast.error("No se pudo enviar el mensaje", {
-        description: "Intenta de nuevo o escríbenos por WhatsApp.",
+        description: errorMessage || "Intenta de nuevo o escríbenos por WhatsApp.",
+        duration: 6000,
+        action: {
+          label: "WhatsApp",
+          onClick: () => window.open(WA_URL, "_blank"),
+        },
       });
     }
   };
@@ -245,10 +256,24 @@ function ContactoPage() {
                           type="text"
                           placeholder="Tu nombre o empresa"
                           className={errors.nombre ? inputErrorClass : inputBaseClass}
-                          {...register("nombre")}
+                          {...register("nombre", {
+                            onChange: () => {
+                              // Limpiar error cuando el usuario empiece a escribir
+                              if (errors.nombre) {
+                                // React Hook Form manejará esto automáticamente
+                              }
+                            }
+                          })}
                         />
                         {errors.nombre && (
-                          <p className="mt-1.5 text-xs text-red-400">{errors.nombre.message}</p>
+                          <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
+                            <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2">
+                              <circle cx="12" cy="12" r="10" />
+                              <line x1="12" y1="8" x2="12" y2="12" />
+                              <line x1="12" y1="16" x2="12.01" y2="16" />
+                            </svg>
+                            {errors.nombre.message}
+                          </p>
                         )}
                       </div>
 
@@ -356,15 +381,28 @@ function ContactoPage() {
                           {isSubmitting ? (
                             <>
                               <Loader2 className="h-4 w-4 animate-spin" />
-                              <span>Enviando...</span>
+                              <span>Enviando mensaje...</span>
                             </>
                           ) : (
                             <>
-                              <span>Enviar</span>
+                              <span>Enviar mensaje</span>
                               <Send className="h-4 w-4" />
                             </>
                           )}
                         </button>
+                        
+                        {/* Mensaje de ayuda en caso de error persistente */}
+                        <p className="mt-3 text-center text-xs text-muted-foreground">
+                          ¿Problemas con el formulario?{" "}
+                          <a
+                            href={WA_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#00c2ff] hover:underline font-medium"
+                          >
+                            Escríbenos por WhatsApp
+                          </a>
+                        </p>
                       </div>
                     </form>
                   </div>

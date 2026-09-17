@@ -88,11 +88,15 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                     src="/Logo_ Paleta claro.png"
                     alt="NEXO Logo"
                     className="block dark:hidden h-14 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="/Logo_ Paleta oscura.png"
                     alt="NEXO Logo"
                     className="hidden dark:block h-14 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </Link>
                 <button

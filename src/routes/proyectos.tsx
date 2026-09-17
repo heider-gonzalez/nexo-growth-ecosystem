@@ -43,6 +43,7 @@ function ProyectoVisual({ proyecto, className = "" }: { proyecto: Proyecto; clas
         src={proyecto.imagen}
         alt={proyecto.imagenAlt ?? `Captura del proyecto de ${proyecto.cliente}`}
         loading="lazy"
+        decoding="async"
         className={`w-full object-cover object-top ${className}`}
       />
     );

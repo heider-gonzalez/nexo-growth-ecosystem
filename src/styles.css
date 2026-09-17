@@ -359,13 +359,11 @@
   align-items: flex-start;
   justify-content: center;
   gap: 1rem;
-  /* 380px y no menos: es el ancho con el que los dos botones entran en una
-     sola fila. Por debajo de eso "Solo las necesarias" salta de línea y las
-     acciones quedan desalineadas. */
-  width: 380px;
+  /* 420px para acomodar mejor el nuevo diseño horizontal */
+  width: 420px;
   max-width: calc(100vw - 2rem);
-  padding: 1.375rem;
-  border-radius: 1.25rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
   background: var(--popover);
   color: var(--popover-foreground);
   border: 1px solid var(--border);
@@ -377,28 +375,28 @@
 .cookie-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.625rem;
+  gap: 0.5rem;
 }
 
-/* 44px de alto mínimo: en mobile estos dos botones son el único objetivo
-   táctil del aviso y el padding solo no llega a esa altura. */
+/* Botones más compactos para el nuevo diseño */
 .cookie-actions > button {
-  min-height: 2.75rem;
+  min-height: 2.25rem;
+  min-width: 100px;
 }
 
-/* Tablet: centrado abajo. A 340px pegado a la esquina izquierda la tarjeta
-   se veía perdida en el ancho disponible. */
+/* Tablet: diseño optimizado con mejor espaciado */
 @media (max-width: 1023px) {
   .cookie-wrapper {
-    left: 1.5rem;
-    right: 1.5rem;
+    left: 1rem;
+    right: 1rem;
     display: flex;
     justify-content: center;
   }
 
   .cookie-card {
     width: 100%;
-    max-width: 30rem;
+    max-width: 32rem;
+    padding: 1.125rem;
   }
 }
 
@@ -413,9 +411,9 @@
 
   .cookie-card {
     max-width: none;
-    gap: 0.875rem;
-    padding: 1.125rem;
-    border-radius: 1rem;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 0.875rem;
   }
 
   /* Uno debajo del otro: en 360px de ancho los dos botones no caben en una
@@ -427,6 +425,7 @@
 
   .cookie-actions > button {
     width: 100%;
+    min-width: auto;
   }
 }
 

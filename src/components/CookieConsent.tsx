@@ -56,37 +56,60 @@ export function CookieConsent() {
         aria-describedby="cookie-text"
         className="cookie-card"
       >
-        <p id="cookie-title" className="text-lg font-bold text-foreground">
-          Cookies
-        </p>
+        <div className="flex items-start gap-3">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff]">
+            <svg
+              viewBox="0 0 24 24"
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
+              <path d="M8.5 8.5v.01" />
+              <path d="M16 15.5v.01" />
+              <path d="M12 12v.01" />
+              <path d="M8.5 15.5v.01" />
+              <path d="M16 8.5v.01" />
+            </svg>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p id="cookie-title" className="text-base font-bold text-foreground mb-1">
+              Política de Cookies
+            </p>
 
-        <p id="cookie-text" className="text-sm leading-relaxed text-muted-foreground">
-          Usamos cookies para recordar tus preferencias y entender cómo se usa el sitio.{" "}
-          <Link
-            to="/privacidad"
-            onClick={() => setVisible(false)}
-            className="font-medium text-[#00c2ff] underline underline-offset-2 hover:text-[#00b0e8]"
-          >
-            Cómo las usamos
-          </Link>
-        </p>
+            <p id="cookie-text" className="text-xs leading-relaxed text-muted-foreground mb-4">
+              Utilizamos cookies para mejorar tu experiencia y analizar el tráfico del sitio.{" "}
+              <Link
+                to="/privacidad"
+                onClick={() => setVisible(false)}
+                className="font-medium text-[#00c2ff] underline underline-offset-2 hover:text-[#00b0e8]"
+              >
+                Ver detalles
+              </Link>
+            </p>
 
-        <div className="cookie-actions">
-          <button
-            type="button"
-            className="btn-cyan rounded-full px-5 py-2.5 text-sm"
-            onClick={() => decide("all")}
-          >
-            Aceptar todas
-          </button>
+            <div className="cookie-actions">
+              <button
+                type="button"
+                className="btn-cyan rounded-lg px-4 py-2 text-xs font-semibold"
+                onClick={() => decide("all")}
+              >
+                Aceptar todas
+              </button>
 
-          <button
-            type="button"
-            className="btn-outline-cyan rounded-full px-5 py-2.5 text-sm"
-            onClick={() => decide("essential")}
-          >
-            Solo las necesarias
-          </button>
+              <button
+                type="button"
+                className="btn-outline-cyan rounded-lg px-4 py-2 text-xs font-semibold"
+                onClick={() => decide("essential")}
+              >
+                Solo necesarias
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -146,6 +146,8 @@ export function SiteFooter() {
                   src="/Logo_ Paleta oscura.png"
                   alt="NEXO Logo"
                   className="h-16 w-auto object-contain"
+                  loading="lazy"
+                  decoding="async"
                 />
               </Link>
             </div>

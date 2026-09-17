@@ -80,15 +80,15 @@ function Index() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-background">
+      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center pt-20 pb-12 md:pt-24 md:pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-background">
         {/* Subtle Cyan Ambient Glow Reflection Behind 3D X in Dark Mode */}
         <div
           aria-hidden
           className="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 h-[350px] w-[350px] sm:h-[550px] sm:w-[550px] rounded-full bg-[#00c2ff]/10 blur-[130px]"
         />
 
-        <div className="relative mx-auto max-w-6xl px-6 w-full z-10">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1.1fr_1fr] items-center gap-12 lg:gap-8">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 w-full z-10">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1.1fr_1fr] items-center gap-8 md:gap-12 lg:gap-8">
             {/* Hero Left Content */}
             <ScrollAnimation direction="left" delay={0.1}>
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
@@ -97,7 +97,7 @@ function Index() {
                   <span>¡Llegó Nexo! Tu negocio, listo para despegar</span>
                 </div>
 
-                <h1 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground">
+                <h1 className="font-sans font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground">
                   Tecnología que
                   <br />
                   <span className="text-[#00c2ff]">impulsa</span> tu

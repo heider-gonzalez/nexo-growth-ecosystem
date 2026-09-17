@@ -57,21 +57,25 @@ export const primaryNav: NavItem[] = [
 export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center">
           <img
             src="/Logo_ Paleta claro.png"
             alt="NEXO Logo"
             className="block dark:hidden h-20 w-auto object-contain"
+            loading="eager"
+            fetchPriority="high"
           />
           <img
             src="/Logo_ Paleta oscura.png"
             alt="NEXO Logo"
             className="hidden dark:block h-20 w-auto object-contain"
+            loading="eager"
+            fetchPriority="high"
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {primaryNav.map((n) => {
             if (n.children) {
               return (
@@ -106,6 +110,19 @@ export function Header() {
               </Link>
             );
           })}
+        </nav>
+
+        {/* Tablet navigation - simplified version */}
+        <nav className="hidden items-center gap-4 md:flex lg:hidden">
+          {primaryNav.map((n) => (
+            <Link
+              key={n.label}
+              to={n.href!}
+              className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {n.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-3">
