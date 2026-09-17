@@ -325,8 +325,11 @@
   }
 }
 
-/* Aviso de cookies: sube desde abajo-izquierda una sola vez, se apoya
-   por encima del botón flotante de WhatsApp en mobile para no taparlo. */
+/* Aviso de cookies: sube desde abajo una sola vez y se apoya por encima del
+   botón flotante de WhatsApp en mobile para no taparlo. La tarjeta lleva
+   superficie propia y opaca: aparece sobre el hero 3D, el video o el fondo
+   espacial, y sobre cualquiera de esos un panel translúcido se vuelve
+   ilegible. */
 @keyframes cookie-in {
   from {
     opacity: 0;
@@ -343,29 +346,86 @@
   bottom: 1.5rem;
   left: 1.5rem;
   z-index: 60;
+  /* El wrapper llega a ocupar el ancho de la pantalla en tablet: sin esto
+     se comería los clics del botón de WhatsApp, que queda por debajo. */
+  pointer-events: none;
   animation: cookie-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .cookie-card {
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 1rem;
-  width: 340px;
+  /* 380px y no menos: es el ancho con el que los dos botones entran en una
+     sola fila. Por debajo de eso "Solo las necesarias" salta de línea y las
+     acciones quedan desalineadas. */
+  width: 380px;
   max-width: calc(100vw - 2rem);
   padding: 1.375rem;
   border-radius: 1.25rem;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 18px 40px -12px rgba(8, 13, 26, 0.28),
+    0 4px 12px -6px rgba(8, 13, 26, 0.16);
+}
+
+.cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+/* 44px de alto mínimo: en mobile estos dos botones son el único objetivo
+   táctil del aviso y el padding solo no llega a esa altura. */
+.cookie-actions > button {
+  min-height: 2.75rem;
+}
+
+/* Tablet: centrado abajo. A 340px pegado a la esquina izquierda la tarjeta
+   se veía perdida en el ancho disponible. */
+@media (max-width: 1023px) {
+  .cookie-wrapper {
+    left: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cookie-card {
+    width: 100%;
+    max-width: 30rem;
+  }
 }
 
 @media (max-width: 640px) {
   .cookie-wrapper {
-    left: 1rem;
-    right: 1rem;
-    bottom: 6.5rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    /* 6rem deja libre el botón de WhatsApp (bottom 1.5rem + 3.5rem de alto);
+       env() añade la franja del gesto en iPhone. */
+    bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
   }
 
   .cookie-card {
+    max-width: none;
+    gap: 0.875rem;
+    padding: 1.125rem;
+    border-radius: 1rem;
+  }
+
+  /* Uno debajo del otro: en 360px de ancho los dos botones no caben en una
+     línea y quedaban partidos a lo ancho de forma despareja. */
+  .cookie-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cookie-actions > button {
     width: 100%;
   }
 }
