@@ -22,10 +22,6 @@
  * aplicación, que es información verdadera y no una foto de archivo
  * ajena al proyecto.
  *
- * `propio` marca lo que construimos para nosotros y no para un cliente.
- * Va etiquetado en la tarjeta: mezclar producto propio con trabajo
- * entregado a terceros infla el portafolio sin decirlo.
- *
  * No todo proyecto es un sitio público: un software interno no tiene
  * enlace que mostrar. En ese caso se deja `url` y `dominio` sin llenar,
  * se describe dónde corre en `entorno` y se explica en `notaAcceso` por
@@ -52,8 +48,6 @@ export interface Proyecto {
   entorno?: string;
   /** Por qué no hay enlace. Ocupa el lugar del "Ver dominio". */
   notaAcceso?: string;
-  /** Producto de Nexo, no encargo de un cliente. */
-  propio?: boolean;
   anio?: string;
   imagen?: string;
   imagenAlt?: string;
@@ -111,14 +105,12 @@ export const PROYECTOS: Proyecto[] = [
     ],
     stack: ["Electron", "React", "SQLite", "Tailwind CSS", "jsPDF"],
     entorno: "MiGestorLocal 2.0 · Windows",
-    notaAcceso:
-      "Software interno del cliente: se instala en el laboratorio, no tiene versión pública.",
+    notaAcceso: "Instalado en el laboratorio del cliente. Pídenos una demo y te lo mostramos.",
   },
   {
     key: "crm-whatsapp",
     cliente: "CRM para WhatsApp",
     sector: "CRM · Ventas y mensajería",
-    propio: true,
     resumen:
       "Nuestro CRM para equipos que venden por WhatsApp: bandeja de entrada, contactos, embudos de negocios, difusiones y automatizaciones, con un panel que mide conversión y tiempo de primera respuesta. Es la base que implementamos y adaptamos a la operación de cada cliente.",
     entregables: [
@@ -129,6 +121,7 @@ export const PROYECTOS: Proyecto[] = [
     ],
     stack: ["Next.js", "React", "Vercel"],
     entorno: "Panel del CRM",
-    notaAcceso: "Producto propio: se implementa por cuenta. Pídenos una demo y te lo mostramos.",
+    notaAcceso:
+      "Se implementa y configura por cuenta. Pídenos una demo y te lo mostramos funcionando.",
   },
 ];

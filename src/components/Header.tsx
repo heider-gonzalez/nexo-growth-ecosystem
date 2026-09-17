@@ -40,7 +40,7 @@ export type NavItem = {
 
 export const primaryNav: NavItem[] = [
   { label: "Servicios", href: "/#servicios" },
-  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Proyectos", href: "/proyectos" },
   { label: "Contacto", href: "/contacto" },
   {
     label: "Nosotros",

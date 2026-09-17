@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as EquipoRouteImport } from './routes/equipo'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as ProyectosRouteImport } from './routes/proyectos'
 import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
 import { Route as TerminosRouteImport } from './routes/terminos'
 
@@ -36,6 +37,11 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
   path: '/privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProyectosRoute = ProyectosRouteImport.update({
+  id: '/proyectos',
+  path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuienesSomosRoute = QuienesSomosRouteImport.update({
   id: '/quienes-somos',
   path: '/quienes-somos',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/proyectos': typeof ProyectosRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/proyectos': typeof ProyectosRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/proyectos': typeof ProyectosRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/equipo'
     | '/privacidad'
+    | '/proyectos'
     | '/quienes-somos'
     | '/terminos'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/equipo'
     | '/privacidad'
+    | '/proyectos'
     | '/quienes-somos'
     | '/terminos'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/equipo'
     | '/privacidad'
+    | '/proyectos'
     | '/quienes-somos'
     | '/terminos'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   ContactoRoute: typeof ContactoRoute
   EquipoRoute: typeof EquipoRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  ProyectosRoute: typeof ProyectosRoute
   QuienesSomosRoute: typeof QuienesSomosRoute
   TerminosRoute: typeof TerminosRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/proyectos': {
+      id: '/proyectos'
+      path: '/proyectos'
+      fullPath: '/proyectos'
+      preLoaderRoute: typeof ProyectosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quienes-somos': {
       id: '/quienes-somos'
       path: '/quienes-somos'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactoRoute: ContactoRoute,
   EquipoRoute: EquipoRoute,
   PrivacidadRoute: PrivacidadRoute,
+  ProyectosRoute: ProyectosRoute,
   QuienesSomosRoute: QuienesSomosRoute,
   TerminosRoute: TerminosRoute,
 }
