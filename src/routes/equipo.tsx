@@ -95,7 +95,7 @@ const team: TeamMember[] = [
     role: "Ingeniero Informatico",
     avatarUrl: "https://unavatar.io/linkedin/user:cristian-acu%C3%B1a3103",
     socials: {
-      linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
+      linkedin: "https://www.linkedin.com/in/cristian-acu%C3%B1a3103/",
       github: "https://github.com/CriX03",
     },
     badges: ["CEO & Founder"],
@@ -118,7 +118,8 @@ const team: TeamMember[] = [
     role: "Ingeniero Informatico",
     avatarUrl: "https://unavatar.io/github/p1t3rparqer",
     socials: {
-      linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
+      // LinkedIn pendiente: sin la URL del perfil no se pone enlace, antes
+      // apuntaba al perfil de otro miembro del equipo.
       github: "https://github.com/p1t3rparqer",
     },
     badges: ["CEO & Founder"],
@@ -141,7 +142,8 @@ const team: TeamMember[] = [
     role: "Ingeniero de Sistemas",
     avatarUrl: "https://unavatar.io/github/SERGIIO0101",
     socials: {
-      linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
+      // LinkedIn pendiente: sin la URL del perfil no se pone enlace, antes
+      // apuntaba al perfil de otro miembro del equipo.
       github: "https://github.com/SERGIIO0101",
     },
     badges: ["CEO & Founder"],

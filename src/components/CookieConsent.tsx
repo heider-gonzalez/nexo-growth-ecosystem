@@ -54,7 +54,7 @@ export function CookieConsent() {
         aria-modal="false"
         aria-labelledby="cookie-title"
         aria-describedby="cookie-text"
-        className="cookie-card glass-panel"
+        className="cookie-card"
       >
         <p id="cookie-title" className="text-lg font-bold text-foreground">
           Cookies
@@ -71,7 +71,7 @@ export function CookieConsent() {
           </Link>
         </p>
 
-        <div className="flex flex-wrap gap-2.5">
+        <div className="cookie-actions">
           <button
             type="button"
             className="btn-cyan rounded-full px-5 py-2.5 text-sm"
