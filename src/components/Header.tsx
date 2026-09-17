@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Instagram, Facebook } from "lucide-react";
+import { ChevronDown, Instagram, Facebook, Linkedin } from "lucide-react";
 
 import { MobileMenu } from "@/components/MobileMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -13,6 +13,7 @@ import {
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
 const FB =
   "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
+const LINKEDIN = "https://www.linkedin.com/company/nexo-growth-solutions/";
 
 function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -126,6 +127,15 @@ export function Header() {
             aria-label="Facebook"
           >
             <Facebook className="h-5 w-5" />
+          </a>
+          <a
+            href={LINKEDIN}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-5 w-5" />
           </a>
           <a
             href="#"

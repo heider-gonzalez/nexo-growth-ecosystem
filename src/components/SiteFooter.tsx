@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import {
   Instagram,
   Facebook,
+  Linkedin,
   Mail,
   Phone,
   MapPin,
@@ -16,6 +17,7 @@ const WA =
   "https://wa.me/573137853050?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 const FB =
   "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
+const LINKEDIN = "https://www.linkedin.com/company/nexo-growth-solutions/";
 
 function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -200,6 +202,15 @@ export function SiteFooter() {
                 className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 transition-all hover:border-[#00c2ff]/60 hover:bg-slate-800 hover:text-[#00c2ff] hover:shadow-[0_0_12px_rgba(0,194,255,0.3)]"
               >
                 <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href={LINKEDIN}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 transition-all hover:border-[#00c2ff]/60 hover:bg-slate-800 hover:text-[#00c2ff] hover:shadow-[0_0_12px_rgba(0,194,255,0.3)]"
+              >
+                <Linkedin className="h-4 w-4" />
               </a>
               <a
                 href={WA}
