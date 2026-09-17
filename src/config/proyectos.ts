@@ -105,6 +105,8 @@ export const PROYECTOS: Proyecto[] = [
     ],
     stack: ["Electron", "React", "SQLite", "Tailwind CSS", "jsPDF"],
     entorno: "MiGestorLocal 2.0 · Windows",
+    imagen: "/proyectos/denty-shalom.jpg",
+    imagenAlt: "Panel de inicio de MiGestorLocal con los accesos del laboratorio",
     notaAcceso: "Instalado en el laboratorio del cliente. Pídenos una demo y te lo mostramos.",
   },
   {
@@ -121,6 +123,8 @@ export const PROYECTOS: Proyecto[] = [
     ],
     stack: ["Next.js", "React", "Vercel"],
     entorno: "Panel del CRM",
+    imagen: "/proyectos/crm-whatsapp.jpg",
+    imagenAlt: "Panel del CRM con las métricas de conversaciones y negocios",
     notaAcceso:
       "Se implementa y configura por cuenta. Pídenos una demo y te lo mostramos funcionando.",
   },
