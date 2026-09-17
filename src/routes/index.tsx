@@ -7,7 +7,6 @@ import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Loader } from "@/components/Loader";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { CompanyVideo } from "@/components/CompanyVideo";
-import { ProyectosSection } from "@/components/ProyectosSection";
 
 const NexoLogo3D = lazy(() => import("@/components/NexoLogo3D"));
 
@@ -201,9 +200,6 @@ function Index() {
 
       {/* Producto: showcase de servicios en video */}
       <ProductShowcase />
-
-      {/* Proyectos: la prueba va inmediatamente después de la promesa */}
-      <ProyectosSection />
 
       {/* Video de presentación (sólo aparece cuando esté configurado) */}
       <CompanyVideo />

@@ -142,8 +142,7 @@ const team: TeamMember[] = [
     role: "Ingeniero de Sistemas",
     avatarUrl: "https://unavatar.io/github/SERGIIO0101",
     socials: {
-      // LinkedIn pendiente: sin la URL del perfil no se pone enlace, antes
-      // apuntaba al perfil de otro miembro del equipo.
+      linkedin: "https://www.linkedin.com/in/severicheguerrerosergio/",
       github: "https://github.com/SERGIIO0101",
     },
     badges: ["CEO & Founder"],
