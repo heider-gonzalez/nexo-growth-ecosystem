@@ -1,6 +1,6 @@
 import { createFileRoute, ClientOnly } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
-import { Monitor, RefreshCw, Zap, Bot, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { Monitor, RefreshCw, Zap, Bot, ArrowRight, Sparkles } from "lucide-react";
 
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
@@ -93,14 +93,14 @@ function Index() {
             <ScrollAnimation direction="left" delay={0.1}>
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <div className="brand-pill rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium mb-8 cursor-default select-none">
-                  <Sparkles className="h-3.5 w-3.5 text-[#00c2ff]" />
+                  <Sparkles className="h-3.5 w-3.5 text-[var(--brand-ink)]" />
                   <span>¡Llegó Nexo! Tu negocio, listo para despegar</span>
                 </div>
 
                 <h1 className="font-sans font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground">
                   Tecnología que
                   <br />
-                  <span className="text-[#00c2ff]">impulsa</span> tu
+                  <span className="text-[var(--brand-ink)]">impulsa</span> tu
                   <br />
                   negocio
                 </h1>
@@ -159,7 +159,7 @@ function Index() {
         <div className="mx-auto max-w-6xl px-6">
           <ScrollAnimation direction="up">
             <div className="max-w-2xl">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
+              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand-ink)]">
                 Servicios
               </span>
               <h2 className="mt-3 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-foreground">
@@ -172,29 +172,27 @@ function Index() {
             </div>
           </ScrollAnimation>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2">
-            {services.map((s, index) => (
-              <ScrollAnimation key={s.title} direction="up" delay={index * 0.1}>
-                <article className="saas-card group relative rounded-2xl p-8 bg-card border border-border">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-[#00c2ff]">
-                      <s.icon className="h-6 w-6" strokeWidth={2} />
-                    </div>
-                    <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground transition-colors group-hover:bg-primary/10 group-hover:text-[#00c2ff]">
-                      {s.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-6 text-xl font-bold tracking-tight text-foreground group-hover:text-[#00c2ff] transition-colors">
+          <ScrollAnimation direction="up" delay={0.1} className="svc-grid mt-16">
+            {services.map((s) => (
+              <article key={s.title} className="svc-item group">
+                <div className="svc-rule" aria-hidden="true" />
+                <div className="flex items-baseline justify-between gap-4 pt-5">
+                  <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
                     {s.title}
                   </h3>
-                  <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-muted-foreground">
-                    {s.text}
-                  </p>
-                </article>
-              </ScrollAnimation>
+                  <s.icon
+                    className="h-5 w-5 shrink-0 self-start text-[var(--brand-ink)]"
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
+                </div>
+                <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
+                  {s.text}
+                </p>
+                <p className="mt-4 text-sm text-muted-foreground/80">{s.badge}</p>
+              </article>
             ))}
-          </div>
+          </ScrollAnimation>
         </div>
       </section>
 
@@ -208,8 +206,8 @@ function Index() {
       <section id="proceso" className="relative bg-muted/40 py-24 sm:py-32 border-t border-border">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollAnimation direction="up">
-            <div className="text-center max-w-2xl mx-auto">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
+            <div className="max-w-2xl">
+              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand-ink)]">
                 Metodología
               </span>
               <h2 className="mt-3 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-foreground">
@@ -222,29 +220,19 @@ function Index() {
             </div>
           </ScrollAnimation>
 
-          <div className="mt-16 grid gap-8 sm:grid-cols-3">
-            {steps.map((s, index) => (
-              <ScrollAnimation key={s.n} direction="up" delay={index * 0.15}>
-                <div className="saas-card relative rounded-2xl bg-card p-8 border border-border h-full flex flex-col justify-between">
-                  <div>
-                    <span className="inline-flex items-center justify-center rounded-lg bg-primary/10 border border-primary/20 px-3.5 py-1 text-sm font-black text-[#00c2ff]">
-                      Paso {s.n}
-                    </span>
-                    <h3 className="mt-5 text-xl font-bold text-foreground tracking-tight">
-                      {s.title}
-                    </h3>
-                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
-                      {s.text}
-                    </p>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
-                    <span>Fase verificada</span>
-                  </div>
-                </div>
-              </ScrollAnimation>
+          <ScrollAnimation direction="up" delay={0.1} className="step-list mt-16">
+            {steps.map((s) => (
+              <div key={s.n} className="step-item">
+                <span className="text-sm font-semibold text-[var(--brand-ink)]">Paso {s.n}</span>
+                <h3 className="mt-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                  {s.title}
+                </h3>
+                <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
+                  {s.text}
+                </p>
+              </div>
             ))}
-          </div>
+          </ScrollAnimation>
         </div>
       </section>
 
@@ -255,7 +243,7 @@ function Index() {
       >
         <div className="mx-auto max-w-4xl px-6 text-center">
           <ScrollAnimation direction="fade">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] text-[#00c2ff]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] text-[var(--brand-ink)]">
               Enfoque Estratégico
             </span>
             <h2 className="mt-6 font-sans font-black text-3xl sm:text-5xl lg:text-6xl leading-[1.15] tracking-tight text-foreground">
