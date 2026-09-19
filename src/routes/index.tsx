@@ -130,20 +130,8 @@ function Index() {
             {/* Hero Right 3D WebGL Canvas */}
             <div className="w-full flex flex-col items-center lg:items-end">
               <div className="relative h-[320px] w-full sm:h-[420px] lg:h-[500px]">
-                <ClientOnly
-                  fallback={
-                    <div className="flex h-full w-full items-center justify-center">
-                      <Loader text="Cargando" />
-                    </div>
-                  }
-                >
-                  <Suspense
-                    fallback={
-                      <div className="flex h-full w-full items-center justify-center">
-                        <Loader text="Cargando" />
-                      </div>
-                    }
-                  >
+                <ClientOnly fallback={<div className="h-full w-full" />}>
+                  <Suspense fallback={<div className="h-full w-full" />}>
                     <NexoLogo3D />
                   </Suspense>
                 </ClientOnly>
