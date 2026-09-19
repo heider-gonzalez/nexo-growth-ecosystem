@@ -57,7 +57,7 @@ export function CookieConsent() {
         className="cookie-card"
       >
         <div className="flex items-start gap-3">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff]">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)]">
             <svg
               viewBox="0 0 24 24"
               className="h-4 w-4"
@@ -86,7 +86,7 @@ export function CookieConsent() {
               <Link
                 to="/privacidad"
                 onClick={() => setVisible(false)}
-                className="font-medium text-[#00c2ff] underline underline-offset-2 hover:text-[#00b0e8]"
+                className="font-medium text-[var(--brand-ink)] underline underline-offset-2 hover:text-[#00b0e8]"
               >
                 Ver detalles
               </Link>

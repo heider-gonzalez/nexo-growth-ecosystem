@@ -5,7 +5,7 @@ export function PrivacyPolicy() {
     <section className="relative bg-background py-24 sm:py-32 border-t border-border">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex items-center gap-4 mb-12">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-[#00c2ff]">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-[var(--brand-ink)]">
             <Shield className="h-8 w-8" strokeWidth={2} />
           </div>
           <div>
@@ -28,7 +28,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   1
                 </span>
                 Identificación del Responsable
@@ -43,7 +43,7 @@ export function PrivacyPolicy() {
               </p>
               <div className="bg-muted/50 rounded-2xl p-6 space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)]">
                     <Shield className="h-5 w-5" />
                   </div>
                   <div>
@@ -79,7 +79,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   2
                 </span>
                 Marco Legal
@@ -97,7 +97,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   3
                 </span>
                 Datos Personales que Podemos Recopilar
@@ -121,7 +121,7 @@ export function PrivacyPolicy() {
                   "Información proporcionada voluntariamente durante conversaciones por WhatsApp, correo electrónico u otros canales autorizados",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -136,7 +136,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   4
                 </span>
                 Finalidades del Tratamiento
@@ -156,7 +156,7 @@ export function PrivacyPolicy() {
                       "Realizar seguimiento a oportunidades comerciales",
                     ].map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                        <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                         <span className="text-base">{item}</span>
                       </li>
                     ))}
@@ -179,7 +179,7 @@ export function PrivacyPolicy() {
                       "Realizar procesos administrativos, comerciales y de facturación",
                     ].map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                        <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                         <span className="text-base">{item}</span>
                       </li>
                     ))}
@@ -204,7 +204,7 @@ export function PrivacyPolicy() {
                       "Información relacionada con transformación digital, IA, CRM, desarrollo web y analítica de datos",
                     ].map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                        <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                         <span className="text-base">{item}</span>
                       </li>
                     ))}
@@ -231,7 +231,7 @@ export function PrivacyPolicy() {
                       "Identificar necesidades de los clientes",
                     ].map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                        <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                         <span className="text-base">{item}</span>
                       </li>
                     ))}
@@ -242,7 +242,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   5
                 </span>
                 Tratamiento de Datos a través de Formularios
@@ -259,7 +259,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   6
                 </span>
                 WhatsApp y Otros Canales de Comunicación
@@ -277,7 +277,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   7
                 </span>
                 Cookies y Tecnologías Similares
@@ -297,7 +297,7 @@ export function PrivacyPolicy() {
                   "Comprender cómo interactúan los usuarios con nuestros contenidos",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -311,7 +311,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   8
                 </span>
                 Datos Sensibles
@@ -327,7 +327,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   9
                 </span>
                 Seguridad de la Información
@@ -344,7 +344,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   10
                 </span>
                 Terceros y Proveedores Tecnológicos
@@ -362,7 +362,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   11
                 </span>
                 Transferencia o Transmisión Internacional
@@ -378,7 +378,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   12
                 </span>
                 Derechos del Titular
@@ -398,7 +398,7 @@ export function PrivacyPolicy() {
                   "Solicitar copia de la autorización otorgada cuando corresponda",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -407,7 +407,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   13
                 </span>
                 Procedimiento para Consultas y Reclamos
@@ -418,7 +418,7 @@ export function PrivacyPolicy() {
               </p>
               <div className="bg-muted/50 rounded-2xl p-6 mb-6">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)]">
                     <Shield className="h-5 w-5" />
                   </div>
                   <div>
@@ -439,7 +439,7 @@ export function PrivacyPolicy() {
                   "Documentos o información que permitan identificar la situación, cuando corresponda",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -452,7 +452,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   14
                 </span>
                 Conservación de los Datos
@@ -468,7 +468,7 @@ export function PrivacyPolicy() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   15
                 </span>
                 Actualizaciones de esta Política
@@ -483,7 +483,7 @@ export function PrivacyPolicy() {
 
             <div>
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   16
                 </span>
                 Contacto
@@ -494,7 +494,7 @@ export function PrivacyPolicy() {
               </p>
               <div className="bg-muted/50 rounded-2xl p-6 space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)]">
                     <Shield className="h-5 w-5" />
                   </div>
                   <div>
