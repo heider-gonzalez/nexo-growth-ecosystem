@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { z } from "zod";
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import {
@@ -33,12 +32,10 @@ type ProfileTabId = (typeof PROFILE_TABS)[number]["id"];
 // real en el historial del navegador (/equipo -> /equipo?member=slug),
 // y el botón "Atrás" del navegador regresa a la grilla del equipo,
 // nunca hasta Inicio.
-const searchSchema = z.object({
-  member: z.string().optional(),
-});
-
 export const Route = createFileRoute("/equipo")({
-  validateSearch: searchSchema,
+  validateSearch: (search: Record<string, unknown>): { member?: string } => ({
+    member: typeof search.member === "string" ? search.member : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Equipo — Nexo" },
@@ -386,6 +383,8 @@ function TeamPage() {
                       <img
                         src={member.avatarUrl}
                         alt={member.name}
+                        width={112}
+                        height={112}
                         className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-300"
                         loading="lazy"
                         decoding="async"
@@ -440,6 +439,8 @@ function TeamPage() {
                   <img
                     src={selectedMember.avatarUrl}
                     alt={selectedMember.name}
+                    width={112}
+                    height={112}
                     className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"

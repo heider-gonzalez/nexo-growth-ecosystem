@@ -42,8 +42,8 @@ function NotFoundComponent() {
         </h2>
 
         <p className="text-base text-muted-foreground mb-8 max-w-md mx-auto">
-          Lo sentimos, la página que buscas no existe o ha sido movida. 
-          Quizás la dirección está mal escrita o la página fue eliminada.
+          Lo sentimos, la página que buscas no existe o ha sido movida. Quizás la dirección está mal
+          escrita o la página fue eliminada.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -154,31 +154,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap",
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "preload",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap",
-        as: "style",
-        onLoad: "this.onload=null;this.rel='stylesheet'",
-      },
-      {
-        rel: "preload",
-        href: "/Logo_ Paleta claro.png",
-        as: "image",
-        type: "image/png",
-      },
-      {
-        rel: "preload",
-        href: "/Logo_ Paleta oscura.png",
-        as: "image",
-        type: "image/png",
+        href: "/fonts/inter-latin.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
       },
       {
         rel: "preload",
@@ -198,7 +179,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -237,13 +218,14 @@ function RootComponent() {
 
   // Registrar Service Worker para PWA
   useEffect(() => {
-    if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
-      navigator.serviceWorker.register('/sw.js')
+    if ("serviceWorker" in navigator && window.location.hostname !== "localhost") {
+      navigator.serviceWorker
+        .register("/sw.js")
         .then((registration) => {
-          console.log('Service Worker registrado con éxito:', registration);
+          console.log("Service Worker registrado con éxito:", registration);
         })
         .catch((error) => {
-          console.log('Error al registrar Service Worker:', error);
+          console.log("Error al registrar Service Worker:", error);
         });
     }
   }, []);

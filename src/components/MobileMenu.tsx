@@ -87,6 +87,8 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                   <img
                     src="/Logo_ Paleta claro.png"
                     alt="NEXO Logo"
+                    width={75}
+                    height={56}
                     className="block dark:hidden h-14 w-auto object-contain"
                     loading="lazy"
                     decoding="async"
@@ -94,6 +96,8 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                   <img
                     src="/Logo_ Paleta oscura.png"
                     alt="NEXO Logo"
+                    width={75}
+                    height={56}
                     className="hidden dark:block h-14 w-auto object-contain"
                     loading="lazy"
                     decoding="async"

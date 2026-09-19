@@ -73,7 +73,7 @@ function buildProgressCSS() {
       [TOTAL, 100],
     ];
     const stops = raw.filter((s, idx) => idx === 0 || s[0] !== raw[idx - 1]?.[0]);
-    const body = stops.map(([t, w]) => `${pct(t)}{width:${w}%}`).join("");
+    const body = stops.map(([t, w]) => `${pct(t)}{transform:scaleX(${w / 100})}`).join("");
     css += `@keyframes pv35-prog-${i}{${body}}\n`;
     css += `.pv35-prog-${i}{animation:pv35-prog-${i} ${TOTAL}s linear infinite}\n`;
   }
@@ -363,9 +363,12 @@ const STATIC_CSS = `
 .pv35-progress-fill {
   display: block;
   height: 100%;
-  width: 0%;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
   border-radius: 999px;
   background: var(--pv-ink);
+  will-change: transform;
 }
 
 .pv35-eyebrow {
@@ -383,7 +386,13 @@ const STATIC_CSS = `
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pv35-root * { animation-play-state: paused !important; animation-delay: 0s !important; }
+  .pv35-root,
+  .pv35-root * {
+    animation: none !important;
+    animation-play-state: paused !important;
+    animation-delay: 0s !important;
+    transition: none !important;
+  }
 }
 `;
 

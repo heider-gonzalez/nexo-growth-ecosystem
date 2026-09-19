@@ -62,16 +62,22 @@ export function Header() {
           <img
             src="/Logo_ Paleta claro.png"
             alt="NEXO Logo"
+            width={107}
+            height={80}
             className="block dark:hidden h-20 w-auto object-contain"
             loading="eager"
             fetchPriority="high"
+            decoding="async"
           />
           <img
             src="/Logo_ Paleta oscura.png"
             alt="NEXO Logo"
+            width={107}
+            height={80}
             className="hidden dark:block h-20 w-auto object-contain"
             loading="eager"
             fetchPriority="high"
+            decoding="async"
           />
         </Link>
 

@@ -126,6 +126,8 @@ export function SiteFooter() {
               <img
                 src="/Logo_ Paleta oscura.png"
                 alt="Nexo"
+                width={48}
+                height={36}
                 className="h-9 w-auto"
                 loading="lazy"
                 decoding="async"

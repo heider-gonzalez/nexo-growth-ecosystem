@@ -116,10 +116,11 @@ const CAROUSEL_CSS = `
   border-radius: 999px;
   border: 0;
   background: rgba(0,0,0,.15);
-  transition: width .3s ease, background .3s ease;
+  transform-origin: center;
+  transition: transform .3s ease, background .3s ease;
   cursor: pointer;
 }
-.pvc-dot.is-active { width: 22px; background: #00c2ff; }
+.pvc-dot.is-active { transform: scaleX(2.75); background: #00c2ff; border-radius: 4px; }
 
 /* Solo el video activo necesita sus 30+ animaciones corriendo: pausar las
    de los otros 2 evita triplicar la carga del compositor sin que se note

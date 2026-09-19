@@ -90,7 +90,7 @@ function NexoXModel({
     const clampedDelta = Math.min(delta, 0.05);
     elapsedRef.current += clampedDelta;
     assemblyRef.current = Math.min(1, assemblyRef.current + clampedDelta / 1.0);
-    
+
     // Actualizar tiempo del shader
     uniformsRef.current.uTime.value = elapsedRef.current;
 
@@ -210,16 +210,17 @@ function NexoXModel({
       `.replace(
         `#include <begin_vertex>`,
         `#include <begin_vertex>
-         vPos = position;`
+         vPos = position;`,
       );
-      
+
       shader.fragmentShader = `
         uniform float uTime;
         varying vec3 vPos;
         ${shader.fragmentShader}
-      `.replace(
-        `#include <color_fragment>`,
-        `#include <color_fragment>
+      `
+        .replace(
+          `#include <color_fragment>`,
+          `#include <color_fragment>
         
         vec2 uv = vPos.xy * 1.2;
         float time = uTime * 0.6;
@@ -235,10 +236,11 @@ function NexoXModel({
         
         // Mezcla muy suave de luz hacia blanco/cyan más claro
         diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.5, 0.95, 1.0), wave * 0.3);
-        `
-      ).replace(
-        `#include <emissivemap_fragment>`,
-        `#include <emissivemap_fragment>
+        `,
+        )
+        .replace(
+          `#include <emissivemap_fragment>`,
+          `#include <emissivemap_fragment>
         
         // Re-calculamos flow para emisivo (Circuitos)
         vec2 uv2 = vPos.xy * 0.85; // Menos líneas, más espaciadas
@@ -265,8 +267,8 @@ function NexoXModel({
         // Emitir luz brillante pura blanca/cyan por donde pasa el dato
         vec3 techGlow = vec3(0.9, 1.0, 1.0);
         totalEmissiveRadiance += techGlow * circuit * 1.2;
-        `
-      );
+        `,
+        );
     };
 
     // Color EXACTO Nexo Cyan (#00c2ff)
@@ -347,18 +349,39 @@ export default function NexoLogo3D() {
   const [mounted, setMounted] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry?.isIntersecting ?? false);
+      },
+      { rootMargin: "100px" },
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [mounted]);
 
   if (!mounted) return null;
 
   const cursorClass = dragging ? "cursor-grabbing" : hovered ? "cursor-grab" : "cursor-grab";
 
   return (
-    <div className={`relative h-full w-full select-none ${cursorClass}`}>
+    <div
+      ref={containerRef}
+      className={`nexo-3d-canvas relative h-full w-full select-none ${cursorClass}`}
+      style={{ contain: "layout paint" }}
+    >
       <Canvas
         camera={{ position: [0, 0, 4.8], fov: 40 }}
         dpr={[1, 1.75]}
+        frameloop={isVisible ? "always" : "never"}
         gl={{
           antialias: true,
           alpha: true,

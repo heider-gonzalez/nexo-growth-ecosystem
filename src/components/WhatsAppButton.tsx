@@ -30,7 +30,7 @@ export function WhatsAppButton() {
       >
         {/* Pulsing Glow Ring */}
         <span
-          className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#00c2ff] opacity-35"
+          className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#00c2ff] opacity-25 motion-reduce:animate-none"
           aria-hidden="true"
         />
 
@@ -42,7 +42,7 @@ export function WhatsAppButton() {
           className="absolute top-0.5 right-0.5 flex h-3.5 w-3.5 items-center justify-center"
           title="En línea"
         >
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full border-2 border-white dark:border-slate-900 bg-emerald-400" />
         </span>
       </a>

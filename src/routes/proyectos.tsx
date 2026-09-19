@@ -1,22 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, X as CloseIcon, Lock, Check } from "lucide-react";
-import { z } from "zod";
 
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { PROYECTOS, type Proyecto } from "@/config/proyectos";
 
 // Igual que el directorio de equipo: el detalle abierto se guarda en la URL
-// (?proyecto=key) y no sólo en useState. Así abrir un proyecto crea una
-// entrada real de historial y el botón "Atrás" del navegador vuelve a la
-// grilla, no a Inicio.
-const searchSchema = z.object({
-  proyecto: z.string().optional(),
-});
-
+// (?proyecto=key) y no sólo en useState.
 export const Route = createFileRoute("/proyectos")({
-  validateSearch: searchSchema,
+  validateSearch: (search: Record<string, unknown>): { proyecto?: string } => ({
+    proyecto: typeof search.proyecto === "string" ? search.proyecto : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Proyectos — Nexo" },
@@ -42,6 +37,8 @@ function ProyectoVisual({ proyecto, className = "" }: { proyecto: Proyecto; clas
       <img
         src={proyecto.imagen}
         alt={proyecto.imagenAlt ?? `Captura del proyecto de ${proyecto.cliente}`}
+        width={800}
+        height={450}
         loading="lazy"
         decoding="async"
         className={`w-full object-cover object-top ${className}`}

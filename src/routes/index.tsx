@@ -5,9 +5,13 @@ import { Monitor, RefreshCw, Zap, Bot, ArrowRight, Sparkles } from "lucide-react
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Loader } from "@/components/Loader";
-import { ProductShowcase } from "@/components/ProductShowcase";
-import { CompanyVideo } from "@/components/CompanyVideo";
 
+const ProductShowcase = lazy(() =>
+  import("@/components/ProductShowcase").then((mod) => ({ default: mod.ProductShowcase })),
+);
+const CompanyVideo = lazy(() =>
+  import("@/components/CompanyVideo").then((mod) => ({ default: mod.CompanyVideo })),
+);
 const NexoLogo3D = lazy(() => import("@/components/NexoLogo3D"));
 
 export const Route = createFileRoute("/")({
@@ -81,10 +85,10 @@ function Index() {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center pt-20 pb-12 md:pt-24 md:pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-background">
-        {/* Subtle Cyan Ambient Glow Reflection Behind 3D X in Dark Mode */}
+        {/* Subtle Cyan Ambient Glow Reflection Behind 3D X */}
         <div
           aria-hidden
-          className="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 h-[350px] w-[350px] sm:h-[550px] sm:w-[550px] rounded-full bg-[#00c2ff]/10 blur-[130px]"
+          className="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 h-[280px] w-[280px] sm:h-[480px] sm:w-[480px] rounded-full bg-[#00c2ff]/10 blur-[60px] sm:blur-[90px]"
         />
 
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 w-full z-10">
@@ -124,29 +128,27 @@ function Index() {
             </ScrollAnimation>
 
             {/* Hero Right 3D WebGL Canvas */}
-            <ScrollAnimation direction="right" delay={0.2}>
-              <div className="w-full flex flex-col items-center lg:items-end">
-                <div className="relative h-[320px] w-full sm:h-[420px] lg:h-[500px]">
-                  <ClientOnly
+            <div className="w-full flex flex-col items-center lg:items-end">
+              <div className="relative h-[320px] w-full sm:h-[420px] lg:h-[500px]">
+                <ClientOnly
+                  fallback={
+                    <div className="flex h-full w-full items-center justify-center">
+                      <Loader text="Cargando" />
+                    </div>
+                  }
+                >
+                  <Suspense
                     fallback={
                       <div className="flex h-full w-full items-center justify-center">
                         <Loader text="Cargando" />
                       </div>
                     }
                   >
-                    <Suspense
-                      fallback={
-                        <div className="flex h-full w-full items-center justify-center">
-                          <Loader text="Cargando" />
-                        </div>
-                      }
-                    >
-                      <NexoLogo3D />
-                    </Suspense>
-                  </ClientOnly>
-                </div>
+                    <NexoLogo3D />
+                  </Suspense>
+                </ClientOnly>
               </div>
-            </ScrollAnimation>
+            </div>
           </div>
         </div>
       </section>
@@ -197,10 +199,14 @@ function Index() {
       </section>
 
       {/* Producto: showcase de servicios en video */}
-      <ProductShowcase />
+      <Suspense fallback={<div className="min-h-[500px] w-full" />}>
+        <ProductShowcase />
+      </Suspense>
 
       {/* Video de presentación (sólo aparece cuando esté configurado) */}
-      <CompanyVideo />
+      <Suspense fallback={<div className="min-h-[300px] w-full" />}>
+        <CompanyVideo />
+      </Suspense>
 
       {/* Proceso Section */}
       <section id="proceso" className="relative bg-muted/40 py-24 sm:py-32 border-t border-border">
