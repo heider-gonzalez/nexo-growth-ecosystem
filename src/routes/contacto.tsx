@@ -306,6 +306,7 @@ function ContactoPage() {
                           <span>Enviar mensaje</span>
                           <Send className="h-4 w-4" />
                         </>
+                      )}
                     </button>
 
                     <p className="mt-4 text-xs text-muted-foreground">
