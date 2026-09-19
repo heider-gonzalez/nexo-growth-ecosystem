@@ -27,7 +27,7 @@ function NotFound() {
               </h1>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Ghost className="h-10 w-10 text-[#00c2ff]" />
+                  <Ghost className="h-10 w-10 text-[var(--brand-ink)]" />
                 </div>
               </div>
             </div>

@@ -24,7 +24,7 @@ function NotFoundComponent() {
             <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
               <svg
                 viewBox="0 0 24 24"
-                className="h-10 w-10 text-[#00c2ff]"
+                className="h-10 w-10 text-[var(--brand-ink)]"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"

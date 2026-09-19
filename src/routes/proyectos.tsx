@@ -82,7 +82,7 @@ function ProyectoCard({ proyecto, onOpen }: { proyecto: Proyecto; onOpen: () => 
       <ProyectoVisual proyecto={proyecto} className="h-48 sm:h-56" />
 
       <div className="flex flex-1 flex-col p-6">
-        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#00c2ff]">
+        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--brand-ink)]">
           {proyecto.sector}
         </span>
 
@@ -113,7 +113,7 @@ function ProyectoCard({ proyecto, onOpen }: { proyecto: Proyecto; onOpen: () => 
             ) : null}
           </ul>
 
-          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#00c2ff] transition-transform group-hover:translate-x-0.5">
+          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--brand-ink)] transition-transform group-hover:translate-x-0.5">
             Ver el proyecto
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </span>
@@ -182,11 +182,11 @@ function ProyectosPage() {
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <ScrollAnimation direction="up">
             <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
+              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand-ink)]">
                 Proyectos
               </span>
               <h1 className="mt-5 font-sans text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-                Lo que hemos <span className="text-[#00c2ff]">construido</span>
+                Lo que hemos <span className="text-[var(--brand-ink)]">construido</span>
               </h1>
               <p className="mt-6 font-sans text-base leading-relaxed text-muted-foreground sm:text-lg">
                 Sitios, plataformas y software a la medida que hoy están en uso. Aquí está qué
@@ -301,7 +301,7 @@ function ProyectosPage() {
               <ProyectoVisual proyecto={selected} className="h-52 sm:h-72" />
 
               <div className="p-6 sm:p-10">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#00c2ff]">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--brand-ink)]">
                   {selected.sector}
                 </span>
 
@@ -327,7 +327,7 @@ function ProyectosPage() {
                           key={entregable}
                           className="flex items-start gap-2.5 text-sm text-foreground"
                         >
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[#00c2ff]">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[var(--brand-ink)]">
                             <Check className="h-3 w-3" aria-hidden="true" />
                           </span>
                           {entregable}

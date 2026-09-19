@@ -23,7 +23,7 @@ export function ProductShowcase() {
         <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-16">
           <ScrollAnimation direction="left" className="min-w-0">
             <div>
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
+              <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand-ink)]">
                 Producto
               </span>
               <h2 className="mt-5 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-foreground">
@@ -38,7 +38,7 @@ export function ProductShowcase() {
               <ul className="mt-8 space-y-3">
                 {features.map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-sm text-foreground">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[#00c2ff]">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[var(--brand-ink)]">
                       <svg
                         viewBox="0 0 24 24"
                         className="h-3 w-3"

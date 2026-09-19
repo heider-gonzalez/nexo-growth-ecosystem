@@ -124,12 +124,12 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                         {/* Botón desplegable para "Nosotros" */}
                         <button
                           onClick={() => toggleSection(n.label)}
-                          className="flex w-full items-center justify-between text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
+                          className="flex w-full items-center justify-between text-lg font-medium text-foreground transition-colors hover:text-[var(--brand-ink)]"
                         >
                           <span>{n.label}</span>
                           <ChevronDown
                             className={`h-5 w-5 text-muted-foreground transition-transform duration-250 ${
-                              isExpanded ? "rotate-180 text-[#00c2ff]" : ""
+                              isExpanded ? "rotate-180 text-[var(--brand-ink)]" : ""
                             }`}
                           />
                         </button>
@@ -173,7 +173,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                       <Link
                         to={n.href!}
                         onClick={handleNavigate}
-                        className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff] block"
+                        className="text-lg font-medium text-foreground transition-colors hover:text-[var(--brand-ink)] block"
                       >
                         {n.label}
                       </Link>

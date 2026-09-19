@@ -56,13 +56,13 @@ function QuienesSomosPage() {
             <ScrollAnimation direction="up">
               <div className="text-center">
                 <div className="brand-pill inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium mb-6 cursor-default select-none">
-                  <Sparkles className="h-3.5 w-3.5 text-[#00c2ff]" />
+                  <Sparkles className="h-3.5 w-3.5 text-[var(--brand-ink)]" />
                   <span>Nuestra Identidad & Propósito</span>
                 </div>
 
                 <h1 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-foreground">
-                  El puente estratégico entre la <span className="text-[#00c2ff]">tecnología</span>{" "}
-                  y tu negocio
+                  El puente estratégico entre la{" "}
+                  <span className="text-[var(--brand-ink)]">tecnología</span> y tu negocio
                 </h1>
 
                 <p className="mt-8 max-w-3xl mx-auto text-base sm:text-xl text-muted-foreground leading-relaxed">
@@ -87,8 +87,9 @@ function QuienesSomosPage() {
                       Nuestra Esencia: La Conexión Fundamental
                     </h2>
                     <p className="mt-4 text-base sm:text-lg leading-relaxed text-muted-foreground">
-                      El concepto de <span className="text-[#00c2ff] font-semibold">Nexo</span>{" "}
-                      representa nuestra esencia: somos la conexión estratégica fundamental entre la
+                      El concepto de{" "}
+                      <span className="text-[var(--brand-ink)] font-semibold">Nexo</span> representa
+                      nuestra esencia: somos la conexión estratégica fundamental entre la
                       tecnología, los procesos digitales y las metas comerciales de cada negocio que
                       confía en nosotros.
                     </p>
@@ -100,7 +101,7 @@ function QuienesSomosPage() {
                         key={item.title}
                         className="flex items-start gap-3 rounded-2xl bg-muted/60 p-4 border border-border/60 transition-colors hover:border-[#00c2ff]/40"
                       >
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-[#00c2ff] font-bold text-xs">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-[var(--brand-ink)] font-bold text-xs">
                           0{idx + 1}
                         </div>
                         <div>
@@ -123,7 +124,7 @@ function QuienesSomosPage() {
           <div className="mx-auto max-w-6xl px-6">
             <ScrollAnimation direction="up">
               <div className="text-center max-w-2xl mx-auto mb-16">
-                <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
+                <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand-ink)]">
                   Dirección Estratégica
                 </span>
                 <h2 className="mt-3 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-foreground">
@@ -143,10 +144,10 @@ function QuienesSomosPage() {
                   <div className="absolute top-0 right-0 h-32 w-32 bg-[#00c2ff]/5 rounded-full blur-2xl group-hover:bg-[#00c2ff]/15 transition-all duration-500" />
                   <div>
                     <div className="flex items-center justify-between mb-8">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-[#00c2ff]">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-[var(--brand-ink)]">
                         <Target className="h-7 w-7" strokeWidth={2.2} />
                       </div>
-                      <span className="rounded-full bg-muted border border-border px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-muted-foreground group-hover:text-[#00c2ff] group-hover:border-[#00c2ff]/30 transition-colors">
+                      <span className="rounded-full bg-muted border border-border px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-muted-foreground group-hover:text-[var(--brand-ink)] group-hover:border-[#00c2ff]/30 transition-colors">
                         Misión
                       </span>
                     </div>
@@ -173,15 +174,15 @@ function QuienesSomosPage() {
 
                   <div className="mt-8 pt-6 border-t border-border flex flex-col gap-2.5 text-xs sm:text-sm font-medium text-muted-foreground">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--brand-ink)]" />
                       <span>Resultados tangibles y medibles</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--brand-ink)]" />
                       <span>Desarrollo ágil e iteración continua</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--brand-ink)]" />
                       <span>Escalabilidad técnica y sostenibilidad</span>
                     </div>
                   </div>
@@ -194,10 +195,10 @@ function QuienesSomosPage() {
                   <div className="absolute top-0 right-0 h-32 w-32 bg-[#00c2ff]/5 rounded-full blur-2xl group-hover:bg-[#00c2ff]/15 transition-all duration-500" />
                   <div>
                     <div className="flex items-center justify-between mb-8">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-[#00c2ff]">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-[var(--brand-ink)]">
                         <Eye className="h-7 w-7" strokeWidth={2.2} />
                       </div>
-                      <span className="rounded-full bg-muted border border-border px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-muted-foreground group-hover:text-[#00c2ff] group-hover:border-[#00c2ff]/30 transition-colors">
+                      <span className="rounded-full bg-muted border border-border px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-muted-foreground group-hover:text-[var(--brand-ink)] group-hover:border-[#00c2ff]/30 transition-colors">
                         Visión
                       </span>
                     </div>
@@ -223,15 +224,15 @@ function QuienesSomosPage() {
 
                   <div className="mt-8 pt-6 border-t border-border flex flex-col gap-2.5 text-xs sm:text-sm font-medium text-muted-foreground">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--brand-ink)]" />
                       <span>Liderazgo en innovación digital</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--brand-ink)]" />
                       <span>Automatización e inteligencia operativa</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-[#00c2ff]" />
+                      <CheckCircle2 className="h-4 w-4 text-[var(--brand-ink)]" />
                       <span>Aceleración de ventas y crecimiento</span>
                     </div>
                   </div>
