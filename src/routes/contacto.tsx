@@ -79,6 +79,7 @@ function ContactoPage() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -90,6 +91,8 @@ function ContactoPage() {
       terminos: false,
     },
   });
+
+  const isTerminosAccepted = watch("terminos");
 
   const onSubmit = async (data: ContactFormData) => {
     try {
@@ -350,7 +353,7 @@ function ContactoPage() {
                       <div className="pt-2">
                         <button
                           type="submit"
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || !isTerminosAccepted}
                           className="btn-cyan inline-flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-base font-bold shadow-[0_4px_20px_rgba(0,194,255,0.35)] transition-all hover:shadow-[0_6px_28px_rgba(0,194,255,0.5)] active:scale-[0.99] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                         >
                           {isSubmitting ? (
