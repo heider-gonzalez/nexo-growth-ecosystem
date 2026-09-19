@@ -95,7 +95,7 @@ const team: TeamMember[] = [
     role: "Ingeniero Informatico",
     avatarUrl: "https://unavatar.io/linkedin/user:cristian-acu%C3%B1a3103",
     socials: {
-      linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
+      linkedin: "https://www.linkedin.com/in/cristian-acu%C3%B1a3103/",
       github: "https://github.com/CriX03",
     },
     badges: ["CEO & Founder"],
@@ -118,7 +118,8 @@ const team: TeamMember[] = [
     role: "Ingeniero Informatico",
     avatarUrl: "https://unavatar.io/github/p1t3rparqer",
     socials: {
-      linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
+      // LinkedIn pendiente: sin la URL del perfil no se pone enlace, antes
+      // apuntaba al perfil de otro miembro del equipo.
       github: "https://github.com/p1t3rparqer",
     },
     badges: ["CEO & Founder"],
@@ -141,7 +142,7 @@ const team: TeamMember[] = [
     role: "Ingeniero de Sistemas",
     avatarUrl: "https://unavatar.io/github/SERGIIO0101",
     socials: {
-      linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
+      linkedin: "https://www.linkedin.com/in/severicheguerrerosergio/",
       github: "https://github.com/SERGIIO0101",
     },
     badges: ["CEO & Founder"],
@@ -285,7 +286,7 @@ function FormattedPerfilInfo({ text }: { text: string }) {
                 key={index}
                 className="flex items-center gap-3 p-3.5 rounded-xl bg-muted/40 border border-border/50 text-sm font-medium text-foreground hover:border-[#00c2ff]/40 hover:bg-muted/70 transition-all duration-200"
               >
-                <div className="w-6 h-6 rounded-full bg-[#00c2ff]/15 text-[#00c2ff] flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 rounded-full bg-[#00c2ff]/15 text-[var(--brand-ink)] flex items-center justify-center shrink-0">
                   <Check className="h-3.5 w-3.5 stroke-[2.5]" />
                 </div>
                 <span>{skill}</span>
@@ -359,7 +360,7 @@ function TeamPage() {
           <ScrollAnimation direction="up">
             <div className="max-w-2xl mx-auto text-center">
               <h1 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foreground">
-                Los humanos detrás de <span className="text-[#00c2ff]">Nexo</span>
+                Los humanos detrás de <span className="text-[var(--brand-ink)]">Nexo</span>
               </h1>
               <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted-foreground font-sans">
                 Somos un equipo de creadores que creemos en la construcción de software excelente
@@ -386,6 +387,8 @@ function TeamPage() {
                         src={member.avatarUrl}
                         alt={member.name}
                         className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-300"
+                        loading="lazy"
+                        decoding="async"
                         onError={() => handleImgError(member.name)}
                       />
                     ) : (
@@ -438,6 +441,8 @@ function TeamPage() {
                     src={selectedMember.avatarUrl}
                     alt={selectedMember.name}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                     onError={() => handleImgError(selectedMember.name)}
                   />
                 ) : (

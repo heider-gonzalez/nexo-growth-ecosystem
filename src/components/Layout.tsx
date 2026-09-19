@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CookieConsent } from "@/components/CookieConsent";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 /**
  * El proyecto usa @tanstack/react-router (rutas por archivo), no
@@ -27,7 +28,9 @@ export function Layout({ children, hideFooter = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-[#00c2ff]/30 selection:text-foreground">
       <Header />
-      {children}
+      <ErrorBoundary>
+        {children}
+      </ErrorBoundary>
       {!hideFooter && <SiteFooter />}
       <WhatsAppButton />
       <CookieConsent />

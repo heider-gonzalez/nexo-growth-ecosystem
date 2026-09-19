@@ -10,15 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R404RouteImport } from './routes/404'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as EquipoRouteImport } from './routes/equipo'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as ProyectosRouteImport } from './routes/proyectos'
 import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
 import { Route as TerminosRouteImport } from './routes/terminos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -36,6 +43,11 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
   path: '/privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProyectosRoute = ProyectosRouteImport.update({
+  id: '/proyectos',
+  path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuienesSomosRoute = QuienesSomosRouteImport.update({
   id: '/quienes-somos',
   path: '/quienes-somos',
@@ -49,26 +61,32 @@ const TerminosRoute = TerminosRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/proyectos': typeof ProyectosRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/proyectos': typeof ProyectosRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/contacto': typeof ContactoRoute
   '/equipo': typeof EquipoRoute
   '/privacidad': typeof PrivacidadRoute
+  '/proyectos': typeof ProyectosRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/terminos': typeof TerminosRoute
 }
@@ -76,34 +94,42 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/404'
     | '/contacto'
     | '/equipo'
     | '/privacidad'
+    | '/proyectos'
     | '/quienes-somos'
     | '/terminos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/404'
     | '/contacto'
     | '/equipo'
     | '/privacidad'
+    | '/proyectos'
     | '/quienes-somos'
     | '/terminos'
   id:
     | '__root__'
     | '/'
+    | '/404'
     | '/contacto'
     | '/equipo'
     | '/privacidad'
+    | '/proyectos'
     | '/quienes-somos'
     | '/terminos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R404Route: typeof R404Route
   ContactoRoute: typeof ContactoRoute
   EquipoRoute: typeof EquipoRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  ProyectosRoute: typeof ProyectosRoute
   QuienesSomosRoute: typeof QuienesSomosRoute
   TerminosRoute: typeof TerminosRoute
 }
@@ -115,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto': {
@@ -138,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/proyectos': {
+      id: '/proyectos'
+      path: '/proyectos'
+      fullPath: '/proyectos'
+      preLoaderRoute: typeof ProyectosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quienes-somos': {
       id: '/quienes-somos'
       path: '/quienes-somos'
@@ -157,9 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R404Route: R404Route,
   ContactoRoute: ContactoRoute,
   EquipoRoute: EquipoRoute,
   PrivacidadRoute: PrivacidadRoute,
+  ProyectosRoute: ProyectosRoute,
   QuienesSomosRoute: QuienesSomosRoute,
   TerminosRoute: TerminosRoute,
 }

@@ -24,7 +24,7 @@ export function CompanyVideo() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:items-end lg:gap-16">
           <div>
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#00c2ff]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand-ink)]">
               Quiénes somos
             </span>
             <h2 className="mt-5 font-sans font-extrabold text-3xl sm:text-5xl tracking-tight text-foreground">

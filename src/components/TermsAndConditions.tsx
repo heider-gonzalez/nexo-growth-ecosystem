@@ -5,7 +5,7 @@ export function TermsAndConditions() {
     <section className="relative bg-background py-24 sm:py-32 border-t border-border">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex items-center gap-4 mb-12">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-[#00c2ff]">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-[var(--brand-ink)]">
             <FileText className="h-8 w-8" strokeWidth={2} />
           </div>
           <div>
@@ -20,7 +20,7 @@ export function TermsAndConditions() {
           <div className="bg-card border border-border rounded-3xl p-12 space-y-12 shadow-lg">
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   1
                 </span>
                 Aceptación de los Términos
@@ -36,7 +36,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   2
                 </span>
                 Información de NEXO
@@ -59,7 +59,7 @@ export function TermsAndConditions() {
                   "Integración de herramientas digitales",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -68,7 +68,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   3
                 </span>
                 Uso Permitido del Sitio Web
@@ -87,7 +87,7 @@ export function TermsAndConditions() {
                   "Conocer proyectos y soluciones ofrecidas",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -133,7 +133,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   5
                 </span>
                 Propiedad Intelectual
@@ -155,7 +155,7 @@ export function TermsAndConditions() {
                   "Materiales comerciales",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -169,7 +169,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   6
                 </span>
                 Marca NEXO
@@ -183,7 +183,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   7
                 </span>
                 Información sobre Servicios y Precios
@@ -201,7 +201,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   8
                 </span>
                 Cotizaciones y Propuestas
@@ -221,7 +221,7 @@ export function TermsAndConditions() {
                   "Requerimientos especiales",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -234,7 +234,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   9
                 </span>
                 Servicios de Terceros
@@ -252,7 +252,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   10
                 </span>
                 Disponibilidad del Sitio
@@ -272,7 +272,7 @@ export function TermsAndConditions() {
                   "Situaciones de fuerza mayor o circunstancias fuera del control de NEXO",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#00c2ff] mt-0.5 flex-shrink-0" />
+                    <ChevronRight className="h-5 w-5 text-[var(--brand-ink)] mt-0.5 flex-shrink-0" />
                     <span className="text-base">{item}</span>
                   </li>
                 ))}
@@ -285,7 +285,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   11
                 </span>
                 Enlaces Externos
@@ -301,7 +301,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   12
                 </span>
                 Información Proporcionada por el Usuario
@@ -316,7 +316,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   13
                 </span>
                 Protección de Datos Personales
@@ -332,7 +332,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   14
                 </span>
                 Limitación de Responsabilidad
@@ -351,7 +351,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   15
                 </span>
                 Contenido Informativo
@@ -366,7 +366,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   16
                 </span>
                 Modificación de los Términos
@@ -380,7 +380,7 @@ export function TermsAndConditions() {
 
             <div className="border-b border-border/50 pb-8">
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   17
                 </span>
                 Legislación Aplicable
@@ -395,7 +395,7 @@ export function TermsAndConditions() {
 
             <div>
               <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff] text-sm font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)] text-sm font-bold">
                   18
                 </span>
                 Contacto
@@ -406,7 +406,7 @@ export function TermsAndConditions() {
               </p>
               <div className="bg-muted/50 rounded-2xl p-6 space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[#00c2ff]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-[var(--brand-ink)]">
                     <FileText className="h-5 w-5" />
                   </div>
                   <div>

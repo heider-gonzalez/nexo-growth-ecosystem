@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, Menu, ChevronDown, Instagram, Facebook } from "lucide-react";
+import { X, Menu, ChevronDown, Instagram, Facebook, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 
@@ -8,6 +8,7 @@ import type { NavItem } from "@/components/Header";
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
 const FB =
   "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
+const LINKEDIN = "https://www.linkedin.com/company/nexo-growth-solutions/";
 
 function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -87,11 +88,15 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                     src="/Logo_ Paleta claro.png"
                     alt="NEXO Logo"
                     className="block dark:hidden h-14 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="/Logo_ Paleta oscura.png"
                     alt="NEXO Logo"
                     className="hidden dark:block h-14 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </Link>
                 <button
@@ -119,12 +124,12 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                         {/* Botón desplegable para "Nosotros" */}
                         <button
                           onClick={() => toggleSection(n.label)}
-                          className="flex w-full items-center justify-between text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff]"
+                          className="flex w-full items-center justify-between text-lg font-medium text-foreground transition-colors hover:text-[var(--brand-ink)]"
                         >
                           <span>{n.label}</span>
                           <ChevronDown
                             className={`h-5 w-5 text-muted-foreground transition-transform duration-250 ${
-                              isExpanded ? "rotate-180 text-[#00c2ff]" : ""
+                              isExpanded ? "rotate-180 text-[var(--brand-ink)]" : ""
                             }`}
                           />
                         </button>
@@ -168,7 +173,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                       <Link
                         to={n.href!}
                         onClick={handleNavigate}
-                        className="text-lg font-medium text-foreground transition-colors hover:text-[#00c2ff] block"
+                        className="text-lg font-medium text-foreground transition-colors hover:text-[var(--brand-ink)] block"
                       >
                         {n.label}
                       </Link>
@@ -196,6 +201,15 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
+                </a>
+                <a
+                  href={LINKEDIN}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex p-3 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/60 bg-accent/30"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
                 </a>
                 <a
                   href="#"

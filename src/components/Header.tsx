@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Instagram, Facebook } from "lucide-react";
+import { ChevronDown, Instagram, Facebook, Linkedin } from "lucide-react";
 
 import { MobileMenu } from "@/components/MobileMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -13,6 +13,7 @@ import {
 const IG = "https://www.instagram.com/nexo_bq?igsi=ZTlnZjQ2N3oyd2Vo&utm_source=qr";
 const FB =
   "https://www.facebook.com/profile.php?id=61593670084560&mibextid=wwXIfr&rdid=vAHbtPsbNuGkKTiM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B8hmLcFHu%2F%3Fmibextid%3DwwXIfr#";
+const LINKEDIN = "https://www.linkedin.com/company/nexo-growth-solutions/";
 
 function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -40,6 +41,7 @@ export type NavItem = {
 
 export const primaryNav: NavItem[] = [
   { label: "Servicios", href: "/#servicios" },
+  { label: "Proyectos", href: "/proyectos" },
   { label: "Contacto", href: "/contacto" },
   {
     label: "Nosotros",
@@ -55,21 +57,25 @@ export const primaryNav: NavItem[] = [
 export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center">
           <img
             src="/Logo_ Paleta claro.png"
             alt="NEXO Logo"
             className="block dark:hidden h-20 w-auto object-contain"
+            loading="eager"
+            fetchPriority="high"
           />
           <img
             src="/Logo_ Paleta oscura.png"
             alt="NEXO Logo"
             className="hidden dark:block h-20 w-auto object-contain"
+            loading="eager"
+            fetchPriority="high"
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {primaryNav.map((n) => {
             if (n.children) {
               return (
@@ -106,6 +112,19 @@ export function Header() {
           })}
         </nav>
 
+        {/* Tablet navigation - simplified version */}
+        <nav className="hidden items-center gap-4 md:flex lg:hidden">
+          {primaryNav.map((n) => (
+            <Link
+              key={n.label}
+              to={n.href!}
+              className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {n.label}
+            </Link>
+          ))}
+        </nav>
+
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <a
@@ -125,6 +144,15 @@ export function Header() {
             aria-label="Facebook"
           >
             <Facebook className="h-5 w-5" />
+          </a>
+          <a
+            href={LINKEDIN}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-5 w-5" />
           </a>
           <a
             href="#"
