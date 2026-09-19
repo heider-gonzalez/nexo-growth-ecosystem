@@ -26,11 +26,11 @@ export function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar a Nexo por WhatsApp"
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-110 hover:bg-[#20bd5a] hover:shadow-[0_6px_26px_rgba(37,211,102,0.6)] active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/50"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#00c2ff] text-white shadow-[0_4px_20px_rgba(0,194,255,0.4)] transition-all duration-300 hover:scale-110 hover:bg-[#00b0e8] hover:shadow-[0_6px_26px_rgba(0,194,255,0.6)] active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#00c2ff]/50"
       >
         {/* Pulsing Glow Ring */}
         <span
-          className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-35"
+          className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#00c2ff] opacity-35"
           aria-hidden="true"
         />
 

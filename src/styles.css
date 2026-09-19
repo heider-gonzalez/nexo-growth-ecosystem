@@ -143,13 +143,23 @@
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Animación equilibrada y fluida de 450ms al alternar el modo claro y oscuro */
+  /* Animación optimizada y fluida de 260ms al alternar el modo claro y oscuro */
   html.theme-transitioning,
   html.theme-transitioning *,
   html.theme-transitioning *::before,
   html.theme-transitioning *::after {
     transition-property: background-color, border-color, color, fill, stroke, box-shadow !important;
-    transition-duration: 0.45s !important;
+    transition-duration: 0.26s !important;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  /* El interruptor de tema preserva y acelera por hardware su traslación y opacidad */
+  html.theme-transitioning [role="switch"],
+  html.theme-transitioning [role="switch"] *,
+  html.theme-transitioning [role="switch"] *::before,
+  html.theme-transitioning [role="switch"] *::after {
+    transition-property: transform, opacity, background-color, border-color, color, box-shadow !important;
+    transition-duration: 0.26s !important;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 

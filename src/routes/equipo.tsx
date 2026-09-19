@@ -71,7 +71,7 @@ const team: TeamMember[] = [
     location: "Barranquilla, Colombia",
     role: "Ingeniero Informatico",
     funcion: "Desarrollador Full Stack",
-    avatarUrl: "/Heider.jpg",
+    avatarUrl: "https://unavatar.io/github/heider-gonzalez",
     socials: {
       linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
       x: "https://x.com/HeiderGonz50147",
