@@ -76,8 +76,8 @@ function QuienesSomosPage() {
 
             {/* Concepto Nexo Card */}
             <ScrollAnimation direction="up" delay={0.15}>
-              <div className="mt-14 relative rounded-3xl border border-border bg-card/80 p-8 sm:p-12 shadow-xl backdrop-blur-sm">
-                <div className="absolute top-0 right-0 -mt-3 mr-6 rounded-full bg-[#00c2ff] px-4 py-1 text-xs font-bold uppercase tracking-wider text-slate-950">
+              <div className="mt-14 relative rounded-3xl border border-border/80 bg-card/90 p-8 sm:p-12 shadow-xl backdrop-blur-xs">
+                <div className="absolute top-0 right-0 -mt-3 mr-6 rounded-full bg-[#00c2ff] px-4 py-1 text-xs font-bold uppercase tracking-wider text-slate-950 shadow-[0_2px_8px_rgba(0,194,255,0.4)]">
                   Concepto Nexo
                 </div>
 
@@ -99,9 +99,9 @@ function QuienesSomosPage() {
                     {pillars.map((item, idx) => (
                       <div
                         key={item.title}
-                        className="flex items-start gap-3 rounded-2xl bg-muted/60 p-4 border border-border/60 transition-colors hover:border-[#00c2ff]/40"
+                        className="flex items-start gap-3 rounded-2xl bg-muted/50 p-4 border border-border/70 transition-all duration-200 hover:border-[#00c2ff]/50 hover:bg-muted/70"
                       >
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-[var(--brand-ink)] font-bold text-xs">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-[var(--brand-ink)] font-bold text-xs">
                           0{idx + 1}
                         </div>
                         <div>

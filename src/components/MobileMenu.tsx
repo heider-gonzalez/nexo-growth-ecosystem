@@ -63,7 +63,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
       {/* Mobile menu trigger button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden p-2 text-foreground transition-colors hover:text-muted-foreground"
+        className="md:hidden p-2 text-foreground transition-all hover:text-muted-foreground active:scale-90 rounded-full hover:bg-accent/60"
         aria-label="Toggle menu"
       >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -73,17 +73,16 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.98 }}
+            initial={{ opacity: 0, y: -16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[100] w-screen h-screen bg-card md:hidden flex flex-col"
-            style={{ backgroundColor: "var(--card)" }}
+            exit={{ opacity: 0, y: -16, scale: 0.98 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[100] w-screen h-screen bg-card/98 backdrop-blur-2xl md:hidden flex flex-col"
           >
             <div className="flex flex-col h-full px-6 py-6 overflow-y-auto">
               {/* Parte superior del menú con separador sutil */}
               <div className="flex items-center justify-between pb-5 border-b border-border/60 mb-4">
-                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
+                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center active:scale-95 transition-transform">
                   <img
                     src="/Logo_ Paleta claro.png"
                     alt="NEXO Logo"
@@ -105,7 +104,7 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 text-foreground transition-colors hover:text-muted-foreground"
+                  className="p-2 text-foreground transition-all hover:text-muted-foreground active:scale-90 rounded-full hover:bg-accent/60"
                   aria-label="Close menu"
                 >
                   <X className="h-6 w-6" />
@@ -122,13 +121,13 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                         key={n.label}
                         initial={{ opacity: 0, x: -12 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.08 + idx * 0.04, duration: 0.2 }}
+                        transition={{ delay: 0.06 + idx * 0.03, duration: 0.2 }}
                         className="border-b border-border/50 py-3.5"
                       >
                         {/* Botón desplegable para "Nosotros" */}
                         <button
                           onClick={() => toggleSection(n.label)}
-                          className="flex w-full items-center justify-between text-lg font-medium text-foreground transition-colors hover:text-[var(--brand-ink)]"
+                          className="flex w-full items-center justify-between text-lg font-semibold text-foreground transition-colors hover:text-[var(--brand-ink)] active:scale-[0.99]"
                         >
                           <span>{n.label}</span>
                           <ChevronDown
@@ -144,16 +143,16 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
+                              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-3 pt-3 pl-4 border-l-2 border-[#00c2ff]/40 mt-2">
+                              <div className="flex flex-col gap-2 pt-3 pl-4 border-l-2 border-[#00c2ff]/50 mt-2">
                                 {n.children.map((child) => (
                                   <Link
                                     key={child.label}
                                     to={child.href}
                                     onClick={handleNavigate}
-                                    className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-1"
+                                    className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-1.5 px-2 rounded-xl hover:bg-accent/60 active:scale-[0.98]"
                                   >
                                     {child.label}
                                   </Link>
@@ -171,13 +170,13 @@ export function MobileMenu({ nav, onNavigate }: MobileMenuProps) {
                       key={n.label}
                       initial={{ opacity: 0, x: -12 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.08 + idx * 0.04, duration: 0.2 }}
+                      transition={{ delay: 0.06 + idx * 0.03, duration: 0.2 }}
                       className="border-b border-border/50 py-3.5"
                     >
                       <Link
                         to={n.href!}
                         onClick={handleNavigate}
-                        className="text-lg font-medium text-foreground transition-colors hover:text-[var(--brand-ink)] block"
+                        className="text-lg font-semibold text-foreground transition-colors hover:text-[var(--brand-ink)] block active:scale-[0.99]"
                       >
                         {n.label}
                       </Link>

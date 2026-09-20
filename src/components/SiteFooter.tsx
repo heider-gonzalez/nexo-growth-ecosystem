@@ -139,7 +139,7 @@ export function SiteFooter() {
           <button
             type="button"
             onClick={scrollToTop}
-            className="inline-flex cursor-pointer items-center gap-1 self-start transition-colors hover:text-white sm:self-auto"
+            className="inline-flex cursor-pointer items-center gap-1.5 self-start transition-all hover:text-white active:scale-95 sm:self-auto py-1 px-2 rounded-lg hover:bg-slate-900"
           >
             Volver arriba
             <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />

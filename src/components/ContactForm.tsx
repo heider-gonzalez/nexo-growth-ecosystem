@@ -11,13 +11,13 @@ const WA_URL =
   "https://wa.me/573137853050?text=Hola%20Nexo%2C%20necesito%20asesor%C3%ADa%20para%20mi%20proyecto%20digital.%20%C2%BFPodr%C3%ADan%20ayudarme%3F";
 
 const fieldClass =
-  "w-full rounded-none border-0 border-b border-border bg-transparent px-0 py-2.5 text-base text-foreground placeholder:text-muted-foreground/50 transition-colors focus:border-[#00c2ff] focus:outline-none focus:ring-0";
-const fieldErrorClass = `${fieldClass} !border-red-500/70 focus:!border-red-500`;
+  "w-full rounded-xl border border-border/80 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 transition-all duration-200 hover:border-border hover:bg-background/80 focus:border-primary focus:bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-2xs";
+const fieldErrorClass = `${fieldClass} !border-red-500/80 focus:!ring-red-500/20 focus:!border-red-500`;
 
 function FieldError({ message }: { message?: string | undefined }) {
   if (!message) return null;
   return (
-    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-red-400">
+    <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-500 dark:text-red-400">
       <AlertCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
       {message}
     </p>
@@ -69,7 +69,7 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-8">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       {/* Honeypot anti-bot field */}
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <label htmlFor="website">Website</label>
@@ -83,7 +83,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="nombre" className="block text-sm text-muted-foreground">
+        <label htmlFor="nombre" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Nombre
         </label>
         <input
@@ -97,7 +97,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm text-muted-foreground">
+        <label htmlFor="email" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Correo
         </label>
         <input
@@ -111,7 +111,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="celular" className="block text-sm text-muted-foreground">
+        <label htmlFor="celular" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Celular
         </label>
         <input
@@ -125,7 +125,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="mensaje" className="block text-sm text-muted-foreground">
+        <label htmlFor="mensaje" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Mensaje
         </label>
         <textarea
@@ -138,7 +138,7 @@ export function ContactForm() {
         <FieldError message={errors.mensaje?.message} />
       </div>
 
-      <div>
+      <div className="pt-1">
         <label htmlFor="terminos" className="flex cursor-pointer items-start gap-3">
           <input
             id="terminos"
@@ -169,11 +169,11 @@ export function ContactForm() {
         <FieldError message={errors.terminos?.message} />
       </div>
 
-      <div>
+      <div className="pt-2">
         <button
           type="submit"
           disabled={isSubmitting || !isTerminosAccepted}
-          className="btn-cyan inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
+          className="btn-cyan inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold shadow-md shadow-cyan-500/15 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           {isSubmitting ? (
             <>

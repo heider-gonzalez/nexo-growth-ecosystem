@@ -56,9 +56,9 @@ export const primaryNav: NavItem[] = [
 
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-xl shadow-2xs">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center active:scale-[0.98] transition-transform">
           <img
             src="/Logo_ Paleta claro.png"
             alt="NEXO Logo"
@@ -81,22 +81,22 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-5 lg:flex">
+        <nav className="hidden items-center gap-1.5 lg:flex">
           {primaryNav.map((n) => {
             if (n.children) {
               return (
                 <div key={n.label} className="relative group/nav">
-                  <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors group-hover/nav:text-foreground outline-none cursor-pointer py-2">
+                  <button className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-all group-hover/nav:text-foreground group-hover/nav:bg-accent/60 px-3.5 py-1.5 rounded-full outline-none cursor-pointer active:scale-[0.97]">
                     {n.label}
                     <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-hover/nav:rotate-180" />
                   </button>
                   <div className="absolute left-0 top-full pt-1.5 hidden group-hover/nav:block z-50">
-                    <div className="w-52 bg-card/95 backdrop-blur-md border border-border shadow-lg rounded-xl p-1.5 flex flex-col gap-0.5 animate-in fade-in-0 zoom-in-95 duration-150">
+                    <div className="w-56 bg-card/95 backdrop-blur-xl border border-border/80 shadow-2xl rounded-2xl p-1.5 flex flex-col gap-0.5 animate-in fade-in-0 zoom-in-95 duration-150 origin-top-left">
                       {n.children.map((child) => (
                         <Link
                           key={child.label}
                           to={child.href}
-                          className="rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-accent focus:bg-accent"
+                          className="rounded-xl px-3 py-2 text-sm text-foreground transition-colors hover:bg-accent focus:bg-accent active:scale-[0.98]"
                         >
                           {child.label}
                         </Link>
@@ -110,7 +110,7 @@ export function Header() {
               <Link
                 key={n.label}
                 to={n.href!}
-                className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="group flex items-center gap-1 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:bg-accent/60 px-3.5 py-1.5 rounded-full active:scale-[0.97]"
               >
                 {n.label}
               </Link>
@@ -119,54 +119,54 @@ export function Header() {
         </nav>
 
         {/* Tablet navigation - simplified version */}
-        <nav className="hidden items-center gap-4 md:flex lg:hidden">
+        <nav className="hidden items-center gap-2 md:flex lg:hidden">
           {primaryNav.map((n) => (
             <Link
               key={n.label}
               to={n.href!}
-              className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-xs font-medium text-muted-foreground transition-all hover:text-foreground hover:bg-accent/60 px-2.5 py-1.5 rounded-full active:scale-[0.97]"
             >
               {n.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <ThemeToggle />
           <a
             href={IG}
             target="_blank"
             rel="noreferrer"
-            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            className="hidden md:flex p-2 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/70 active:scale-90"
             aria-label="Instagram"
           >
-            <Instagram className="h-5 w-5" />
+            <Instagram className="h-4.5 w-4.5" />
           </a>
           <a
             href={FB}
             target="_blank"
             rel="noreferrer"
-            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            className="hidden md:flex p-2 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/70 active:scale-90"
             aria-label="Facebook"
           >
-            <Facebook className="h-5 w-5" />
+            <Facebook className="h-4.5 w-4.5" />
           </a>
           <a
             href={LINKEDIN}
             target="_blank"
             rel="noreferrer"
-            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            className="hidden md:flex p-2 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/70 active:scale-90"
             aria-label="LinkedIn"
           >
-            <Linkedin className="h-5 w-5" />
+            <Linkedin className="h-4.5 w-4.5" />
           </a>
           <a
             href="#"
             onClick={(e) => e.preventDefault()}
-            className="hidden md:flex p-2 text-muted-foreground transition-colors hover:text-foreground items-center justify-center rounded-full hover:bg-accent/50"
+            className="hidden md:flex p-2 text-muted-foreground transition-all hover:text-foreground items-center justify-center rounded-full hover:bg-accent/70 active:scale-90"
             aria-label="TikTok"
           >
-            <TikTokIcon className="h-5 w-5" />
+            <TikTokIcon className="h-4.5 w-4.5" />
           </a>
           <MobileMenu nav={primaryNav} />
         </div>

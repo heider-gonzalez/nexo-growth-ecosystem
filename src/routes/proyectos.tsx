@@ -74,16 +74,16 @@ function ProyectoCard({ proyecto, onOpen }: { proyecto: Proyecto; onOpen: () => 
     <button
       type="button"
       onClick={onOpen}
-      className="saas-card group flex h-full w-full flex-col overflow-hidden rounded-2xl text-left"
+      className="saas-card group flex h-full w-full flex-col overflow-hidden rounded-2xl text-left cursor-pointer active:scale-[0.99]"
     >
       <ProyectoVisual proyecto={proyecto} className="h-48 sm:h-56" />
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
         <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--brand-ink)]">
           {proyecto.sector}
         </span>
 
-        <h2 className="mt-3 font-sans text-xl font-extrabold tracking-tight text-foreground">
+        <h2 className="mt-3 font-sans text-xl font-extrabold tracking-tight text-foreground transition-colors group-hover:text-[var(--brand-ink)] sm:text-2xl">
           {proyecto.cliente}
         </h2>
 
@@ -98,19 +98,19 @@ function ProyectoCard({ proyecto, onOpen }: { proyecto: Proyecto; onOpen: () => 
             {proyecto.stack.slice(0, 3).map((tecnologia) => (
               <li
                 key={tecnologia}
-                className="rounded-full border border-border bg-muted/60 px-3 py-1 text-[11px] font-semibold text-muted-foreground"
+                className="rounded-full border border-border/80 bg-muted/60 backdrop-blur-xs px-3 py-1 text-[11px] font-semibold text-muted-foreground"
               >
                 {tecnologia}
               </li>
             ))}
             {proyecto.stack.length > 3 ? (
-              <li className="rounded-full border border-border bg-muted/60 px-3 py-1 text-[11px] font-semibold text-muted-foreground">
+              <li className="rounded-full border border-border/80 bg-muted/60 backdrop-blur-xs px-3 py-1 text-[11px] font-semibold text-muted-foreground">
                 +{proyecto.stack.length - 3}
               </li>
             ) : null}
           </ul>
 
-          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--brand-ink)] transition-transform group-hover:translate-x-0.5">
+          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--brand-ink)] transition-transform duration-200 group-hover:translate-x-1">
             Ver el proyecto
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </span>
@@ -281,7 +281,7 @@ function ProyectosPage() {
             aria-modal="true"
             aria-labelledby="proyecto-titulo"
             onClick={(event) => event.stopPropagation()}
-            className={`relative flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-border/80 bg-background shadow-2xl transition-all duration-200 ease-out ${
+            className={`relative flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-border/80 bg-background/95 backdrop-blur-xl shadow-2xl transition-all duration-200 ease-out ${
               isClosing ? "scale-95 opacity-0" : "scale-100 opacity-100"
             }`}
           >
@@ -289,7 +289,7 @@ function ProyectosPage() {
               type="button"
               onClick={closeProyecto}
               aria-label="Cerrar"
-              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
+              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 text-muted-foreground backdrop-blur-md transition-all hover:text-foreground hover:bg-background active:scale-90 cursor-pointer shadow-xs"
             >
               <CloseIcon className="h-4 w-4" aria-hidden="true" />
             </button>

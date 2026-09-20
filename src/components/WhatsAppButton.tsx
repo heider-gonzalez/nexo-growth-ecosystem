@@ -16,7 +16,7 @@ export function WhatsAppButton() {
       className="fixed bottom-6 right-6 z-50 flex items-center group select-none"
     >
       {/* Floating Tooltip Pill on Hover */}
-      <span className="pointer-events-none absolute right-full mr-3 hidden rounded-xl border border-border/80 bg-background/95 px-3.5 py-1.5 text-xs font-medium text-foreground shadow-lg backdrop-blur-md transition-all duration-300 sm:inline-block opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 whitespace-nowrap">
+      <span className="pointer-events-none absolute right-full mr-3 hidden rounded-2xl border border-border/80 bg-card/95 px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-xl backdrop-blur-xl transition-all duration-200 sm:inline-block opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 whitespace-nowrap origin-right">
         ¿Hablamos por WhatsApp?
       </span>
 
@@ -26,7 +26,7 @@ export function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar a Nexo por WhatsApp"
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#00c2ff] text-white shadow-[0_4px_20px_rgba(0,194,255,0.4)] transition-all duration-300 hover:scale-110 hover:bg-[#00b0e8] hover:shadow-[0_6px_26px_rgba(0,194,255,0.6)] active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#00c2ff]/50"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#00c2ff] text-white shadow-[0_2px_8px_rgba(0,194,255,0.25),0_8px_24px_-4px_rgba(0,194,255,0.5)] border-t border-white/35 transition-all duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:scale-105 hover:bg-[#00b4ec] hover:shadow-[0_12px_32px_-4px_rgba(0,194,255,0.65)] active:scale-90 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#00c2ff]/50 cursor-pointer"
       >
         {/* Pulsing Glow Ring */}
         <span

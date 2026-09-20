@@ -38,27 +38,31 @@ export const Route = createFileRoute("/")({
 const services = [
   {
     icon: Monitor,
-    title: "Desarrollo Web",
+    title: "Desarrollo de software",
     text: "Sitios y plataformas modernas, rápidas y adaptadas a tus objetivos.",
-    badge: "Frontend & Fullstack",
+    badge: "Aplicaciones & Websites",
+    tag: "Construcción a medida",
   },
   {
     icon: RefreshCw,
     title: "Implementación de CRM",
     text: "Organiza tus prospectos, automatiza ventas y mantén el control de tus clientes en un solo lugar.",
     badge: "Ventas & Retención",
+    tag: "Gestión de embudo & leads",
   },
   {
     icon: Zap,
     title: "Optimización de Procesos",
     text: "Eliminamos cuellos de botella para que tu equipo trabaje de forma más ágil y eficiente.",
-    badge: "Automatizaciones n8n",
+    badge: "Automatizaciones & Workflows",
+    tag: "Flujos de trabajo eficientes",
   },
   {
     icon: Bot,
     title: "Inteligencia Artificial",
     text: "Soluciones avanzadas e integración de IA para automatizar tareas y tomar decisiones basadas en datos.",
     badge: "Modelos & Agentes",
+    tag: "Agentes & analítica predictiva",
   },
 ];
 
@@ -162,24 +166,40 @@ function Index() {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation direction="up" delay={0.1} className="svc-grid mt-16">
+          <ScrollAnimation
+            direction="up"
+            delay={0.1}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-16"
+          >
             {services.map((s) => (
-              <article key={s.title} className="svc-item group">
-                <div className="svc-rule" aria-hidden="true" />
-                <div className="flex items-baseline justify-between gap-4 pt-5">
-                  <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              <article
+                key={s.title}
+                className="group relative flex flex-col justify-between rounded-3xl border border-border/80 bg-card/85 p-7 sm:p-9 shadow-sm backdrop-blur-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-[#00c2ff]/60 hover:shadow-[0_16px_36px_-8px_rgba(0,194,255,0.18),0_4px_12px_-2px_rgba(15,23,42,0.04)] active:scale-[0.99] overflow-hidden"
+              >
+                {/* Top subtle glow highlight */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00c2ff]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20 text-[var(--brand-ink)] shadow-2xs transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:border-primary/40">
+                      <s.icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
+                    </div>
+                    <span className="rounded-full border border-border/80 bg-muted/60 px-3.5 py-1 text-xs font-semibold text-muted-foreground group-hover:border-[#00c2ff]/40 group-hover:text-foreground transition-colors">
+                      {s.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-6 text-xl sm:text-2xl font-extrabold tracking-tight text-foreground transition-colors group-hover:text-[var(--brand-ink)]">
                     {s.title}
                   </h3>
-                  <s.icon
-                    className="h-5 w-5 shrink-0 self-start text-[var(--brand-ink)]"
-                    strokeWidth={1.8}
-                    aria-hidden="true"
-                  />
+                  <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                    {s.text}
+                  </p>
                 </div>
-                <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
-                  {s.text}
-                </p>
-                <p className="mt-4 text-sm text-muted-foreground/80">{s.badge}</p>
+
+                <div className="mt-8 pt-5 border-t border-border/50 flex items-center justify-between text-xs font-semibold text-[var(--brand-ink)]">
+                  <span>{s.tag}</span>
+                </div>
               </article>
             ))}
           </ScrollAnimation>
@@ -214,17 +234,51 @@ function Index() {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation direction="up" delay={0.1} className="step-list mt-16">
-            {steps.map((s) => (
-              <div key={s.n} className="step-item">
-                <span className="text-sm font-semibold text-[var(--brand-ink)]">Paso {s.n}</span>
-                <h3 className="mt-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-                  {s.title}
-                </h3>
-                <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
-                  {s.text}
-                </p>
-              </div>
+          <ScrollAnimation
+            direction="up"
+            delay={0.1}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-16"
+          >
+            {steps.map((s, idx) => (
+              <article
+                key={s.n}
+                className="group relative flex flex-col justify-between rounded-3xl border border-border/80 bg-card/85 p-7 sm:p-9 shadow-sm backdrop-blur-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-[#00c2ff]/60 hover:shadow-[0_16px_36px_-8px_rgba(0,194,255,0.18),0_4px_12px_-2px_rgba(15,23,42,0.04)] overflow-hidden"
+              >
+                {/* Top subtle glow highlight */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00c2ff]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/25 text-base font-black font-mono text-[var(--brand-ink)] shadow-2xs group-hover:scale-110 group-hover:bg-primary/20 transition-transform duration-300">
+                      {s.n}
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground group-hover:text-[var(--brand-ink)] transition-colors">
+                      Paso {s.n}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-6 text-xl sm:text-2xl font-extrabold tracking-tight text-foreground transition-colors group-hover:text-[var(--brand-ink)]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                    {s.text}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-5 border-t border-border/50">
+                  <div className="flex items-center gap-2">
+                    <div className="h-1.5 flex-1 rounded-full bg-muted overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[#00c2ff] to-[var(--brand-ink)] rounded-full transition-all duration-500"
+                        style={{ width: `${((idx + 1) / steps.length) * 100}%` }}
+                      />
+                    </div>
+                    <span className="text-[11px] font-semibold text-muted-foreground">
+                      {idx + 1}/{steps.length}
+                    </span>
+                  </div>
+                </div>
+              </article>
             ))}
           </ScrollAnimation>
         </div>
