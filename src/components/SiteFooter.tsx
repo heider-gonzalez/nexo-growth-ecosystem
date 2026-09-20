@@ -75,9 +75,7 @@ export function SiteFooter() {
     <footer className="bg-[#050811] text-slate-400">
       {/* El tramo cian recoge el acento de marca y separa el footer del
           contenido sin recurrir a otra caja. */}
-      <div aria-hidden="true" className="h-px bg-slate-800">
-        <div className="h-px w-24 bg-[#00c2ff]" />
-      </div>
+      <div aria-hidden="true" className="h-px bg-slate-800" />
 
       <div className="mx-auto max-w-6xl px-6 pb-16 pt-10 sm:pb-10 sm:pt-16">
         <div className="md:flex md:items-start md:justify-between md:gap-12">
