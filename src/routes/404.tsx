@@ -37,8 +37,8 @@ function NotFound() {
             </h2>
 
             <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-md mx-auto">
-              Lo sentimos, la página que buscas no existe o ha sido movida. 
-              Quizás la dirección está mal escrita o la página fue eliminada.
+              Lo sentimos, la página que buscas no existe o ha sido movida. Quizás la dirección está
+              mal escrita o la página fue eliminada.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

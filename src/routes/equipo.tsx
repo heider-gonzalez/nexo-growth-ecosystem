@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { z } from "zod";
 import { Layout } from "@/components/Layout";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import {
@@ -33,12 +32,10 @@ type ProfileTabId = (typeof PROFILE_TABS)[number]["id"];
 // real en el historial del navegador (/equipo -> /equipo?member=slug),
 // y el botón "Atrás" del navegador regresa a la grilla del equipo,
 // nunca hasta Inicio.
-const searchSchema = z.object({
-  member: z.string().optional(),
-});
-
 export const Route = createFileRoute("/equipo")({
-  validateSearch: searchSchema,
+  validateSearch: (search: Record<string, unknown>): { member?: string } => ({
+    member: typeof search.member === "string" ? search.member : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Equipo — Nexo" },
@@ -71,7 +68,7 @@ const team: TeamMember[] = [
     location: "Barranquilla, Colombia",
     role: "Ingeniero Informatico",
     funcion: "Desarrollador Full Stack",
-    avatarUrl: "/Heider.jpg",
+    avatarUrl: "https://unavatar.io/github/heider-gonzalez",
     socials: {
       linkedin: "https://www.linkedin.com/in/heider-gonzalez/",
       x: "https://x.com/HeiderGonz50147",
@@ -379,14 +376,16 @@ function TeamPage() {
               <ScrollAnimation key={member.name} direction="up" delay={index * 0.05}>
                 <button
                   onClick={() => openMember(member)}
-                  className="group flex flex-col items-center text-center cursor-pointer hover:scale-105 transition-transform"
+                  className="group flex flex-col items-center text-center cursor-pointer transition-all duration-200 hover:-translate-y-1 active:scale-95"
                 >
-                  <div className="w-28 h-28 rounded-full bg-muted/80 border border-border/50 flex items-center justify-center overflow-hidden shrink-0 mb-4">
+                  <div className="w-28 h-28 rounded-full bg-muted/80 border-2 border-border/70 group-hover:border-[#00c2ff]/70 group-hover:shadow-[0_0_20px_rgba(0,194,255,0.25)] flex items-center justify-center overflow-hidden shrink-0 mb-4 transition-all duration-300">
                     {!imgErrors[member.name] && member.avatarUrl ? (
                       <img
                         src={member.avatarUrl}
                         alt={member.name}
-                        className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-300"
+                        width={112}
+                        height={112}
+                        className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
                         loading="lazy"
                         decoding="async"
                         onError={() => handleImgError(member.name)}
@@ -397,7 +396,7 @@ function TeamPage() {
                       </span>
                     )}
                   </div>
-                  <h3 className="text-base font-semibold text-foreground">{member.firstName}</h3>
+                  <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-[var(--brand-ink)]">{member.firstName}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{member.role}</p>
                 </button>
               </ScrollAnimation>
@@ -417,7 +416,7 @@ function TeamPage() {
           onClick={closeMember}
         >
           <div
-            className={`relative w-full max-w-4xl max-h-[85vh] bg-background border border-border/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row transition-all duration-200 ease-out ${
+            className={`relative w-full max-w-4xl max-h-[85vh] bg-background/95 backdrop-blur-xl border border-border/80 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row transition-all duration-200 ease-out ${
               isClosing
                 ? "opacity-0 scale-95"
                 : "opacity-100 scale-100 animate-in zoom-in-95 duration-200"
@@ -427,7 +426,7 @@ function TeamPage() {
             {/* Botón Cerrar */}
             <button
               onClick={closeMember}
-              className="absolute top-4 right-4 z-20 p-2 text-muted-foreground hover:text-foreground transition-colors bg-muted/60 hover:bg-muted rounded-full"
+              className="absolute top-4 right-4 z-20 p-2 text-muted-foreground hover:text-foreground transition-all bg-muted/60 hover:bg-muted active:scale-90 rounded-full cursor-pointer shadow-xs"
               aria-label="Cerrar perfil"
             >
               <CloseIcon className="h-5 w-5" />
@@ -440,6 +439,8 @@ function TeamPage() {
                   <img
                     src={selectedMember.avatarUrl}
                     alt={selectedMember.name}
+                    width={112}
+                    height={112}
                     className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"

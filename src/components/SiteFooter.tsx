@@ -75,9 +75,7 @@ export function SiteFooter() {
     <footer className="bg-[#050811] text-slate-400">
       {/* El tramo cian recoge el acento de marca y separa el footer del
           contenido sin recurrir a otra caja. */}
-      <div aria-hidden="true" className="h-px bg-slate-800">
-        <div className="h-px w-24 bg-[#00c2ff]" />
-      </div>
+      <div aria-hidden="true" className="h-px bg-slate-800" />
 
       <div className="mx-auto max-w-6xl px-6 pb-16 pt-10 sm:pb-10 sm:pt-16">
         <div className="md:flex md:items-start md:justify-between md:gap-12">
@@ -126,6 +124,8 @@ export function SiteFooter() {
               <img
                 src="/Logo_ Paleta oscura.png"
                 alt="Nexo"
+                width={48}
+                height={36}
                 className="h-9 w-auto"
                 loading="lazy"
                 decoding="async"
@@ -137,7 +137,7 @@ export function SiteFooter() {
           <button
             type="button"
             onClick={scrollToTop}
-            className="inline-flex cursor-pointer items-center gap-1 self-start transition-colors hover:text-white sm:self-auto"
+            className="inline-flex cursor-pointer items-center gap-1.5 self-start transition-all hover:text-white active:scale-95 sm:self-auto py-1 px-2 rounded-lg hover:bg-slate-900"
           >
             Volver arriba
             <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />

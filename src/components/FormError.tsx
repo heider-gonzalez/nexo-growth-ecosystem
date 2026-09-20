@@ -10,7 +10,9 @@ export function FormError({ message, onDismiss, className = "" }: FormErrorProps
   if (!message) return null;
 
   return (
-    <div className={`flex items-start gap-2 rounded-lg bg-destructive/10 border border-destructive/20 p-3 ${className}`}>
+    <div
+      className={`flex items-start gap-2 rounded-lg bg-destructive/10 border border-destructive/20 p-3 ${className}`}
+    >
       <AlertCircle className="h-4 w-4 text-destructive shrink-0 mt-0.5" />
       <p className="text-sm text-destructive flex-1">{message}</p>
       {onDismiss && (

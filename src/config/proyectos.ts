@@ -17,7 +17,7 @@
  * pedidos procesados). Un resultado inventado invalida los reales.
  *
  * `imagen` apunta a una captura propia en /public (por ejemplo
- * "/proyectos/fresh.jpg", 1200x750 aprox.). Mientras no exista, la
+ * "/proyectos/fresh.avif", 1200x750 aprox.). Mientras no exista, la
  * tarjeta muestra un marco de ventana con el dominio o el nombre de la
  * aplicación, que es información verdadera y no una foto de archivo
  * ajena al proyecto.
@@ -70,7 +70,7 @@ export const PROYECTOS: Proyecto[] = [
     stack: ["React", "Vite", "Tailwind CSS", "Microsoft Clarity"],
     url: "https://freshjacuzzis.com.co",
     dominio: "freshjacuzzis.com.co",
-    imagen: "/proyectos/fresh.jpg",
+    imagen: "/proyectos/fresh.avif",
     imagenAlt: "Portada del sitio de FRESH con el catálogo de hidromasajes",
   },
   {
@@ -88,7 +88,7 @@ export const PROYECTOS: Proyecto[] = [
     stack: ["React", "Vite", "Tailwind CSS", "Netlify"],
     url: "https://jenny-montoya.netlify.app",
     dominio: "jenny-montoya.netlify.app",
-    imagen: "/proyectos/jenny-montoya.jpg",
+    imagen: "/proyectos/jenny-montoya.avif",
     imagenAlt: "Portada del sitio de Jenny Montoya, psicóloga y autora",
   },
   {
@@ -105,7 +105,7 @@ export const PROYECTOS: Proyecto[] = [
     ],
     stack: ["Electron", "React", "SQLite", "Tailwind CSS", "jsPDF"],
     entorno: "MiGestorLocal 2.0 · Windows",
-    imagen: "/proyectos/denty-shalom.jpg",
+    imagen: "/proyectos/denty-shalom.avif",
     imagenAlt: "Panel de inicio de MiGestorLocal con los accesos del laboratorio",
     notaAcceso: "Instalado en el laboratorio del cliente. Pídenos una demo y te lo mostramos.",
   },
@@ -123,7 +123,7 @@ export const PROYECTOS: Proyecto[] = [
     ],
     stack: ["Next.js", "React", "Vercel"],
     entorno: "Panel del CRM",
-    imagen: "/proyectos/crm-whatsapp.jpg",
+    imagen: "/proyectos/crm-whatsapp.avif",
     imagenAlt: "Panel del CRM con las métricas de conversaciones y negocios",
     notaAcceso:
       "Se implementa y configura por cuenta. Pídenos una demo y te lo mostramos funcionando.",

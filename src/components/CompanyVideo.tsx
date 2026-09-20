@@ -76,7 +76,10 @@ export function CompanyVideo() {
                     src={poster}
                     alt=""
                     aria-hidden="true"
+                    width={1280}
+                    height={720}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <span className="absolute inset-0 bg-slate-950/45 transition-colors group-hover:bg-slate-950/30" />

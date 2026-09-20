@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("ErrorBoundary caught an error:", error, errorInfo);
-    
+
     // Aquí podrías enviar el error a un servicio de monitoreo
     // como Sentry, LogRocket, etc.
   }
@@ -43,10 +43,8 @@ export class ErrorBoundary extends Component<Props, State> {
               </div>
             </div>
 
-            <h1 className="text-3xl font-bold text-foreground mb-2">
-              Algo salió mal
-            </h1>
-            
+            <h1 className="text-3xl font-bold text-foreground mb-2">Algo salió mal</h1>
+
             <p className="text-muted-foreground mb-6">
               Ha ocurrido un error inesperado. Por favor, intenta recargar la página.
             </p>

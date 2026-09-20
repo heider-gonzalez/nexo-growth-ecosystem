@@ -28,9 +28,7 @@ export function Layout({ children, hideFooter = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-[#00c2ff]/30 selection:text-foreground">
       <Header />
-      <ErrorBoundary>
-        {children}
-      </ErrorBoundary>
+      <ErrorBoundary>{children}</ErrorBoundary>
       {!hideFooter && <SiteFooter />}
       <WhatsAppButton />
       <CookieConsent />

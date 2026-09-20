@@ -126,16 +126,11 @@ async function sendDiscordNotification(data: ContactFormData): Promise<void> {
   });
 
   if (!response.ok) {
-    throw new Error(
-      `[contact] Discord webhook failed: ${response.status} ${response.statusText}`,
-    );
+    throw new Error(`[contact] Discord webhook failed: ${response.status} ${response.statusText}`);
   }
 }
 
-async function sendResendNotification(
-  data: ContactFormData,
-  formattedDate: string,
-): Promise<void> {
+async function sendResendNotification(data: ContactFormData, formattedDate: string): Promise<void> {
   const apiKey = process.env["RESEND_API_KEY"];
 
   if (!apiKey) {
@@ -197,4 +192,3 @@ export const submitContactLead = createServerFn({ method: "POST" })
 
 // Alias for backwards compatibility
 export const notifyDiscordLead = submitContactLead;
-
